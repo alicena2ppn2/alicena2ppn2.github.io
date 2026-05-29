@@ -83,6 +83,11 @@
   .activity-desc{font-size:13.5px;color:#4a4a6a;line-height:1.8;}
   .activity-desc strong{color:#555566;font-weight:600;}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  .side-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;text-decoration:none;transition:border-color 0.3s,box-shadow 0.3s;}
+  .side-card:hover{border-color:rgba(91,78,240,0.5);box-shadow:0 6px 28px rgba(91,78,240,0.1);}
+  .side-card-title{font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-0.2px;}
+  .side-card-desc{font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:10px;font-family:'Noto Sans KR',sans-serif;}
+  .side-card-tag{display:inline-block;font-size:11px;font-family:'Inter',sans-serif;padding:2px 7px;border-radius:3px;background:var(--surface2);color:#4a4a6a;border:1px solid rgba(0,0,0,0.07);margin-right:4px;margin-bottom:4px;}
   footer{padding:36px 0 60px;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);opacity:0.5;border-top:1px solid var(--border);margin-top:20px;}
 </style>
 </head>
@@ -91,7 +96,7 @@
   <header>
     <p class="header-tag">// Portfolio</p>
     <h1><span class="kr-name">송윤경</span><span>Song Yunkyung</span></h1>
-    <p class="header-desc">설명 가능한 AI(XAI)와 데이터 분석을 기반으로, 문제가 발생하는 원인까지 설명하는 AI 개발자를 지향합니다.<br>머신러닝·딥러닝 모델링부터 서비스 배포까지 전 과정을 경험하며 성장하고 있습니다.</p>
+    <p class="header-desc">설명 가능한 AI(XAI)와 데이터 분석을 기반으로, 문제가 발생하는 원인까지 설명하는 AI 개발자를 지향합니다.<br>머신러닝·딥러닝 모델링부터 서비스 배포까지 전 과정을 경험하며 성장하고 있습니다.<br><br>UI/UX 디자인에 관심이 많으며, AI를 적극 활용해 인터랙티브한 웹 경험을 직접 구현하는 것을 즐깁니다.</p>
     <div class="header-links">
       <div style="display:flex;gap:12px;flex-wrap:wrap;width:100%;">
         <button class="chip chip-mail" onclick="copyEmail(this)">Email · na2ppn26450@gmail.com</button>
@@ -122,6 +127,9 @@
       <span class="skill-tag tool">Selenium</span>
       <span class="skill-tag tool">Git / GitHub</span>
       <span class="skill-tag db">MySQL</span>
+      <span class="skill-tag tool">Figma</span>
+      <span class="skill-tag tool">Claude / GPT API</span>
+      <span class="skill-tag tool">HTML / CSS</span>
     </div>
   </section>
   <section>
@@ -296,6 +304,37 @@
         <span class="activity-type bootcamp">부트캠프</span>
       </div>
       <p class="activity-desc">AI·ML 개발자 과정으로 데이터 수집부터 딥러닝까지 전 과정을 학습했습니다.<br><br><strong>학습 내용</strong><br>Git 버전 관리, Python 기초, MySQL(그룹함수·서브쿼리·DML·트랜잭션·DDL·제약조건·내장함수·DCL·View·Index), 데이터 수집(OpenAPI·정적/동적 웹 스크래핑·Selenium), 데이터 분석, 머신러닝, 딥러닝 기초(퍼셉트론·PyTorch 텐서·활성화 함수·출력층·손실함수·미분과 기울기·역전파·옵티마이저·배치/에폭·정규화·가중치 초기화·드롭아웃·배치 정규화·하이퍼파라미터 최적화·학습률 스케줄러·조기종료·모델 저장 및 로드), 딥러닝 NLP(텍스트 전처리·토크나이징·정제 및 정규화·어간/표제어 추출·한국어 형태소 분석(KoNLPy)·정규표현식·정수 인코딩/패딩·원-핫 인코딩·워드클라우드·텍스트 벡터화(BoW·TF-IDF·Word Embedding·Word2Vec·FastText·BERT))<br><br>캠프에서 데이터 수집부터 딥러닝까지 전 과정을 학습을 통해 Car Park Search와 XAI 기반 SaaS 고객 이탈 예측 시스템 프로젝트를 진행하였습니다.</p>
+    </div>
+  </section>
+  <section>
+    <p class="section-label">Personal Projects</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+      <a href="https://github.com/alicena2ppn2/design-with-hand" target="_blank" class="side-card">
+        <p class="side-card-title">✋ Design with Hand</p>
+        <p class="side-card-desc">손동작(MediaPipe)만으로 캔버스를 조작하는 브라우저 기반 제스처 드로잉 앱</p>
+        <span class="side-card-tag">Vanilla JS</span>
+        <span class="side-card-tag">MediaPipe</span>
+        <span class="side-card-tag">Canvas API</span>
+      </a>
+      <a href="https://github.com/alicena2ppn2/study-sqld" target="_blank" class="side-card">
+        <p class="side-card-title">📖 SQLD 학습앱</p>
+        <p class="side-card-desc">SQLD 자격증 대비 플래시카드 형태의 단일 HTML 학습 앱. 중요 카드 저장 및 요약노트 기능 포함</p>
+        <span class="side-card-tag">HTML</span>
+        <span class="side-card-tag">Vanilla JS</span>
+      </a>
+      <a href="https://github.com/alicena2ppn2/idea-achive" target="_blank" class="side-card">
+        <p class="side-card-title">🌌 idea archive</p>
+        <p class="side-card-desc">AI 키워드 추출로 아이디어를 우주 오브 형태로 저장하는 감성 아카이브 웹앱</p>
+        <span class="side-card-tag">React</span>
+        <span class="side-card-tag">OpenAI API</span>
+        <span class="side-card-tag">MongoDB</span>
+      </a>
+      <a href="https://github.com/alicena2ppn2/play-with-bubble" target="_blank" class="side-card">
+        <p class="side-card-title">🫧 Play with Bubble</p>
+        <p class="side-card-desc">버블 인터랙션을 테마로 한 브라우저 기반 인터랙티브 웹 실험</p>
+        <span class="side-card-tag">HTML</span>
+        <span class="side-card-tag">Canvas</span>
+      </a>
     </div>
   </section>
   <footer>송윤경 · Song Yunkyung</footer>
