@@ -33,7 +33,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 .sec-label{width:100%;margin:2.5rem 0 1.25rem 1.5rem;padding:0 8vw;font-family:'DM Mono',monospace;font-size:0.65rem;font-weight:500;color:#aaa;letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:1rem;}
 .sec-label::after{content:'';flex:1;height:1px;background:#e0e8f0;max-width:200px;}
 
-.skills-wrap{width:100%;padding:0 8vw;margin-left:1.5rem;}
+.skills-wrap{width:100%;max-width:calc(100% - 3rem);padding:0 8vw;margin-left:1.5rem;margin-right:1.5rem;}
 .skills-card{background:white;box-shadow:0 4px 20px rgba(0,0,0,0.04);padding:1.75rem 2rem;}
 .skills-inner{display:flex;flex-wrap:wrap;gap:0.375rem;}
 .skill-tag{padding:2px 8px;border-radius:3px;font-size:0.7rem;font-family:'Inter',sans-serif;}
@@ -42,18 +42,18 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 .skill-tag.tool{background:rgba(217,119,6,0.1);color:#92490a;border:1px solid rgba(217,119,6,0.2);}
 .skill-tag.db{background:rgba(220,38,38,0.1);color:#b01a1a;border:1px solid rgba(220,38,38,0.2);}
 
-.card-grid{width:100%;padding:2rem 8vw;display:grid;grid-template-columns:repeat(2,1fr);row-gap:1rem;column-gap:0;margin-left:1.5rem;margin-right:1.5rem;}
+.card-grid{width:100%;padding:2rem 8vw;display:grid;grid-template-columns:repeat(2,1fr);row-gap:2.5rem;column-gap:0;margin-left:1.5rem;margin-right:1.5rem;}
 @media(max-width:900px){.card-grid{grid-template-columns:1fr;padding:0 8.0rem;}}
-.project-card{background:white;box-shadow:0 4px 20px rgba(0,0,0,0.04);padding:2.5rem;cursor:pointer;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;aspect-ratio:13/8.5;display:flex;flex-direction:row;justify-content:space-between;align-items:stretch;gap:2rem;;}
+.project-card{background:white;box-shadow:0 4px 20px rgba(0,0,0,0.04);padding:2.5rem;cursor:pointer;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;aspect-ratio:13/7.5;display:flex;flex-direction:row;justify-content:space-between;align-items:stretch;gap:2rem;max-width:93%;}
 .project-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,0.09);}
 .card-number{font-size:6rem;font-weight:800;line-height:1;color:#000;font-family:'Inter',sans-serif;}
-.card-title{font-size:1.5rem;font-weight:900;line-height:1.15;letter-spacing:-0.02em;text-transform:uppercase;margin:0.5rem 0 0.5rem;}
+.card-title{font-size:1.4rem;font-weight:900;line-height:1.15;letter-spacing:-0.02em;text-transform:uppercase;margin:0.5rem 0 0.5rem;}
 .card-brief{font-size:0.75rem;color:#888;line-height:1.75;margin-bottom:0.75rem;}
 .card-meta{display:flex;flex-direction:column;gap:0.3rem;margin-top:0.625rem;}
 .meta-row{display:flex;align-items:flex-end;}
-.meta-label{font-size:0.55rem;color:#aaa;text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;font-family:'DM Mono',monospace;}
+.meta-label{font-size:0.65rem;color:#666;text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;font-family:'DM Mono',monospace;font-weight:500;}
 .dotted-line{flex-grow:1;border-bottom:1px dotted #ddd;margin:0 8px;margin-bottom:3px;}
-.meta-value{font-size:0.65rem;color:#444;white-space:nowrap;}
+.meta-value{font-size:0.75rem;color:#4444448b;white-space:nowrap;font-weight:500;}
 .card-pills{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.625rem;}
 .card-pill{font-size:0.6rem;font-family:'Inter',sans-serif;padding:2px 6px;background:#f5f5f5;color:#666;border-radius:2px;}
 .card-hint{font-size:0.55rem;color:#ccc;font-family:'DM Mono',monospace;letter-spacing:0.05em;margin-top:0.75rem;}
@@ -172,7 +172,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 <div class="card-grid">
 
   <!-- Card 01 -->
-  <div class="project-card" onclick="openModal('proj1')">
+  <div class="project-card" onclick="window.location.href='detail.html?id=proj1'" style="cursor:pointer;">
     <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-start;">
       <div>
         <h2 class="card-title">XAI 기반 SaaS<br>고객 이탈 예측</h2>
@@ -187,18 +187,15 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
     <div style="flex:0 0 45%;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;">
       <div style="width:100%;height:160px;background:#fce7f3;border-radius:0.5rem;display:flex;align-items:center;justify-content:center;position:relative;">
         <i class="ph-chart-line-up" style="font-size:3.5rem;color:#e879f9;"></i>
-        <div style="position:absolute;top:1rem;right:1rem;width:2.5rem;height:2.5rem;background:#fbbf24;border-radius:50%;display:flex;align-items:center;justify-content:center;">
-          <i class="ph-bell-simple" style="font-size:1rem;color:white;"></i>
-        </div>
       </div>
       <span class="card-number">01</span>
     </div>
   </div>
 
   <!-- Card 02 -->
-  <div class="project-card" onclick="openModal('proj2')">
+  <div class="project-card" onclick="window.location.href='detail.html?id=proj2'" style="cursor:pointer;">
     <div style="flex:0 0 45%;display:flex;flex-direction:column;align-items:flex-start;gap:1rem;">
-      <div style="width:110px;height:110px;background:#bbf7d0;border-radius:0.5rem;padding:0.875rem;display:flex;flex-direction:column;justify-content:space-between;">
+      <div style="width:110px;height:90px;background:#bbf7d0;border-radius:0.5rem;padding:0.875rem;display:flex;flex-direction:column;justify-content:space-between;">
         <div style="display:flex;justify-content:space-between;">
           <div style="width:1.25rem;height:1.25rem;background:white;border-radius:50%;"></div>
           <div style="width:1.25rem;height:1.25rem;background:white;border-radius:50%;"></div>
@@ -220,7 +217,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
         <h2 class="card-title">Car Park Search</h2>
         <p class="card-brief">주차장 검색 및 지역별 주차 수급 분석 대시보드. 공공데이터 + 리뷰 크롤링으로 혼잡도 지수 도출</p>
         <div class="card-meta" style="text-align:right;margin-top:0.625rem;">
-          <div class="meta-row"><span class="meta-label">역할</span><div class="dotted-line"></div><span class="meta-value">UI/UX 설계 · 데이터 분석</span></div>
+          <div class="meta-row"><span class="meta-value" style="color:#666;">역할</span><div class="dotted-line"></div><span class="meta-value">UI/UX 설계 · 데이터 분석</span></div>
           <div class="meta-row"><span class="meta-label">Stack</span><div class="dotted-line"></div><span class="meta-value">Streamlit · MySQL · Folium</span></div>
         </div>
       </div>
@@ -232,7 +229,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 <div class="card-grid">
 
   <!-- Card 03 -->
-  <div class="project-card" onclick="openModal('act1')" style="flex-direction:column;">
+  <div class="project-card" onclick="window.location.href='detail.html?id=act1'" style="flex-direction:column; cursor:pointer;">
     <div style="display:flex;gap:0.75rem;flex:0 0 55%;">
       <div style="flex:1;background:#fce7f3;border-radius:0.5rem;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;">
         <span class="card-number" style="position:absolute;left:-1.5rem;top:50%;transform:translateY(-50%);opacity:0.15;mix-blend-mode:multiply;font-size:5rem;">03</span>
@@ -249,7 +246,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
     </div>
     <div style="flex:1;display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;">
       <div style="flex:1;">
-        <h2 class="card-title" style="text-transform:none;font-size:1.1rem;">Wi-Fi Multi-AP<br>채널 보안 연구</h2>
+        <h2 class="card-title" style="text-transform:none;font-size:1.4rem;">Wi-Fi Multi-AP<br>채널 보안 연구</h2>
         <p class="card-brief">BC-SCMM · Latency ↓74% · 특허 출원</p>
       </div>
       <div style="text-align:right;">
@@ -260,15 +257,15 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
   </div>
 
   <!-- Card 04 -->
-  <div class="project-card" onclick="openModal('act2')">
+  <div class="project-card" onclick="window.location.href='detail.html?id=act2'" style="cursor:pointer;">
     <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
       <div>
-        <h2 class="card-title" style="margin-top:0;text-transform:none;font-size:1.2rem;">R&amp;D KIRD<br>리얼챌린지</h2>
+        <h2 class="card-title" style="margin-top:0;text-transform:none;font-size:1.4rem;">R&amp;D KIRD<br>리얼챌린지</h2>
         <p class="card-brief">디지털 취약계층을 위한 공공 와이파이 자동복구 기술 연구 · 8개월</p>
       </div>
       <div>
                 <div class="card-meta" style="margin-top:0.625rem;">
-          <div class="meta-row"><span class="meta-label">기간</span><div class="dotted-line"></div><span class="meta-value">8개월</span></div>
+          <div class="meta-row"><span class="meta-value" style="color:#666;">기간</span><div class="dotted-line"></div><span class="meta-value">8개월</span></div>
           <div class="meta-row"><span class="meta-label">Type</span><div class="dotted-line"></div><span class="meta-value">대외활동</span></div>
         </div>
       </div>
@@ -276,15 +273,13 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
     <div style="flex:0 0 45%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;">
       <span class="card-number">04</span>
       <div style="width:100%;aspect-ratio:1/1;background:#fef3c7;border-radius:0.5rem;display:flex;align-items:center;justify-content:center;">
-        <div style="width:5rem;height:7rem;background:#fb923c;border-radius:9999px 9999px 0 0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0.75rem;">
-          <i class="ph-rocket-launch" style="font-size:2rem;color:white;"></i>
-        </div>
+          <i class="ph-file-text" style="font-size:3.5rem;color:#fb923c;"></i>
       </div>
     </div>
   </div>
 
   <!-- Card 05 -->
-  <div class="project-card" onclick="openModal('act3')" style="flex-direction:column;">
+  <div class="project-card" onclick="window.location.href='detail.html?id=act3'" style="flex-direction:column; cursor:pointer;">
     <div style="display:flex;gap:1rem;flex:0 0 50%;">
       <div style="width:7rem;height:7rem;background:#e0e7ff;border-radius:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
         <div style="width:5rem;height:5rem;background:white;border-radius:0.75rem;box-shadow:inset 0 2px 4px rgba(0,0,0,0.05);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
@@ -293,11 +288,11 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
         </div>
       </div>
       <div style="flex:1;">
-        <h2 class="card-title" style="text-transform:none;font-size:1.1rem;margin-top:0;">융합보안<br>학술 동아리</h2>
-        <p class="card-brief">CTF · 칼리리눅스 · 암호학 · 워게임 · 6개월</p>
+        <h2 class="card-title" style="text-transform:none;font-size:1.4rem;margin-top:0;">융합보안<br>학술 동아리</h2>
+        <p class="card-brief" style="font-weight:500;">CTF · 칼리리눅스 · 암호학 · 워게임 · 6개월</p>
         <div class="card-meta" style="margin-top:0.5rem;">
-          <div class="meta-row"><span class="meta-label">활동</span><div class="dotted-line"></div><span class="meta-value">CTF · Write-up</span></div>
-          <div class="meta-row"><span class="meta-label">기간</span><div class="dotted-line"></div><span class="meta-value">6개월</span></div>
+          <div class="meta-row"><span class="meta-value" style="color:#666;">활동</span><div class="dotted-line"></div><span class="meta-value">CTF · Write-up</span></div>
+          <div class="meta-row"><span class="meta-value">기간</span><div class="dotted-line"></div><span class="meta-value">6개월</span></div>
         </div>
       </div>
     </div>
@@ -313,7 +308,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 
   <!-- Card 06 -->
   <div class="project-card" onclick="openModal('act4')" style="flex-direction:column;">
-    <div style="display:flex;gap:0.75rem;flex:0 0 50%;margin-bottom:0.75rem;">
+    <div style="display:flex;gap:0.75rem;flex:0 0 40%;margin-bottom:0.75rem;">
       <div style="width:33%;background:#fef9c3;border-radius:0.5rem;display:flex;align-items:center;justify-content:center;">
         <i class="ph-code" style="font-size:2rem;color:#fbbf24;"></i>
       </div>
@@ -324,10 +319,10 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
         <i class="ph-brain" style="font-size:2.5rem;color:#93c5fd;"></i>
       </div>
     </div>
-    <div style="flex:1;display:flex;justify-content:space-between;align-items:flex-end;">
+    <div style="flex:1;display:flex;justify-content:space-between;align-items:flex-start;">
       <span class="card-number">06</span>
-      <div style="flex:1;margin-left:1.5rem;text-align:right;">
-        <h2 class="card-title" style="text-transform:none;font-size:1.1rem;">SK Networks<br>Family AI 캠프</h2>
+      <div style="flex:1;margin-left:1.5rem;text-align:right;margin-top:-1.5rem;">
+        <h2 class="card-title" style="text-transform:none;font-size:1.4rem;">SK Networks<br>Family AI 캠프</h2>
         <p class="card-brief">Python · ML · DL · NLP · 데이터 수집부터 배포까지</p>
         <div style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.25rem;text-align:left;">
           <div class="meta-row"><div class="dotted-line"></div><span class="meta-value">ML/DL 전 과정</span></div>
@@ -339,9 +334,9 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 </div>
 
 <div class="sec-label">Competition &amp; Personal</div>
-<div class="card-grid" style="justify-items:center;">
+<div class="card-grid">
   <!-- Card 07 -->
-  <div class="project-card" onclick="openModal('comp1')" style="padding:0;">
+  <div class="project-card" onclick="window.location.href='detail.html?id=comp1'" style="padding:0; cursor:pointer; max-width:93%;">
     <div style="flex:0 0 40%;display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem;background:#f9fafc;border-radius:0.5rem;">
       <span class="card-number">07</span>
       <div style="width:100%;aspect-ratio:1/1;background:#fff7ed;border-radius:1rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
@@ -351,12 +346,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
     </div>
     <div style="flex:1;padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;">
       <div>
-        <h2 class="card-title" style="text-transform:none;font-size:1.2rem;">인공지능 루키<br>야구 해설 앱 기획</h2>
+        <h2 class="card-title" style="text-transform:none;">인공지능 루키<br>야구 해설 앱 기획</h2>
         <p class="card-brief">야구 입문자를 위한 실시간 AI 해설 앱 아이디어 기획. 야구장에서 AI가 경기 상황을 분석해 초보 관중도 이해하기 쉬운 언어로 해설 제공.</p>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:flex-end;">
         <div>
-                    <div class="card-meta" style="margin-top:0.625rem;">
+                    <div class="card-meta">
             <div class="meta-row"><span class="meta-label">Type</span><div class="dotted-line"></div><span class="meta-value">AI 대회</span></div>
             <div class="meta-row"><span class="meta-label">Output</span><div class="dotted-line"></div><span class="meta-value">시연 영상 기획·촬영·편집</span></div>
           </div>
@@ -366,32 +361,24 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
     </div>
   </div>
 
-  <!-- Card 08: personal projects preview -->
-  <div class="project-card" style="background:linear-gradient(135deg,#f8fafc 0%,#f3f4f6 100%);gap:1.5rem;">
-    <div style="flex:0 0 20%;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;">
-      <span class="card-number" style="opacity:0.15;font-size:5rem;">08</span>
+  <!-- Card 08: personal projects -->
+  <div class="project-card" onclick="window.location.href='personal-projects-detail.html'" style="padding:0; cursor:pointer; max-width:93%;">
+    <div style="flex:0 0 40%;display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem;background:#f0e7ff;border-radius:0.5rem;">
+      <span class="card-number">P</span>
+      <div style="width:100%;aspect-ratio:1/1;background:#e9d5ff;border-radius:1rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+        <i class="ph-code" style="font-size:4.5rem;color:#a78bfa;"></i>
+      </div>
     </div>
-    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
-      <a href="https://github.com/alicena2ppn2/design-with-hand" target="_blank" style="background:white;border-radius:0.5rem;padding:1rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0.375rem;">
-        <i class="ph-hand-waving" style="font-size:1.5rem;color:#2563eb;"></i>
-        <div style="font-size:0.75rem;font-weight:700;">Design with Hand</div>
-        <div style="font-size:0.6rem;color:#888;">MediaPipe · Canvas API</div>
-      </a>
-      <a href="https://github.com/alicena2ppn2/study-sqld" target="_blank" style="background:white;border-radius:0.5rem;padding:1rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0.375rem;">
-        <i class="ph-cards" style="font-size:1.5rem;color:#ca8a04;"></i>
-        <div style="font-size:0.75rem;font-weight:700;">SQLD 학습앱</div>
-        <div style="font-size:0.6rem;color:#888;">HTML · Vanilla JS</div>
-      </a>
-      <a href="https://github.com/alicena2ppn2/idea-achive" target="_blank" style="background:white;border-radius:0.5rem;padding:1rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0.375rem;">
-        <i class="ph-planet" style="font-size:1.5rem;color:#7c3aed;"></i>
-        <div style="font-size:0.75rem;font-weight:700;">idea archive</div>
-        <div style="font-size:0.6rem;color:#888;">React · OpenAI · MongoDB</div>
-      </a>
-      <a href="https://github.com/alicena2ppn2/play-with-bubble" target="_blank" style="background:white;border-radius:0.5rem;padding:1rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0.375rem;">
-        <i class="ph-circle-dashed" style="font-size:1.5rem;color:#0d9488;"></i>
-        <div style="font-size:0.75rem;font-weight:700;">Play with Bubble</div>
-        <div style="font-size:0.6rem;color:#888;">HTML · Canvas</div>
-      </a>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem;">
+      <div>
+        <h2 class="card-title">Personal<br>Projects</h2>
+        <p class="card-brief">4개의 개인 프로젝트 · MediaPipe · React · Canvas API · AI</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Projects</span><div class="dotted-line"></div><span class="meta-value">4개 프로젝트</span></div>
+          <div class="meta-row"><span class="meta-label">Skills</span><div class="dotted-line"></div><span class="meta-value">Full Stack · Interactive</span></div>
+        </div>
+      </div>
+      <div style="width:3rem;height:3rem;border-radius:50%;border:1px solid #e5e7eb;"></div>
     </div>
   </div>
 </div>
