@@ -42,7 +42,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 .skill-tag.tool{background:rgba(217,119,6,0.1);color:#92490a;border:1px solid rgba(217,119,6,0.2);}
 .skill-tag.db{background:rgba(220,38,38,0.1);color:#b01a1a;border:1px solid rgba(220,38,38,0.2);}
 
-.card-grid{width:100%;padding:2rem 8vw;display:grid;grid-template-columns:repeat(2,1fr);row-gap:1.5rem;column-gap:-1rem;}
+.card-grid{width:100%;padding:2rem 8vw;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
 @media(max-width:900px){.card-grid{grid-template-columns:1fr;padding:0 1.5rem;}}
 
 .project-card{background:white;box-shadow:0 4px 20px rgba(0,0,0,0.04);padding:2.5rem;cursor:pointer;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;aspect-ratio:13/8.5;display:flex;flex-direction:row;justify-content:space-between;align-items:stretch;gap:2rem;max-width:90%;}
@@ -103,7 +103,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 .small-pill{font-size:0.6rem;font-family:'Inter',sans-serif;display:inline-block;padding:1px 5px;border-radius:2px;background:#f3f4f6;color:#555;margin-right:3px;margin-bottom:3px;}
 
 /* Contact section */
-.contact-section{background:#f3faff;padding:5rem 4vw 4rem;text-align:center;}
+.contact-section{background:#f3faff;padding:5rem 4vw 10rem;text-align:center;}
 .contact-title{font-family:'Inter',sans-serif;font-size:clamp(2.7rem,6.7vw,5.3rem);font-weight:800;letter-spacing:-0.04em;line-height:1;margin-bottom:3rem;color:#000;}
 .contact-grid{display:flex;justify-content:center;gap:5rem;flex-wrap:wrap;margin-bottom:3rem;}
 .contact-col{}
@@ -217,7 +217,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;">
         <span class="card-number">02</span>
               </div>
-      <div style="text-align:right;">
+      <div style="text-align:right;max-width:350px;">
         <h2 class="card-title">Car Park Search</h2>
         <p class="card-brief">주차장 검색 및 지역별 주차 수급 분석 대시보드. 공공데이터 + 리뷰 크롤링으로 혼잡도 지수 도출</p>
         <div class="card-meta" style="text-align:right;margin-top:0.625rem;">
@@ -340,7 +340,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 </div>
 
 <div class="sec-label">Competition &amp; Personal</div>
-<div class="card-grid">
+<div class="card-grid" style="justify-items:center;">
   <!-- Card 07 -->
   <div class="project-card" onclick="openModal('comp1')" style="padding:0;">
     <div style="flex:0 0 40%;display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem;background:#f9fafc;border-radius:0.5rem;">
