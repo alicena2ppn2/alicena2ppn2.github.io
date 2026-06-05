@@ -16,9 +16,9 @@ function drawThresholdChart() {
     data: {
       labels: thresholds.map(function(v) { return v.toFixed(2); }),
       datasets: [
-        { label: 'logistic_regression', data: logReg, borderColor: '#2563eb', borderWidth: 2, pointRadius: 1.5, tension: 0.3, fill: false },
-        { label: 'DL_MLP', data: dlMlp, borderColor: '#4fd1c5', borderWidth: 2, pointRadius: 1.5, tension: 0.3, fill: false },
-        { label: 'random_forest', data: randFor, borderColor: '#f6ad55', borderWidth: 2, pointRadius: 1.5, tension: 0.3, fill: false }
+        { label: 'logistic_regression', data: logReg, borderColor: '#2563eb', borderWidth: 3, pointRadius: 1.5, tension: 0.3, fill: false },
+        { label: 'DL_MLP', data: dlMlp, borderColor: '#4fd1c5', borderWidth: 3, pointRadius: 1.5, tension: 0.3, fill: false },
+        { label: 'random_forest', data: randFor, borderColor: '#f6ad55', borderWidth: 3, pointRadius: 1.5, tension: 0.3, fill: false }
       ]
     },
     options: {
@@ -28,8 +28,8 @@ function drawThresholdChart() {
         tooltip: { backgroundColor: '#fff', titleColor: '#1a1a2e', bodyColor: '#6b6b8a', borderColor: 'rgba(124,109,250,0.3)', borderWidth: 1 }
       },
       scales: {
-        x: { ticks: { color: '#6b6b8a', font: { family: 'Inter', size: 11 }, maxTicksLimit: 11 }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'threshold', color: '#6b6b8a', font: { family: 'Inter', size: 11 } } },
-        y: { min: 0, max: 0.5, ticks: { color: '#6b6b8a', font: { family: 'Inter', size: 11 }, stepSize: 0.1 }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'F1 Score', color: '#6b6b8a', font: { family: 'Inter', size: 11 } } }
+        x: { ticks: { color: '#6b6b8a', font: { family: 'Inter', size: 11 }, maxTicksLimit: 11 }, grid: { color: 'rgba(0,0,0,0.12)' }, title: { display: true, text: 'threshold', color: '#6b6b8a', font: { family: 'Inter', size: 11 } } },
+        y: { min: 0, max: 0.5, ticks: { color: '#6b6b8a', font: { family: 'Inter', size: 11 }, stepSize: 0.1 }, grid: { color: 'rgba(0,0,0,0.12)' }, title: { display: true, text: 'F1 Score', color: '#6b6b8a', font: { family: 'Inter', size: 11 } } }
       }
     }
   });
