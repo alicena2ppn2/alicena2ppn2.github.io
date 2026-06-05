@@ -45,7 +45,7 @@ const projectData = {
     type: 'erd',
     title: 'Database ERD',
     desc: '▸ 주차장, 주소, 운영시간, 결제방식, 리뷰, 차량 등록 정보를 통합한 데이터베이스 설계',
-    svg: `<svg viewBox="0 30 1050 610" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Noto Sans KR',sans-serif;">
+    svg: `<svg viewBox="0 30 1050 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Noto Sans KR',sans-serif;">
           <line x1="300" y1="205" x2="440" y2="140" stroke="rgba(124,109,250,0.6)" stroke-width="2" stroke-dasharray="5,4"/>
           <line x1="175" y1="300" x2="175" y2="390" stroke="rgba(124,109,250,0.6)" stroke-width="2" stroke-dasharray="5,4"/>
           <line x1="175" y1="300" x2="175" y2="520" stroke="rgba(124,109,250,0.6)" stroke-width="2" stroke-dasharray="5,4"/>
