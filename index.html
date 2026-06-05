@@ -668,9 +668,7 @@ function showLoading(url) {
   const overlay = document.getElementById('loadingOverlay');
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
-  setTimeout(function() {
-    window.location.href = url;
-  }, 2000);
+  window.location.href = url;
 }
 </script>
 
