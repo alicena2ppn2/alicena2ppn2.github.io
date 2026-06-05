@@ -24,12 +24,12 @@ function drawThresholdChart() {
     options: {
       responsive: true,
       plugins: {
-        legend: { labels: { color: '#6b6b8a', font: { family: 'Inter', size: 10 }, boxWidth: 12 } },
+        legend: { labels: { color: '#6b6b8a', font: { family: 'Inter', size: 12 }, boxWidth: 12 } },
         tooltip: { backgroundColor: '#fff', titleColor: '#1a1a2e', bodyColor: '#6b6b8a', borderColor: 'rgba(124,109,250,0.3)', borderWidth: 1 }
       },
       scales: {
-        x: { ticks: { color: '#6b6b8a', font: { family: 'Inter', size: 9 }, maxTicksLimit: 11 }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'threshold', color: '#6b6b8a', font: { family: 'Inter', size: 9 } } },
-        y: { min: 0, max: 0.5, ticks: { color: '#6b6b8a', font: { family: 'Inter', size: 9 }, stepSize: 0.1 }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'F1 Score', color: '#6b6b8a', font: { family: 'Inter', size: 9 } } }
+        x: { ticks: { color: '#6b6b8a', font: { family: 'Inter', size: 11 }, maxTicksLimit: 11 }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'threshold', color: '#6b6b8a', font: { family: 'Inter', size: 11 } } },
+        y: { min: 0, max: 0.5, ticks: { color: '#6b6b8a', font: { family: 'Inter', size: 11 }, stepSize: 0.1 }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'F1 Score', color: '#6b6b8a', font: { family: 'Inter', size: 11 } } }
       }
     }
   });
