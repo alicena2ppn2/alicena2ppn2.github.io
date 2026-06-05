@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Projects | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        *::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3faff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 3rem;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.05em;
+            text-decoration: none;
+            color: inherit;
+        }
+        .nav-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            margin-top: 1rem;
+        }
+        .header-left {
+            flex: 1;
+            width: 50%;
+        }
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+        }
+        .back-link:hover {
+            opacity: 0.6;
+        }
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .page-subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .pill-group {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .pill {
+            display: inline-block;
+            padding: 0.375rem 0.875rem;
+            background: #f0f0f0;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .pill:nth-child(1) { background: #fce7f3; color: #be185d; }
+        .pill:nth-child(2) { background: #dbeafe; color: #1e40af; }
+        .pill:nth-child(3) { background: #dcfce7; color: #15803d; }
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        .number-big {
+            font-size: 7rem;
+            font-weight: 900;
+            line-height: 0.8;
+            color: #000;
+        }
+        .hero-section {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f0e7ff 0%, #e9d5ff 100%);
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-icon {
+            font-size: 6rem;
+            color: #a78bfa;
+            opacity: 0.8;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .project-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .project-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+        }
+        .project-card p {
+            margin: 0;
+        }
+        .project-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .project-description {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .tech-tag {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            background: #f5f5f5;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #666;
+        }
+        .project-link {
+            display: inline-block;
+            padding: 0.625rem 1.25rem;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.85rem;
+            width: fit-content;
+            transition: all 0.3s;
+        }
+        .project-link:hover {
+            background: #000;
+            color: white;
+            border-color: #000;
+        }
+        .overview-section {
+            margin-bottom: 4rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+        .overview-text {
+            font-size: 2rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .overview-details {
+            font-size: 1.05rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        footer {
+            margin-top: 4rem;
+            padding: 3rem;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <div class="nav-icon">
+                <i class="ph-asterisk"></i>
+            </div>
+            STUDIO.K
+        </a>
+        <div class="nav-links">
+            <a href="index.html">PROJECTS</a>
+            <a href="#">SERVICES</a>
+            <a href="#">ABOUT</a>
+            <a href="#">CONTACT</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="header">
+            <div class="header-left">
+                <a href="index.html" class="back-link">
+                    <i class="ph-arrow-left"></i> BACK TO PROJECTS
+                </a>
+                <h1 class="page-title">Personal<br>Projects</h1>
+                <div class="pill-group">
+                    <div class="pill">Full Stack</div>
+                    <div class="pill">Interactive</div>
+                    <div class="pill">Creative Coding</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="number-big">P</div>
+                <i class="ph-code" style="font-size: 2rem;"></i>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <i class="hero-icon ph-code"></i>
+        </div>
+
+        <div class="overview-section">
+            <h2 class="section-title">Overview</h2>
+            <p class="overview-text">다양한 기술과 창의력을 활용한 개인 프로젝트 포트폴리오</p>
+            <p class="overview-details">
+                단순한 학습 프로젝트를 넘어 실제로 구현하고 배포한 개인 프로젝트들입니다. 각 프로젝트는 특정 기술을 깊이 있게 탐구하고, 사용자 경험을 고려한 설계를 담고 있습니다. MediaPipe를 활용한 인터랙티브 드로잉 앱부터 AI 기반 아이디어 관리 플랫폼까지, 다양한 분야의 창의적인 구현을 보여줍니다.
+            </p>
+        </div>
+
+        <div style="margin-bottom: 4rem;">
+            <h2 class="section-title">4 Projects</h2>
+            <div class="projects-grid" id="projectsGrid"></div>
+        </div>
+
+        <div style="background: #000; color: white; padding: 3rem; border-radius: 2rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem;">
+            <div>
+                <h3 style="font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem 0;">Ready to Collaborate?</h3>
+                <span style="color: #aaa; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem;">Get in touch with your ideas</span>
+            </div>
+            <div style="width: 4rem; height: 4rem; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s;">
+                <i class="ph-arrow-right" style="font-size: 2rem;"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="color: #999; font-size: 0.9rem;">© 2026 STUDIO.K. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Load projects data
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectsData = [
+                {
+                    title: 'Design with Hand',
+                    subtitle: 'MediaPipe를 활용한 손 제스처 기반 디자인 도구',
+                    tags: ['MediaPipe', 'Canvas API', 'JavaScript', 'HTML5'],
+                    description: '카메라를 통해 손 제스처를 인식하고 캔버스에 그림을 그리는 웹 앱',
+                    github: 'https://github.com/alicena2ppn2/design-with-hand'
+                },
+                {
+                    title: 'SQLD 학습앱',
+                    subtitle: '데이터베이스 전문가 자격증 준비를 위한 학습 플랫폼',
+                    tags: ['HTML', 'CSS', 'Vanilla JavaScript'],
+                    description: 'SQL 개발자 자격증 취득을 위한 웹 기반 학습 애플리케이션',
+                    github: 'https://github.com/alicena2ppn2/study-sqld'
+                },
+                {
+                    title: 'idea archive',
+                    subtitle: 'AI 기반 아이디어 관리 및 발전 플랫폼',
+                    tags: ['React', 'MongoDB', 'OpenAI API', 'Node.js', 'Express'],
+                    description: 'OpenAI API를 활용하여 아이디어를 저장하고 발전시키는 모던 웹 애플리케이션',
+                    github: 'https://github.com/alicena2ppn2/idea-achive'
+                },
+                {
+                    title: 'Play with Bubble',
+                    subtitle: 'Canvas API를 활용한 인터랙티브 물리 시뮬레이션',
+                    tags: ['HTML5', 'Canvas API', 'Vanilla JavaScript'],
+                    description: '마우스 상호작용으로 다양한 물리 효과를 경험하는 캔버스 애플리케이션',
+                    github: 'https://github.com/alicena2ppn2/play-with-bubble'
+                }
+            ];
+
+            const grid = document.getElementById('projectsGrid');
+            projectsData.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                const tagsHtml = project.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('');
+                card.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <p class="project-subtitle">${project.subtitle}</p>
+                    <p class="project-description">${project.description}</p>
+                    <div class="tech-tags">${tagsHtml}</div>
+                    <a href="${project.github}" target="_blank" class="project-link">GitHub Repository</a>
+                `;
+                grid.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>

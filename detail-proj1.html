@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XAI 기반 SaaS 고객 이탈 예측 | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3faff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5vw;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.05em;
+            text-decoration: none;
+            color: inherit;
+        }
+        .nav-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 5vw;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            margin-top: 1rem;
+        }
+        .header-left {
+            flex: 1;
+        }
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+        }
+        .back-link:hover {
+            opacity: 0.6;
+        }
+        .page-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            word-break: break-word;
+        }
+        .page-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .pill-group {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .pill {
+            display: inline-block;
+            padding: 0.375rem 0.875rem;
+            background: #f0f0f0;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        .number-big {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 0.8;
+            color: #000;
+        }
+        .icon-circle {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.5rem;
+        }
+        .hero-section {
+            width: 100%;
+            height: 500px;
+            background: #f0e7ff;
+            border-radius: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            text-align: center;
+        }
+        .hero-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        .brief-section h3 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+        .brief-text {
+            font-size: 1.875rem;
+            font-weight: 300;
+            line-height: 1.625;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .brief-secondary {
+            font-size: 1.125rem;
+            color: #666;
+            line-height: 1.75;
+        }
+        .meta-section {
+            padding-top: 3rem;
+        }
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 2rem;
+        }
+        .meta-label {
+            font-size: 0.65rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 500;
+        }
+        .meta-value {
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 3rem;
+            font-size: 0.9rem;
+        }
+        .info-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .info-table td:first-child {
+            font-weight: 600;
+            color: #555;
+            width: 120px;
+            vertical-align: top;
+        }
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .tech-tag {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            background: #f5f5f5;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #666;
+        }
+        .links-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        .project-link {
+            display: inline-block;
+            padding: 0.625rem 1.25rem;
+            margin: 0.5rem 1rem 0.5rem 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .project-link:hover {
+            background: #f9f9f9;
+            border-color: #000;
+        }
+        .footer {
+            margin-top: 6rem;
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+        .footer-logo {
+            width: 3rem;
+            height: 3rem;
+            border: 2px solid #bbb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: #bbb;
+            font-size: 1.25rem;
+        }
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                font-size: 3rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-right {
+                align-items: flex-start;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="nav-logo" href="index.html">
+            <div class="nav-icon">
+                <i class="ph-asterisk" style="font-size: 0.9rem;"></i>
+            </div>
+            Yunkyung Song Portfolio
+        </a>
+        <div class="nav-links">
+            <a href="index.html#projects">PROJECTS</a>
+            <a href="index.html#activities">ACTIVITIES</a>
+            <a href="index.html#skills">SKILLS</a>
+            <a href="index.html#contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="header">
+            <div class="header-left">
+                <a class="back-link" href="index.html#projects">
+                    <i class="ph-arrow-left"></i>
+                    BACK TO PROJECTS
+                </a>
+                <h1 class="page-title">XAI 기반<br>SaaS 고객<br>이탈 예측</h1>
+                <p class="page-subtitle">Explainable AI · Churn Prediction · Retention Strategy Dashboard</p>
+                <div class="pill-group">
+                    <div class="pill">Explainable AI</div>
+                    <div class="pill">Machine Learning</div>
+                    <div class="pill">Dashboard</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="number-big">01</div>
+                <div class="icon-circle">
+                    <i class="ph-circles-three"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-section" style="background: white; display: block; padding: 2rem;">
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1rem; font-weight: 700; color: #666; margin-bottom: 0.5rem;">Threshold 변화에 따른 F1 Score</h3>
+                <canvas id="thresholdChart" height="200"></canvas>
+                <p style="font-size: 0.85rem; color: #888; margin-top: 0.75rem; text-align: left;">▸ threshold 조정 전(0.5) 대비 tuning 후 logistic_regression이 F1 0.433으로 최고 성능 달성</p>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="brief-section">
+                <h3>Overview</h3>
+                <p class="brief-text">SaaS 기업을 위한 예측 가능하고 설명 가능한 고객 이탈 예측 시스템</p>
+                <p class="brief-secondary">
+                    SaaS 기업은 고객 이탈이 발생한 후에야 원인을 파악하는 경우가 많아, 선제적인 retention 전략 수립이 어렵습니다. 단순히 "이탈할 것 같다"는 예측만으로는 실무에서 활용하기 어렵고, 담당자가 납득할 수 있는 근거와 구체적인 개입 전략이 함께 필요하다고 판단했습니다.<br><br>
+                    이를 해결하기 위해 XAI 기반 이탈 예측 모델을 설계하고, 원인 분석부터 retention 액션까지 연결되는 대시보드를 구축했습니다. accounts, subscriptions, feature_usage 등 다중 테이블을 account 단위로 통합하고, ML(Logistic Regression, Random Forest)과 DL(MLP) 모델을 비교 실험했습니다.
+                </p>
+            </div>
+
+            <div class="meta-section">
+                <table class="info-table">
+                    <tr>
+                        <td><strong>Role</strong></td>
+                        <td>
+                            Readme 초안 작성<br>
+                            Streamlit 구현<br>
+                            UI 개선<br>
+                            모델 코드 분석
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stack</strong></td>
+                        <td>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">PyTorch</span>
+                                <span class="tech-tag">scikit-learn</span>
+                                <span class="tech-tag">SHAP</span>
+                                <span class="tech-tag">Streamlit</span>
+                                <span class="tech-tag">Pandas</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Results</strong></td>
+                        <td>
+                            Best F1: 0.433 (DL_MLP)<br>
+                            Optimal Threshold: 0.45<br>
+                            Streamlit 배포 완료
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="links-section">
+                    <p style="font-size: 0.85rem; color: #999; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Links</p>
+                    <a href="https://github.com/SKNETWORKS-FAMILY-AICAMP/SKN28-2nd-3Team" target="_blank" class="project-link">GitHub Repository</a>
+                    <a href="https://skn28-2nd-3teamgit.streamlit.app/" target="_blank" class="project-link">Live Demo</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 6rem;">
+            <h2 style="font-size: 1.5rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 1.5rem; text-transform: uppercase;">Key Implementation Details</h2>
+            <p style="font-size: 1rem; color: #555; line-height: 1.75; margin-bottom: 1.5rem;">
+                단순 정확도가 아닌 운영 threshold tuning(0.45)으로 실무 적용성을 높이고, SHAP 기반 XAI로 이탈 원인을 설명 가능한 형태로 시각화했습니다. 최종적으로 고객 유지 전략까지 연결되는 Streamlit 대시보드를 배포했습니다.
+            </p>
+            <ul style="margin-left: 1.5rem; color: #555; line-height: 1.8;">
+                <li>다중 테이블 통합 및 데이터 파이프라인 구축</li>
+                <li>ML/DL 모델 비교 실험 및 성능 최적화</li>
+                <li>SHAP을 이용한 모델 해석 가능성 확보</li>
+                <li>Streamlit 기반 인터랙티브 대시보드 개발</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <i class="ph-circles-three"></i>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var thresholds = [0.00,0.05,0.10,0.15,0.20,0.25,0.30,0.35,0.40,0.45,0.50,0.55,0.60,0.65,0.70,0.75,0.80,0.85,0.90,0.95,1.00];
+            var dlMlp =        [0.35,0.35,0.35,0.35,0.33,0.32,0.28,0.10,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00];
+            var logReg =       [0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.40,0.43,0.31,0.31,0.25,0.20,0.20,0.00,0.00,0.00,0.00,0.00,0.00];
+            var randFor =      [0.37,0.37,0.37,0.37,0.37,0.35,0.33,0.05,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00];
+
+            new Chart(document.getElementById('thresholdChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: thresholds.map(function(v){return v.toFixed(2);}),
+                    datasets: [
+                        {label:'logistic_regression',data:logReg,borderColor:'#2563eb',borderWidth:2,pointRadius:1.5,tension:0.3,fill:false},
+                        {label:'DL_MLP',data:dlMlp,borderColor:'#4fd1c5',borderWidth:2,pointRadius:1.5,tension:0.3,fill:false},
+                        {label:'random_forest',data:randFor,borderColor:'#f6ad55',borderWidth:2,pointRadius:1.5,tension:0.3,fill:false}
+                    ]
+                },
+                options:{
+                    responsive:true,
+                    plugins:{
+                        legend:{labels:{color:'#6b6b8a',font:{family:'Inter',size:10},boxWidth:12}},
+                        tooltip:{backgroundColor:'#fff',titleColor:'#1a1a2e',bodyColor:'#6b6b8a',borderColor:'rgba(124,109,250,0.3)',borderWidth:1}
+                    },
+                    scales:{
+                        x:{ticks:{color:'#6b6b8a',font:{family:'Inter',size:9},maxTicksLimit:11},grid:{color:'rgba(0,0,0,0.06)'},title:{display:true,text:'threshold',color:'#6b6b8a',font:{family:'Inter',size:9}}},
+                        y:{min:0,max:0.5,ticks:{color:'#6b6b8a',font:{family:'Inter',size:9},stepSize:0.1},grid:{color:'rgba(0,0,0,0.06)'},title:{display:true,text:'F1 Score',color:'#6b6b8a',font:{family:'Inter',size:9}}}
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
