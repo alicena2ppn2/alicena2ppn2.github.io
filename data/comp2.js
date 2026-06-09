@@ -1,7 +1,7 @@
 const projectData = {
   id: 'comp2',
   number: '03',
-  title: 'SKN28-3rd-1Team<br>법률 상담 RAG',
+  title: '법률 상담 RAG',
   subtitle: '노인·고령층 법률 정보 검색 서비스',
   impact: 'Agentic RAG + GraphRAG로 흩어진 법령을 통합하고, 사용자가 이해하기 쉬운 상담 답변 제공',
   pills: [
