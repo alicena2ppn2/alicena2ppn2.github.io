@@ -17,7 +17,7 @@ const projectData = {
   metaInfo: [
     {
       label: 'Duration',
-      value: '약 3개월'
+      value: '약 6개월'
     },
     {
       label: 'Program',
