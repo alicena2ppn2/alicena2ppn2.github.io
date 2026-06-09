@@ -1,6 +1,6 @@
 const projectData = {
   id: 'comp1',
-  number: '06',
+  number: '08',
   title: 'AI 야구해설 앱',
   subtitle: '야구 해설 앱 기획',
   impact: 'AI 기반 실시간 경기 분석으로 야구 초보자도 경기를 즐길 수 있는 환경 제공',

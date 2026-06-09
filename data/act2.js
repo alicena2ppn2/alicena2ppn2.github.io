@@ -1,6 +1,6 @@
 const projectData = {
   id: 'act2',
-  number: '04',
+  number: '05',
   title: 'R&D KIRD<br>리얼챌<br>린지',
   subtitle: '공공 와이파이 디지털 면역체계 — 디지털 취약계층을 위한 공공 와이파이 자동복구 기술',
   impact: '공공 와이파이 인프라의 자동 복구 기술 개발로 디지털 소외 계층 지원',

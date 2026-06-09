@@ -1,6 +1,6 @@
 const projectData = {
   id: 'act4',
-  number: '06',
+  number: '07',
   title: 'SK Networks<br>Family AI<br>캠프',
   subtitle: 'AI·ML 개발자 과정 — 데이터 수집부터 딥러닝까지',
   impact: 'Python 기반 머신러닝/딥러닝 프로젝트 2건 완성 및 실무 역량 개발',
