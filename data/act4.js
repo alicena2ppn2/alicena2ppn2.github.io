@@ -12,7 +12,7 @@ const projectData = {
   overview: {
     title: 'Overview',
     brief: 'SK Networks에서 진행한 AI·ML 개발자 과정 부트캠프',
-    description: 'SK Networks에서 운영하는 Family AI 캠프에 참가하여 Python 기반의 머신러닝과 딥러닝 전 과정을 체계적으로 학습했습니다.<br><br>데이터 수집, 전처리, 모델 개발, 하이퍼파라미터 튜닝, 배포까지 실무 중심의 교육을 받았으며, 팀 프로젝트 2건을 완성하면서 협업과 문제 해결 능력을 키웠습니다. ML/DL의 기초부터 고급 기법까지 전 범위의 기술을 습득하여 AI 개발자로서의 기초를 다졌습니다.'
+    description: 'SK Networks에서 운영하는 Family AI 캠프에 참가하여 Python 기반의 머신러닝과 딥러닝 전 과정을 체계적으로 학습했습니다.<br><br>데이터 수집, 전처리, 모델 개발, 하이퍼파라미터 튜닝, 배포까지 실무 중심의 교육을 받았으며, 팀 프로젝트 5건을 완성하면서 협업과 문제 해결 능력을 키웠습니다. ML/DL의 기초부터 고급 기법까지 전 범위의 기술을 습득하여 AI 개발자로서의 기초를 다졌습니다.'
   },
   metaInfo: [
     {
@@ -25,7 +25,7 @@ const projectData = {
     },
     {
       label: 'Projects',
-      value: '팀 프로젝트<br>2건 완성'
+      value: '팀 프로젝트<br>5건 완성'
     }
   ],
   links: [
