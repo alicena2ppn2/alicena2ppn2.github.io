@@ -31,7 +31,7 @@ const projectData = {
   links: [
     {
       text: 'CTF Writeups',
-      url: 'https://yoonstudy.tistory.com/'
+      url: 'https://yoonstudy.tistory.com/category/%EC%9C%B5%EB%B3%B4%EA%B3%B5'
     }
   ],
   keyDetails: 'CTF 문제 해결을 통해 웹 보안, 암호화, 리버스 엔지니어링 등 실전 보안 기술을 습득했습니다. 각 문제에 대한 상세한 분석과 해결 방법을 write-up으로 문서화하여 보안 지식을 체계화했습니다.',
