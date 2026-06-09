@@ -30,8 +30,8 @@ const projectData = {
   ],
   links: [
     {
-      text: 'SK Networks',
-      url: 'https://www.sknetworks.co.kr/'
+      text: 'GitHub Organization',
+      url: 'https://github.com/orgs/SKNETWORKS-FAMILY-AICAMP'
     }
   ],
   keyDetails: '데이터 수집부터 모델 배포까지의 전체 머신러닝 파이프라인을 학습하고 실습했습니다. Python 기반의 데이터 처리(Pandas, NumPy), 시각화(Matplotlib, Seaborn), 머신러닝(Scikit-learn), 딥러닝(TensorFlow, Keras) 등 실무에 필요한 핵심 라이브러리와 기술을 습득했습니다.',
