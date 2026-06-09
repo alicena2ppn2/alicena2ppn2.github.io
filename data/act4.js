@@ -30,7 +30,7 @@ const projectData = {
   ],
   links: [
     {
-      text: 'GitHub Organization',
+      text: 'SKNETWORKS AICAMP',
       url: 'https://github.com/orgs/SKNETWORKS-FAMILY-AICAMP'
     }
   ],
@@ -40,7 +40,7 @@ const projectData = {
     '머신러닝 알고리즘 학습 및 구현',
     '신경망과 딥러닝 모델 개발',
     'NLP와 고급 딥러닝 기법 습득',
-    '팀 기반 프로젝트 2건 완수',
+    '팀 기반 프로젝트 5건 완수',
     '모델 평가 및 배포 실습'
   ],
   chart: {
