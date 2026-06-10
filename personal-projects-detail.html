@@ -226,6 +226,13 @@
             color: white;
             border-color: #000;
         }
+        .project-image {
+            width: 100%;
+            max-width: 460px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin: 1rem 0;
+        }
         .overview-section {
             margin-bottom: 4rem;
         }
@@ -334,14 +341,16 @@
                     subtitle: '데이터베이스 전문가 자격증 준비를 위한 학습 플랫폼',
                     tags: ['HTML', 'CSS', 'Vanilla JavaScript'],
                     description: 'SQL 개발자 자격증 취득을 위한 웹 기반 학습 애플리케이션',
-                    github: 'https://github.com/alicena2ppn2/study-sqld'
+                    github: 'https://github.com/alicena2ppn2/study-sqld',
+                    image: 'images/image5.png'
                 },
                 {
                     title: 'idea archive',
                     subtitle: 'AI 기반 아이디어 관리 및 발전 플랫폼',
                     tags: ['React', 'MongoDB', 'OpenAI API', 'Node.js', 'Express'],
                     description: 'OpenAI API를 활용하여 아이디어를 저장하고 발전시키는 모던 웹 애플리케이션',
-                    github: 'https://github.com/alicena2ppn2/idea-achive'
+                    github: 'https://github.com/alicena2ppn2/idea-achive',
+                    image: 'images/image6.png'
                 },
                 {
                     title: 'Play with Bubble',
@@ -357,11 +366,13 @@
                 const card = document.createElement('div');
                 card.className = 'project-card';
                 const tagsHtml = project.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('');
+                const imageHtml = project.image ? `<img src="${project.image}" class="project-image">` : '';
                 card.innerHTML = `
                     <h3>${project.title}</h3>
                     <p class="project-subtitle">${project.subtitle}</p>
                     <p class="project-description">${project.description}</p>
                     <div class="tech-tags">${tagsHtml}</div>
+                    ${imageHtml}
                     <a href="${project.github}" target="_blank" class="project-link">GitHub Repository</a>
                 `;
                 grid.appendChild(card);
