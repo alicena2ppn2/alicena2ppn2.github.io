@@ -31,7 +31,7 @@ const projectData = {
   links: [
     {
       text: 'Project Report',
-      url: '#'
+      url: 'https://yoonstudy.tistory.com/43'
     }
   ],
   keyDetails: 'KIRD(한국산업기술진흥협회) 지원 리얼챌린지 과제로, 실제 공공 와이파이 인프라의 문제를 해결하는 기술을 개발했습니다. 디지털 소외 계층의 삶의 질 향상에 직접 기여하는 의미 있는 프로젝트였습니다.',

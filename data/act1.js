@@ -31,7 +31,7 @@ const projectData = {
   links: [
     {
       text: 'Research Paper',
-      url: '#'
+      url: 'https://yoonstudy.tistory.com/43'
     },
     {
       text: 'Patent Application',

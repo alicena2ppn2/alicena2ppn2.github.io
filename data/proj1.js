@@ -30,6 +30,10 @@ const projectData = {
   ],
   links: [
     {
+      text: 'Project Report',
+      url: 'https://yoonstudy.tistory.com/42'
+    },
+    {
       text: 'GitHub Repository',
       url: 'https://github.com/SKNETWORKS-FAMILY-AICAMP/SKN28-2nd-3Team'
     },
