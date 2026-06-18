@@ -466,7 +466,17 @@
             // Page title & subtitle
             document.getElementById('pageTitle').innerHTML = data.title;
             document.getElementById('pageSubtitle').textContent = data.subtitle;
-            document.getElementById('projectNumber').textContent = data.number;
+
+            // Number or Icon
+            if (data.icon) {
+                if (data.icon.includes('.png') || data.icon.includes('.jpg') || data.icon.includes('.svg')) {
+                    document.getElementById('projectNumber').innerHTML = `<img src="${data.icon}" style="width: 7rem; height: 7rem; object-fit: contain;">`;
+                } else {
+                    document.getElementById('projectNumber').innerHTML = `<i class="${data.icon}" style="font-size: 4rem; color: #f472b6;"></i>`;
+                }
+            } else {
+                document.getElementById('projectNumber').textContent = data.number;
+            }
 
             // Pills
             const pillGroup = document.getElementById('pillGroup');
