@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;600;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/phosphor-icons"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html, body{width:100%;height:100%;margin:0;}
+body{background:#f3faff;font-family:'Noto Sans KR',sans-serif;font-weight:300;}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem 5vw 1.75rem;position:fixed;top:0;left:0;right:0;z-index:100;background:#f3faff;}
+.nav-logo{display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:1.2rem;letter-spacing:-0.05em;font-family:'Inter',sans-serif;text-decoration:none;color:inherit;}
+.nav-icon{width:2rem;height:2rem;border-radius:50%;border:2px solid #000000e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-links{display:flex;gap:2.5rem;font-size:0.9rem;font-weight:500;font-family:'Inter',sans-serif;}
+.nav-links a{text-decoration:none;color:inherit;}
+.nav-links a:hover{text-decoration:underline;}
+
+#canvas-container{position:fixed;top:80px;left:0;width:100%;height:calc(100vh - 80px);background:#f3faff;}
+
+*{-ms-overflow-style:none;scrollbar-width:none;}
+*::-webkit-scrollbar{display:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="nav-icon"><i class="ph-asterisk" style="font-size:0.9rem;"></i></div>
+    Portfolio
+  </a>
+  <div class="nav-links">
+    <a href="archive.html">ARCHIVE</a>
+    <a href="index.html#skills">SKILLS</a>
+    <a href="index.html#projects">PROJECTS</a>
+    <a href="index.html#activities">ACTIVITIES</a>
+    <a href="index.html#contact">CONTACT</a>
+  </div>
+</nav>
+
+<div id="canvas-container"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+// 이미지 배열
+const IMAGES = [
+  '/images/card1.png',
+  '/images/card2.png',
+  '/images/card3.png',
+  '/images/card4.png',
+  '/images/card5.png',
+  '/images/card6.png',
+  '/images/card7.png',
+  '/images/card8.png',
+  '/images/card9.png',
+  '/images/card10.png',
+];
+
+const container = document.getElementById('canvas-container');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight - 80), 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+renderer.setSize(window.innerWidth, window.innerHeight - 80);
+renderer.setClearColor(0xf3faff);
+container.appendChild(renderer.domElement);
+
+camera.position.set(0, 1.0, 8);
+camera.lookAt(0, 0, 0);
+
+const group = new THREE.Group();
+scene.add(group);
+
+// 캐러셀 설정
+const count = IMAGES.length;
+const radius = 5.3;
+const gapRatio = 0.98;
+const angleStep = (Math.PI * 2 * gapRatio) / count;
+
+// 상태 관리
+let targetRot = 0;
+let velocity = 0;
+let dragging = false;
+let lastX = 0;
+let mouseX = 0;
+let mouseY = 0;
+let hoveredMesh = null;
+
+// 텍스처 로더
+const textureLoader = new THREE.TextureLoader();
+
+// 카드 생성
+const cardMeshes = [];
+IMAGES.forEach((imagePath, i) => {
+  const angle = i * angleStep;
+
+  const img = new Image();
+  img.onload = () => {
+    const aspectRatio = img.width / img.height;
+    const cardWidth = 3.1;
+    const cardHeight = cardWidth / aspectRatio;
+
+    const geometry = new THREE.PlaneGeometry(cardWidth, cardHeight);
+
+    textureLoader.load(imagePath, (texture) => {
+      const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        side: THREE.DoubleSide,
+        toneMapped: false
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(
+        Math.sin(angle) * radius,
+        0,
+        Math.cos(angle) * radius
+      );
+      mesh.rotation.y = angle + Math.PI;
+      mesh.scale.x = -1;
+      mesh.userData.cardIndex = i;
+
+      group.add(mesh);
+      cardMeshes.push({ mesh, angle });
+    });
+  };
+  img.src = imagePath;
+});
+
+// 마우스 이벤트
+window.addEventListener('mousemove', (e) => {
+  mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+  mouseY = -(e.clientY / (window.innerHeight - 80)) * 2 + 1;
+
+  // hover 감지
+  mouseClick.x = mouseX;
+  mouseClick.y = mouseY;
+  raycaster.setFromCamera(mouseClick, camera);
+  const intersects = raycaster.intersectObjects(group.children);
+  hoveredMesh = intersects.length > 0 ? intersects[0].object : null;
+});
+
+window.addEventListener('pointerdown', (e) => {
+  dragging = true;
+  lastX = e.clientX;
+  velocity = 0;
+});
+
+window.addEventListener('pointermove', (e) => {
+  if (!dragging) return;
+
+  const dx = (e.clientX - lastX) / 200;
+  lastX = e.clientX;
+  targetRot += dx;
+  velocity = dx;
+});
+
+window.addEventListener('pointerup', () => {
+  dragging = false;
+});
+
+window.addEventListener('pointerleave', () => {
+  dragging = false;
+});
+
+// 스크롤로 회전
+window.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  targetRot -= e.deltaY * 0.0005;
+}, { passive: false });
+
+// 카드별 페이지 매핑
+const cardPages = {
+  1: '/detail.html?id=proj1',
+  2: '/detail.html?id=proj2',
+  3: '/detail.html?id=comp2',
+  4: '/detail.html?id=act1',
+  5: '/detail.html?id=act2',
+  6: '/detail.html?id=act3',
+  7: '/detail.html?id=act4',
+  8: '/detail.html?id=comp1',
+  9: '/personal-projects-detail.html',
+  10: '/detail.html?id=personal-app',
+};
+
+// 이미지 클릭 감지
+const raycaster = new THREE.Raycaster();
+const mouseClick = new THREE.Vector2();
+
+window.addEventListener('click', (event) => {
+  mouseClick.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouseClick.y = -(event.clientY / (window.innerHeight - 80)) * 2 + 1;
+
+  raycaster.setFromCamera(mouseClick, camera);
+  const intersects = raycaster.intersectObjects(group.children);
+
+  if (intersects.length > 0) {
+    const clickedMesh = intersects[0].object;
+    const cardIndex = clickedMesh.userData.cardIndex;
+    if (cardIndex !== undefined) {
+      const page = cardPages[cardIndex + 1];
+      if (page) {
+        window.location.href = page;
+      }
+    }
+  }
+});
+
+// 애니메이션
+function animate() {
+  requestAnimationFrame(animate);
+
+  // 드래그 중이 아니면 관성 + 자동 회전
+  if (!dragging) {
+    velocity *= 0.92;
+    if (Math.abs(velocity) > 0.001) {
+      targetRot += velocity;
+    } else {
+      targetRot += 0.0005; // 자동 회전
+    }
+  }
+
+  // 그룹 회전 부드럽게
+  group.rotation.y += (targetRot - group.rotation.y) * 0.15;
+
+  // 정면 카드 + hover 확대 효과
+  cardMeshes.forEach((card) => {
+    let targetScale = 1.0;
+
+    // hover 상태 확인
+    if (card.mesh === hoveredMesh) {
+      targetScale = 1.15;
+    } else {
+      // 정면 카드 확인
+      const cardWorldAngle = card.angle - group.rotation.y;
+      const normalizedAngle = Math.atan2(Math.sin(cardWorldAngle), Math.cos(cardWorldAngle));
+      const distance = Math.abs(normalizedAngle);
+      if (distance < angleStep / 2) {
+        targetScale = 1.1;
+      }
+    }
+
+    card.mesh.scale.z += (targetScale - card.mesh.scale.z) * 0.1;
+  });
+
+  // 마우스 패럴랙스: 카메라가 마우스를 따라 움직임
+  const targetCameraX = mouseX * 1.2;
+  const targetCameraY = 0.5 + mouseY * 0.6;
+  camera.position.x += (targetCameraX - camera.position.x) * 0.08;
+  camera.position.y += (targetCameraY - camera.position.y) * 0.08;
+  camera.lookAt(0, 0, 0);
+
+  renderer.render(scene, camera);
+}
+animate();
+
+// 창 크기
+window.addEventListener('resize', () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight - 80;
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+});
+</script>
+
+</body>
+</html>
