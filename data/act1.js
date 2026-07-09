@@ -5,14 +5,20 @@ const projectData = {
   subtitle: 'Ultra-High Reliable Multi-AP Cooperation Utilizing Securely Compressed Channel Status Information',
   impact: 'BC-SCMM 기법을 통한 Wi-Fi 다중 접근점 환경에서의 채널 보안 연구',
   pills: [
+    'Wireless Network',
     'Network Security',
-    'Research',
+    'Research Paper',
     'Patent'
   ],
   overview: {
     title: 'Overview',
-    brief: '무선 네트워크 환경에서 해시 기반 채널 보안 기법 개발 및 성능 검증',
-    description: 'Wi-Fi Multi-AP 환경에서 채널 상태 정보(CSI)를 안전하게 압축하여 전송하는 BC-SCMM 기법을 제안했습니다. 기존 방식 대비 레이턴시를 74% 감소, 처리량을 232% 증가, 에너지 소비를 105% 감소시켰습니다.<br><br>연구 결과는 국제 학술지 게재 및 특허 출원으로 이어졌으며, 무선 네트워크 보안 분야의 혁신적인 기여를 이룬 프로젝트입니다.'
+    brief: 'Wi-Fi Multi-AP 환경에서 증가하는 Control Information Overhead와 CSI 보안 문제를 해결하기 위한 해시 기반 채널 관리 기법 연구',
+    description:
+  '차세대 Wi-Fi 8 Ultra-High Reliable Network에서는 다수 AP가 협력하는 Multi-AP Cooperation 기술이 중요해지고 있습니다. 하지만 AP 간 Control Information 증가로 인한 Network Overhead와 Channel Status Information(CSI) 조작 보안 문제가 발생하고 있습니다.<br><br>' +
+
+  '본 연구에서는 Hash 기반 Bitmap Compression 방식의 BC-SCMM(Bitmap Compression-based Secure Channel Management Mechanism)을 제안하여 CSI 정보를 안전하게 압축·관리하고, 효율적인 채널 선택이 가능한 보안 채널 관리 기법을 개발했습니다.<br><br>' +
+
+  '실험 결과 기존 NCMM 대비 Latency 74.12% 감소, Throughput 232.49% 증가, Energy Consumption 105.19% 감소를 달성했으며, 연구 결과는 국제 학술지 게재 및 특허 출원으로 이어졌습니다.'
   },
   metaInfo: [
     {
@@ -43,7 +49,7 @@ const projectData = {
     'BC-SCMM 해시 기반 채널 보안 기법 개발',
     '레이턴시 74% 감소 및 처리량 232% 증가 달성',
     '에너지 효율성 105% 개선',
-    '국제 학술지 게재 및 특허 출원'
+    '특허 출원 성과 확보'
   ],
   chart: {
     type: 'gallery',
