@@ -1,7 +1,7 @@
 const projectData = {
   id: 'act3',
   number: '06',
-  title: '융합보안 학술<br>동아리',
+  title: '융합보안 학술 동아리',
   subtitle: '보안학회 · 칼리리눅스 · 암호학 · 워게임 · 6개월',
   impact: '세계보안학회 참가 및 보안 write-up 작성을 통한 보안 기술 습득',
   pills: [

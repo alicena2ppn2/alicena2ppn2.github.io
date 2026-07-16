@@ -3,7 +3,7 @@ const projectData = {
   number: '05',
 
   title:
-    'R&D KIRD<br>리얼챌<br>린지',
+    'KIRD R&D 리얼챌린지',
 
   subtitle:
     '공공 Wi-Fi 디지털 면역체계 — 머신러닝 기반 대규모 네트워크 이상 탐지 및 자동 복구 기술',

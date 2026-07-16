@@ -1,7 +1,7 @@
 const projectData = {
   id: 'act1',
   number: '04',
-  title: 'Wi-Fi<br>Multi-AP<br>연구',
+  title: 'Wi-Fi Multi-AP 구축',
   subtitle: 'Ultra-High Reliable Multi-AP Cooperation Utilizing Securely Compressed Channel Status Information',
   impact: 'BC-SCMM 기법을 통한 Wi-Fi 다중 접근점 환경에서의 채널 보안 연구',
   pills: [
