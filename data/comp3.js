@@ -74,8 +74,8 @@ const projectData = {
 
   links: [
     {
-      text: 'Service Link',
-      url: '#'
+      text: 'GitHub Repository',
+      url: 'https://github.com/owenlee0131073-hub/SKN_28_FINAL'
     }
   ],
 
