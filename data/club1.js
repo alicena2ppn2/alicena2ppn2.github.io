@@ -26,11 +26,11 @@ const projectData = {
     },
     {
       label: 'Role',
-      value: '운영진 홍보부'
+      value: '홍보부 운영진'
     },
     {
       label: 'Responsibilities',
-      value: 'SNS 콘텐츠 기획·운영 · 카드뉴스 제작 · 행사 홍보'
+      value: 'SNS 콘텐츠 기획·제작 · 카드뉴스 제작 · 행사 홍보'
     }
   ],
 
