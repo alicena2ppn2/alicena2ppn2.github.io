@@ -1,6 +1,6 @@
 const projectData = {
   id: 'comp3',
-  number: '02',
+  number: '04',
   title: 'DearMate',
   subtitle: 'AI 캐릭터 채팅 서비스 – 장기 기억과 일관된 페르소나',
 
@@ -57,9 +57,9 @@ const projectData = {
     {
       label: 'Role',
       value:
-        'Frontend Developer' +
-        '상담 UI 및 AI 서비스 화면 구현' +
-        '테스트 케이스 설계 및 서비스 통합' +
+        'Frontend Developer<br>' +
+        '상담 UI 및 AI 서비스 화면 구현<br>' +
+        '테스트 케이스 설계 및 서비스 통합<br>' +
         '프로젝트 기획 및 관리<br>' +
         '테스트 및 품질 개선<br>' +
         '인프라 배포 및 운영'
@@ -67,10 +67,8 @@ const projectData = {
     {
       label: 'Tech Stack',
       value:
-        'Python · FastAPI · PydanticAI<br>' +
-        'PostgreSQL · Vector DB · RAG<br>' +
-        'LiteLLM · OpenRouter · OpenTelemetry<br>' +
-        'OpenFeature · LaunchDarkly · Logfire'
+        'Python · FastAPI · PydanticAI · PostgreSQL · Vector DB · RAG · LiteLLM · OpenRouter · OpenTelemetry · OpenFeature · LaunchDarkly · Logfire'
+
     }
   ],
 
