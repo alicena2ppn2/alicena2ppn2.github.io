@@ -177,16 +177,16 @@
             margin-bottom: 1rem;
         }
         .brief-text {
-            font-size: 1.75rem;
-            font-weight: 300;
-            line-height: 1.625;
-            color: #333;
-            margin-bottom: 2rem;
+            font-size: 1.35rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #222;
+            margin-bottom: 1.75rem;
         }
         .brief-secondary {
-            font-size: 1.125rem;
+            font-size: 1rem;
             color: #666;
-            line-height: 1.75;
+            line-height: 1.8;
         }
         .meta-section {
             padding-top: 2rem;
@@ -279,12 +279,13 @@
             margin-bottom: 6rem;
         }
         .key-details h2 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
         }
+        .key-details > .section-body,
         .key-details > p {
             font-size: 1rem;
             color: #555;
@@ -307,27 +308,54 @@
             aspect-ratio: 16 / 9;
             object-fit: contain;
         }
+        .video-hint {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 0.625rem;
+            letter-spacing: 0.01em;
+        }
         .background-section {
             margin-bottom: 5rem;
         }
         .background-section h2 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
         }
-        .background-section p {
+        .background-section .section-body {
             font-size: 1rem;
             color: #555;
             line-height: 1.85;
             max-width: 62rem;
         }
+        .background-section strong,
+        .key-details strong {
+            color: #111;
+            font-weight: 600;
+        }
+        .background-section strong:has(+ br),
+        .key-details .section-body strong:has(+ br) {
+            display: inline-block;
+            font-size: 1.075rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .background-section code,
+        .key-details code {
+            font-family: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
+            font-size: 0.85em;
+            background: #f0f4f8;
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            color: #334;
+        }
         .detail-sections {
             margin-bottom: 4rem;
         }
         .detail-sections > h2 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             margin-bottom: 2.5rem;
@@ -349,21 +377,102 @@
             padding-top: 0.35rem;
         }
         .detail-section h3 {
-            font-size: 1.4rem;
+            font-size: 1.55rem;
             font-weight: 700;
             letter-spacing: -0.01em;
             margin-bottom: 1rem;
             color: #111;
         }
-        .detail-section p {
+        .detail-section .section-body {
             font-size: 0.975rem;
             color: #555;
             line-height: 1.85;
             max-width: 58rem;
         }
-        .detail-section strong {
+        /* ── 본문 내 데이터 표 ── */
+        .dv-scroll {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #e4e9ef;
+            border-radius: 0.625rem;
+            background: white;
+        }
+        .dv-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            min-width: 22rem;
+        }
+        .dv-table caption {
+            caption-side: top;
+            text-align: left;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #8a94a6;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            padding: 0.9rem 1rem 0.55rem;
+        }
+        .dv-table th {
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #6b7280;
+            background: #f7f9fc;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid #e4e9ef;
+            white-space: nowrap;
+        }
+        .dv-table td {
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid #eef1f5;
+            color: #444;
+            vertical-align: top;
+        }
+        .dv-table tr:last-child td {
+            border-bottom: none;
+        }
+        .dv-table td:first-child {
+            font-weight: 600;
+            color: #222;
+            white-space: nowrap;
+        }
+        /* 숫자 열 오른쪽 정렬 */
+        .dv-table .num {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+        .dv-table th.num {
+            text-align: right;
+        }
+        /* 강조 행 (결론이 되는 값) */
+        .dv-table tr.peak td {
+            background: #f2f7ff;
+            color: #17408b;
+        }
+        .dv-table tr.peak td:first-child {
+            color: #17408b;
+            box-shadow: inset 3px 0 0 #2563eb;
+        }
+        .dv-table .up { color: #0a7a5c; font-weight: 600; }
+        .dv-table .down { color: #b42318; font-weight: 600; }
+        .dv-table .muted { color: #9aa3b2; }
+        .detail-section strong,
+        .detail-section b {
             color: #111;
             font-weight: 600;
+        }
+        /* 소제목: <strong>제목</strong><br> 형태만 선택 (문장 중 강조는 제외) */
+        .detail-section strong:has(+ br) {
+            display: inline-block;
+            font-size: 1.075rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.1rem;
         }
         .detail-section code {
             font-family: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
@@ -461,7 +570,8 @@
                         <div id="galleryImages" style="display:flex; gap:0.75rem; flex-wrap:wrap;"></div>
                     </div>
                     <div id="videoContainer" style="display:none;">
-                        <video id="projectVideo" class="project-video" controls preload="metadata" playsinline></video>
+                        <video id="projectVideo" class="project-video" controls autoplay muted loop playsinline preload="auto"></video>
+                        <p class="video-hint" id="videoHint">음소거로 자동 재생 중 — 소리를 켜려면 <strong>🔊</strong> 를 눌러주세요</p>
                     </div>
                     <p class="chart-desc" id="chartDesc"></p>
                 </div>
@@ -680,8 +790,22 @@
                     } else if (data.chart.type === 'video' && data.chart.src) {
                         document.getElementById('videoContainer').style.display = 'block';
                         const video = document.getElementById('projectVideo');
+                        const hint = document.getElementById('videoHint');
                         video.src = data.chart.src;
                         if (data.chart.poster) video.poster = data.chart.poster;
+
+                        // 소리를 켜면 안내 문구 숨김
+                        video.addEventListener('volumechange', function() {
+                            if (!video.muted && hint) hint.style.display = 'none';
+                        });
+
+                        // 브라우저가 자동재생을 막은 경우 안내 문구 교체
+                        const played = video.play();
+                        if (played && typeof played.catch === 'function') {
+                            played.catch(function() {
+                                if (hint) hint.textContent = '재생 버튼을 눌러 데모를 확인하세요';
+                            });
+                        }
                     }
                 }
 
@@ -691,7 +815,7 @@
                     bgEl.style.display = 'block';
                     bgEl.innerHTML = `
                         <h2>${data.background.title || 'Background'}</h2>
-                        <p>${data.background.content}</p>
+                        <div class="section-body">${data.background.content}</div>
                     `;
                 }
 
@@ -699,7 +823,7 @@
                 const keyDetailsEl = document.getElementById('keyDetails');
                 keyDetailsEl.innerHTML = `
                     <h2>Key Implementation Details</h2>
-                    <p>${data.keyDetails}</p>
+                    <div class="section-body">${data.keyDetails}</div>
                     <ul>
                         ${data.keyPoints.map(point => `<li>${point}</li>`).join('')}
                     </ul>
@@ -716,7 +840,7 @@
                                 <div class="detail-section-num">${String(i + 1).padStart(2, '0')}</div>
                                 <div>
                                     <h3>${section.title}</h3>
-                                    <p>${section.content}</p>
+                                    <div class="section-body">${section.content}</div>
                                 </div>
                             </div>
                         `).join('')}
