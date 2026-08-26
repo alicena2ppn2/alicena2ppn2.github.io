@@ -1,5 +1,5 @@
 const projectData = {
-  id: 'act1',
+  id: '3-wifi-multiap',
   number: '04',
   title: 'Wi-Fi Multi-AP 구축',
   subtitle: 'Ultra-High Reliable Multi-AP Cooperation Utilizing Securely Compressed Channel Status Information',

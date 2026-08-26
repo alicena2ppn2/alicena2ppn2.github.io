@@ -1,5 +1,5 @@
 const projectData = {
-  id: 'proj2',
+  id: '2-carpark-search',
   number: '02',
   title: 'Car Park<br>Search',
   subtitle: '주차장 검색 및 지역별 주차 수급 분석 대시보드',

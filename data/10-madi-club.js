@@ -1,5 +1,5 @@
 const projectData = {
-  id: 'club1',
+  id: '10-madi-club',
   number: 'B',
   title: '문화교류연합동아리 MADI',
   subtitle: '홍보부 운영진 · SNS 콘텐츠 기획·제작',

@@ -1,5 +1,5 @@
 const projectData = {
-  id: 'comp1',
+  id: '7-ai-rookie',
   number: '08',
   title: 'KBO 실시간<br>AI 해설<br>서비스',
   subtitle: '야구 입문자를 위한 실시간 AI 해설 서비스 — Solar LLM + KBO 데이터 파이프라인',

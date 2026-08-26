@@ -1,5 +1,5 @@
 const projectData = {
-  id: 'act3',
+  id: '5-cybersecurity-club',
   number: '06',
   title: '융합보안 학술 동아리',
   subtitle: '보안학회 · 칼리리눅스 · 암호학 · 워게임 · 6개월',

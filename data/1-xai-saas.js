@@ -1,5 +1,5 @@
 const projectData = {
-  id: 'proj1',
+  id: '1-xai-saas',
   number: '01',
   title: 'XAI 기반<br>SaaS 고객<br>이탈 예측',
   subtitle: 'Explainable AI · Churn Prediction · Retention Strategy Dashboard',

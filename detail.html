@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Detail | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <style>
@@ -142,10 +142,10 @@
         .hero-section {
             width: 100%;
             background: white;
-            border-radius: 2.5rem;
+            border-radius: 1.5rem;
             display: block;
-            padding: 2rem;
-            margin-bottom: 4rem;
+            padding: 1.25rem;
+            margin-bottom: 2.5rem;
             position: relative;
             overflow: hidden;
         }
@@ -166,6 +166,7 @@
             grid-template-columns: 2fr 1fr;
             gap: 3rem;
             margin-bottom: 4rem;
+            align-items: start;
         }
         .brief-section h3 {
             font-size: 0.75rem;
@@ -189,6 +190,13 @@
         }
         .meta-section {
             padding-top: 2rem;
+            position: sticky;
+            top: 2rem;
+        }
+        @media (max-width: 900px) {
+            .meta-section {
+                position: static;
+            }
         }
         .meta-item {
             display: flex;
@@ -216,13 +224,15 @@
             font-size: 0.9rem;
         }
         .info-table td {
-            padding: 1rem 1.25rem;
+            padding: 0.9rem 0;
             border-bottom: 1px solid #e0e0e0;
         }
         .info-table td:first-child {
             font-weight: 600;
             color: #555;
-            width: 120px;
+            width: 1%;
+            white-space: nowrap;
+            padding-right: 1rem;
             vertical-align: top;
         }
         .info-table tr:last-child td {
@@ -288,6 +298,86 @@
         }
         .key-details li {
             margin-bottom: 0.5rem;
+        }
+        .project-video {
+            width: 100%;
+            display: block;
+            border-radius: 1.25rem;
+            background: #000;
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
+        }
+        .background-section {
+            margin-bottom: 5rem;
+        }
+        .background-section h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        .background-section p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.85;
+            max-width: 62rem;
+        }
+        .detail-sections {
+            margin-bottom: 4rem;
+        }
+        .detail-sections > h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+        }
+        .detail-section {
+            display: grid;
+            grid-template-columns: 3.5rem 1fr;
+            gap: 1.5rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid #e0e0e0;
+        }
+        .detail-section-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #bbb;
+            letter-spacing: 0.1em;
+            padding-top: 0.35rem;
+        }
+        .detail-section h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+            color: #111;
+        }
+        .detail-section p {
+            font-size: 0.975rem;
+            color: #555;
+            line-height: 1.85;
+            max-width: 58rem;
+        }
+        .detail-section strong {
+            color: #111;
+            font-weight: 600;
+        }
+        .detail-section code {
+            font-family: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
+            font-size: 0.85em;
+            background: #f0f4f8;
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            color: #334;
+        }
+        @media (max-width: 700px) {
+            .detail-section {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
         }
         .footer {
             margin-top: 6rem;
@@ -357,22 +447,25 @@
             </div>
         </div>
 
-        <div class="hero-section" id="heroSection" style="display:none; padding: 1.5rem;">
-            <h3 class="chart-title" id="chartTitle"></h3>
-            <div id="chartContainer" style="display:none;">
-                <canvas id="projectChart" height="140"></canvas>
-            </div>
-            <div id="erdContainer" style="display:none; overflow-x: auto;">
-                <svg id="erdSvg"></svg>
-            </div>
-            <div id="galleryContainer" style="display:none;">
-                <div id="galleryImages" style="display:flex; gap:0.75rem; flex-wrap:wrap;"></div>
-            </div>
-            <p class="chart-desc" id="chartDesc"></p>
-        </div>
-
         <div class="content-grid" id="contentGrid">
             <div class="brief-section">
+                <div class="hero-section" id="heroSection" style="display:none;">
+                    <h3 class="chart-title" id="chartTitle"></h3>
+                    <div id="chartContainer" style="display:none;">
+                        <canvas id="projectChart" height="140"></canvas>
+                    </div>
+                    <div id="erdContainer" style="display:none; overflow-x: auto;">
+                        <svg id="erdSvg"></svg>
+                    </div>
+                    <div id="galleryContainer" style="display:none;">
+                        <div id="galleryImages" style="display:flex; gap:0.75rem; flex-wrap:wrap;"></div>
+                    </div>
+                    <div id="videoContainer" style="display:none;">
+                        <video id="projectVideo" class="project-video" controls preload="metadata" playsinline></video>
+                    </div>
+                    <p class="chart-desc" id="chartDesc"></p>
+                </div>
+
                 <h3>Overview</h3>
                 <p class="brief-text" id="briefText"></p>
                 <p class="brief-secondary" id="briefDescription"></p>
@@ -393,7 +486,11 @@
             <div id="projectsList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;"></div>
         </div>
 
+        <div class="background-section" id="backgroundSection" style="display:none;"></div>
+
         <div class="key-details" id="keyDetails"></div>
+
+        <div class="detail-sections" id="detailSections" style="display:none;"></div>
 
         <div style="background: #000; color: white; padding: 3rem; border-radius: 2rem; display: flex; justify-content: space-between; align-items: center; margin-top: 6rem; cursor: pointer; transition: opacity 0.3s;" onclick="goToNextProject()" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
             <div>
@@ -419,10 +516,10 @@
                     const doc = parser.parseFromString(html, 'text/html');
 
                     let modal = null;
-                    if (projectId === 'act1') {
-                        modal = doc.getElementById('modal-act1');
-                    } else if (projectId === 'act2') {
-                        modal = doc.getElementById('modal-act2');
+                    if (projectId === '3-wifi-multiap') {
+                        modal = doc.getElementById('modal-3-wifi-multiap');
+                    } else if (projectId === '4-kird-challenge') {
+                        modal = doc.getElementById('modal-4-kird-challenge');
                     }
 
                     if (modal) {
@@ -442,7 +539,7 @@
         }
 
         async function loadProject() {
-            const projectId = getQueryParam('id') || 'proj1';
+            const projectId = getQueryParam('id') || '1-xai-saas';
 
             try {
                 // Load project data
@@ -580,7 +677,22 @@
                     } else if (data.chart.type === 'gallery' && data.hasImages) {
                         document.getElementById('galleryContainer').style.display = 'block';
                         loadActivityImages(data.id);
+                    } else if (data.chart.type === 'video' && data.chart.src) {
+                        document.getElementById('videoContainer').style.display = 'block';
+                        const video = document.getElementById('projectVideo');
+                        video.src = data.chart.src;
+                        if (data.chart.poster) video.poster = data.chart.poster;
                     }
+                }
+
+                // Background
+                if (data.background && data.background.content) {
+                    const bgEl = document.getElementById('backgroundSection');
+                    bgEl.style.display = 'block';
+                    bgEl.innerHTML = `
+                        <h2>${data.background.title || 'Background'}</h2>
+                        <p>${data.background.content}</p>
+                    `;
                 }
 
                 // Key details
@@ -592,6 +704,24 @@
                         ${data.keyPoints.map(point => `<li>${point}</li>`).join('')}
                     </ul>
                 `;
+
+                // Sections
+                if (data.sections && data.sections.length) {
+                    const sectionsEl = document.getElementById('detailSections');
+                    sectionsEl.style.display = 'block';
+                    sectionsEl.innerHTML = `
+                        <h2>Deep Dive</h2>
+                        ${data.sections.map((section, i) => `
+                            <div class="detail-section">
+                                <div class="detail-section-num">${String(i + 1).padStart(2, '0')}</div>
+                                <div>
+                                    <h3>${section.title}</h3>
+                                    <p>${section.content}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    `;
+                }
             }
 
             document.title = `${data.title.replace(/<br>/g, ' ')} | Portfolio`;
@@ -601,17 +731,18 @@
         document.addEventListener('DOMContentLoaded', loadProject);
 
         // Next project navigation
-        const projectSequence = ['proj1', 'proj2', 'act1', 'act2', 'act3', 'act4', 'comp1', 'comp2', 'club1'];
+        const projectSequence = ['1-xai-saas', '2-carpark-search', '3-wifi-multiap', '4-kird-challenge', '5-cybersecurity-club', '6-sk-aicamp', '7-ai-rookie', '8-law-rag', '9-dear-mate', '10-madi-club'];
         const projectNames = {
-            'proj1': 'XAI 기반 SaaS',
-            'proj2': 'Car Park Search',
-            'act1': 'Wi-Fi Multi-AP',
-            'act2': 'R&D KIRD',
-            'act3': '융합보안 학술동아리',
-            'act4': 'SK Networks Family AI 캠프',
-            'comp1': '인공지능 루키',
-            'comp2': '법률 상담 RAG',
-            'club1': '문화교류연합동아리 MADI'
+            '1-xai-saas': 'XAI 기반 SaaS',
+            '2-carpark-search': 'Car Park Search',
+            '3-wifi-multiap': 'Wi-Fi Multi-AP',
+            '4-kird-challenge': 'R&D KIRD',
+            '5-cybersecurity-club': '융합보안 학술동아리',
+            '6-sk-aicamp': 'SK Networks Family AI 캠프',
+            '7-ai-rookie': '인공지능 루키',
+            '8-law-rag': '법률 상담 RAG',
+            '9-dear-mate': 'DearMate',
+            '10-madi-club': '문화교류연합동아리 MADI'
         };
 
         function goToNextProject() {

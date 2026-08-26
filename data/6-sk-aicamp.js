@@ -1,5 +1,5 @@
 const projectData = {
-  id: 'act4',
+  id: '6-sk-aicamp',
   number: '07',
   title: 'SK Networks Family AI 캠프',
   subtitle: 'AI·ML 개발자 과정 — 데이터 수집부터 딥러닝까지',
