@@ -22,6 +22,10 @@ const projectData = {
   },
   metaInfo: [
     {
+      label: 'Duration',
+      value: '8개월<br>(2024.03 ~ 2024.10)'
+    },
+    {
       label: 'Type',
       value: '학술 연구'
     },

@@ -47,11 +47,16 @@ const projectData = {
     '신입 부원 모집 카드뉴스 및 SNS 콘텐츠 제작',
     '정기 행사·MT·원데이 클래스 홍보물 기획·제작',
     '월별 동아리 소식 카드뉴스 시리즈 운영',
-    '동아리 브랜드 톤앤매너 가이드 수립 및 적용',
     '인스타그램 팔로워 성장 기여'
   ],
 
   chart: {
-    type: 'none'
+    type: 'images',
+    title: '홍보 콘텐츠',
+    desc: '동아리 활동을 알리기 위해 기획·제작한 카드뉴스 및 SNS 홍보물',
+    maxWidth: '34rem',
+    images: [
+      { src: 'images/image8.jpg' }
+    ]
   }
 };

@@ -51,7 +51,7 @@ const projectData = {
   metaInfo: [
     {
       label: 'Duration',
-      value: '약 2주<br>(2026-05-22 ~ 2026-06-04)'
+      value: '약 5주<br>(2026-05-22 ~ 2026-06-26)'
     },
     {
       label: 'Role',
@@ -238,8 +238,13 @@ const projectData = {
   ],
 
   chart: {
-    type: 'none',
-    title: '',
-    desc: ''
+    type: 'images',
+    title: '로디 (Rody)',
+    desc: 'Road + Buddy — 사용자의 길을 함께 찾아주는 동반자. 대기·입력 감지·듣는 중·생각 중·답변 중·오류 상태를 각각 다른 Sprite Animation으로 표현합니다.',
+    columns: '1fr 1.15fr',
+    images: [
+      { src: 'images/rodi1.png' },
+      { src: 'images/rodi2.png' }
+    ]
   }
 };

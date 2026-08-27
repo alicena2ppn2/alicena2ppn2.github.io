@@ -17,7 +17,11 @@ const projectData = {
   metaInfo: [
     {
       label: 'Role',
-      value: 'UI/UX 설계<br>주차 데이터 분석<br>데이터 가공'
+      value:
+        'UI/UX 설계<br>' +
+        '데이터 수집 및 크롤링 (네이버 · 구글 지도)<br>' +
+        '데이터 전처리 및 가공<br>' +
+        '주차 데이터 분석'
     },
     {
       label: 'Stack',

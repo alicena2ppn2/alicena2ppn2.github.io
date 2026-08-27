@@ -168,6 +168,10 @@
             margin-bottom: 4rem;
             align-items: start;
         }
+        /* Research & Activities · Competition & Personal — 사이드를 좁게 */
+        body.layout-narrow-meta .content-grid {
+            grid-template-columns: 2.4fr 1fr;
+        }
         .brief-section h3 {
             font-size: 0.75rem;
             font-weight: 700;
@@ -232,7 +236,7 @@
             color: #555;
             width: 1%;
             white-space: nowrap;
-            padding-right: 1rem;
+            padding-right: 0.6rem;
             vertical-align: top;
         }
         .info-table tr:last-child td {
@@ -307,6 +311,58 @@
             background: #000;
             aspect-ratio: 16 / 9;
             object-fit: contain;
+        }
+        .hero-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            align-items: center;
+        }
+        @media (max-width: 640px) {
+            .hero-images {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        .hero-images figure {
+            margin: 0;
+        }
+        .hero-images img {
+            width: 100%;
+            display: block;
+            border-radius: 0.75rem;
+            background: #f3faff;
+            object-fit: contain;
+        }
+        .hero-images figcaption {
+            font-size: 0.75rem;
+            color: #98a1b0;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        .demo-section {
+            margin-bottom: 5rem;
+        }
+        .demo-section h2 {
+            font-size: 1.75rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .demo-section .demo-desc {
+            font-size: 0.975rem;
+            color: #555;
+            line-height: 1.85;
+            max-width: 58rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-frame {
+            background: white;
+            border: 1px solid #e4e9ef;
+            border-radius: 1.25rem;
+            padding: 1.25rem;
+            overflow: hidden;
+            max-width: 46rem;
         }
         .video-hint {
             font-size: 0.75rem;
@@ -623,6 +679,7 @@
                         <video id="projectVideo" class="project-video" controls autoplay muted loop playsinline preload="auto"></video>
                         <p class="video-hint" id="videoHint">음소거로 자동 재생 중 — 소리를 켜려면 <strong>🔊</strong> 를 눌러주세요</p>
                     </div>
+                    <div id="imagesContainer" class="hero-images" style="display:none;"></div>
                     <p class="chart-desc" id="chartDesc"></p>
                 </div>
 
@@ -650,15 +707,17 @@
 
         <div class="key-details" id="keyDetails"></div>
 
+        <div class="demo-section" id="demoSection" style="display:none;"></div>
+
         <div class="detail-sections" id="detailSections" style="display:none;"></div>
 
-        <div style="background: #000; color: white; padding: 3rem; border-radius: 2rem; display: flex; justify-content: space-between; align-items: center; margin-top: 6rem; cursor: pointer; transition: opacity 0.3s;" onclick="goToNextProject()" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+        <div style="background: #000; color: white; padding: 1.6rem 2.25rem; border-radius: 1.15rem; display: inline-flex; gap: 3.5rem; justify-content: space-between; align-items: center; margin-top: 4rem; cursor: pointer; transition: opacity 0.3s;" onclick="goToNextProject()" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
             <div>
-                <h3 style="font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem 0;">Next Project</h3>
-                <span style="color: #aaa; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem;" id="nextProjectName">Loading...</span>
+                <h3 style="font-size: 1.5rem; font-weight: 700; margin: 0 0 0.3rem 0;">Next Project</h3>
+                <span style="color: #aaa; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.875rem;" id="nextProjectName">Loading...</span>
             </div>
             <div style="display: flex; align-items: center; justify-content: center;">
-                <i class="ph-arrow-right" style="font-size: 2rem;"></i>
+                <i class="ph-arrow-right" style="font-size: 1.6rem;"></i>
             </div>
         </div>
     </main>
@@ -719,6 +778,16 @@
             if (typeof projectData === 'undefined') return;
 
             const data = projectData;
+
+            // Research & Activities · Competition & Personal 은 사이드 컬럼을 좁게
+            const NARROW_META_IDS = [
+                '3-wifi-multiap', '4-kird-challenge', '5-cybersecurity-club', '6-sk-aicamp',
+                '7-ai-rookie', '10-madi-club',
+                'personal-app', 'personal-hand', 'personal-sqld', 'personal-idea', 'personal-bubble'
+            ];
+            if (NARROW_META_IDS.indexOf(data.id) !== -1) {
+                document.body.classList.add('layout-narrow-meta');
+            }
 
             // Page title & subtitle
             document.getElementById('pageTitle').innerHTML = data.title;
@@ -837,6 +906,18 @@
                     } else if (data.chart.type === 'gallery' && data.hasImages) {
                         document.getElementById('galleryContainer').style.display = 'block';
                         loadActivityImages(data.id);
+                    } else if (data.chart.type === 'images' && data.chart.images) {
+                        const imagesEl = document.getElementById('imagesContainer');
+                        imagesEl.style.display = 'grid';
+                        if (data.chart.columns) imagesEl.style.gridTemplateColumns = data.chart.columns;
+                        if (data.chart.maxWidth) imagesEl.style.maxWidth = data.chart.maxWidth;
+                        imagesEl.innerHTML = data.chart.images.map(img => {
+                            const src = typeof img === 'string' ? img : img.src;
+                            const caption = typeof img === 'string' ? '' : (img.caption || '');
+                            return `<figure><img src="${src}" alt="${caption}" loading="lazy">` +
+                                   (caption ? `<figcaption>${caption}</figcaption>` : '') +
+                                   `</figure>`;
+                        }).join('');
                     } else if (data.chart.type === 'video' && data.chart.src) {
                         document.getElementById('videoContainer').style.display = 'block';
                         const video = document.getElementById('projectVideo');
@@ -878,6 +959,50 @@
                         ${data.keyPoints.map(point => `<li>${point}</li>`).join('')}
                     </ul>
                 `;
+
+                // Demo video (Key Details 아래) — 스크롤 진입 시 로드·재생
+                if (data.demo && data.demo.src) {
+                    const demoEl = document.getElementById('demoSection');
+                    demoEl.style.display = 'block';
+                    demoEl.innerHTML = `
+                        <h2>${data.demo.title || 'Demo'}</h2>
+                        ${data.demo.desc ? `<p class="demo-desc">${data.demo.desc}</p>` : ''}
+                        <div class="demo-frame">
+                            <video id="demoVideo" class="project-video" controls muted loop playsinline preload="none"></video>
+                            <p class="video-hint" id="demoHint">화면에 들어오면 음소거로 자동 재생됩니다 — 소리는 <strong>🔊</strong> 로 켜주세요</p>
+                        </div>
+                    `;
+
+                    const demoVideo = document.getElementById('demoVideo');
+                    const demoHint = document.getElementById('demoHint');
+                    if (data.demo.poster) demoVideo.poster = data.demo.poster;
+
+                    demoVideo.addEventListener('volumechange', function() {
+                        if (!demoVideo.muted && demoHint) demoHint.style.display = 'none';
+                    });
+
+                    if ('IntersectionObserver' in window) {
+                        const io = new IntersectionObserver(function(entries) {
+                            entries.forEach(function(entry) {
+                                if (entry.isIntersecting) {
+                                    // 처음 보일 때만 다운로드 시작
+                                    if (!demoVideo.src) demoVideo.src = data.demo.src;
+                                    const p = demoVideo.play();
+                                    if (p && typeof p.catch === 'function') {
+                                        p.catch(function() {
+                                            if (demoHint) demoHint.textContent = '재생 버튼을 눌러 데모를 확인하세요';
+                                        });
+                                    }
+                                } else {
+                                    demoVideo.pause();
+                                }
+                            });
+                        }, { threshold: 0.35 });
+                        io.observe(demoVideo);
+                    } else {
+                        demoVideo.src = data.demo.src;
+                    }
+                }
 
                 // Sections
                 if (data.sections && data.sections.length) {

@@ -1,7 +1,7 @@
 const projectData = {
   id: '1-xai-saas',
   number: '01',
-  title: 'XAI 기반<br>SaaS 고객<br>이탈 예측',
+  title: 'XAI 기반 SaaS 고객<br>이탈 예측',
   subtitle: 'Explainable AI · Churn Prediction · Retention Strategy Dashboard',
   impact: 'Retention 전략 수립 가능한 churn 예측 + XAI 원인 분석 시스템 구축',
   pills: [
@@ -17,7 +17,7 @@ const projectData = {
   metaInfo: [
     {
       label: 'Role',
-      value: 'Readme 초안 작성<br>Streamlit 구현<br>UI 개선<br>모델 코드 분석'
+      value: 'UI/UX 설계 및 개선<br>Streamlit 구현<br>Readme 작성<br>모델 코드 분석'
     },
     {
       label: 'Stack',
@@ -30,19 +30,25 @@ const projectData = {
   ],
   links: [
     {
-      text: 'Project Report',
-      url: 'https://yoonstudy.tistory.com/42'
-    },
-    {
       text: 'GitHub Repository',
       url: 'https://github.com/SKNETWORKS-FAMILY-AICAMP/SKN28-2nd-3Team'
     },
     {
       text: 'Live Demo',
       url: 'https://skn28-2nd-3teamgit.streamlit.app/'
+    },
+    {
+      text: 'Project Report',
+      url: 'https://yoonstudy.tistory.com/42'
     }
   ],
   keyDetails: 'K단순 정확도가 아닌 운영 threshold tuning(0.45)으로 실무 적용성을 높이고, SHAP 기반 XAI로 이탈 원인을 설명 가능한 형태로 시각화했습니다. 최종적으로 고객 유지 전략까지 연결되는 Streamlit 대시보드를 배포했습니다.',
+  demo: {
+    title: 'Demo',
+    desc: 'Streamlit 대시보드 실제 구동 화면 — 이탈 예측 결과, SHAP 기반 원인 분석, Retention 전략 연결까지',
+    src: 'images/xai-demo.mp4'
+  },
+
   keyPoints: [
     '다중 테이블 통합 및 데이터 파이프라인 구축',
     'ML/DL 모델 비교 실험 및 성능 최적화',

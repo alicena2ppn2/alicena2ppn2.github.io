@@ -47,7 +47,7 @@ const projectData = {
     {
       label: 'Duration',
       value:
-        '8개월'
+        '8개월<br>(2024.03 ~ 2024.10)'
     },
     {
       label: 'Category',
