@@ -9,7 +9,7 @@ const projectData = {
   id: '11-my-mochi',
   number: '05',
   title: 'MY MOCHI',
-  subtitle: '모찌 친구와 함께 작은 미션으로 밖에 나가고 · 하루를 기록하고 · 사람과 가볍게 이어지는 게임형 앱',
+  subtitle: '모찌 친구와 함께 작은 미션으로 밖에 나가고 · 하루를 기록하고 · 사람과 가볍게 이어지는 기능성 모바일 게임',
 
   impact:
     '위험한 사람을 찾아내는 대신, 지금 할 수 있는 작은 행동과 가벼운 만남을 게임처럼 건네고 ' +
@@ -53,7 +53,7 @@ const projectData = {
     },
     {
       label: 'Role',
-      value: 'PM · 기획 · 백엔드<br>프론트엔드 · 데이터 분석'
+      value: 'PM · 기획 · 백엔드<br>데이터 분석'
     },
     {
       label: 'Platform',

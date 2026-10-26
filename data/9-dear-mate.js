@@ -107,16 +107,12 @@ const projectData = {
       label: 'Role',
       value:
         'Frontend Developer<br>' +
-        'DearMate 모바일 앱 (Expo · React Native) 구현<br>' +
+        '모바일 앱 (Expo · React Native) 구현<br>' +
         'Social Automation 운영 콘솔 (Web) 구현<br>' +
-        'Agent API Client 설계 — 401 Refresh Retry · Tracing<br>' +
-        'Feature Ports · Mock Gateway 기반 독립 개발 구조 설계<br>' +
-        'Zod DTO 런타임 계약 검증 계층 구성<br>' +
-        'Supabase OAuth 2종 (Google · Kakao) 연동<br>' +
-        'OTLP 텔레메트리 계층 · 음성 통화 UI (Mock Voice Call)<br>' +
-        '보안 벤치마크 테스트 — Tensor Trust · JailbreakBench ·<br>' +
-        'Open-Prompt-Injection × 4개 LLM OFF/ON 대조<br>' +
-        '테스트 케이스 설계 및 서비스 통합'
+        '캐릭터 개발 기획 · AI 인플루언서 SNS 운영 · 생성형 AI 이미지 콘텐츠 제작<br>' +
+        'Supabase OAuth (Google · Kakao) 구현<br>' +
+        '보안 벤치마크 테스트 — Tensor Trust · JailbreakBench · ' +
+        'Open-Prompt-Injection × 4개 LLM OFF/ON 대조 테스트'
     },
     {
       label: 'Tech Stack',
