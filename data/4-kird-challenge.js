@@ -1,6 +1,6 @@
 const projectData = {
   id: '4-kird-challenge',
-  number: '05',
+  number: '07',
 
   title:
     'KIRD R&D 리얼챌린지',

@@ -1,6 +1,6 @@
 const projectData = {
   id: '8-law-rag',
-  number: '03',
+  number: '01',
   title: '법률 상담 RAG',
   subtitle: '노인·고령층을 위한 AI 법률·복지 상담 서비스',
 

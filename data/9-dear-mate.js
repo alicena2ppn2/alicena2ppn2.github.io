@@ -7,7 +7,7 @@ const T = (caption, head, rows) =>
 
 const projectData = {
   id: '9-dear-mate',
-  number: '04',
+  number: '02',
   title: 'DearMate',
   subtitle: '지훈 — SNS와 채팅을 하나의 페르소나로 잇는 AI 인플루언서 서비스',
 
@@ -54,7 +54,7 @@ const projectData = {
     title: 'Background',
     content:
       '<strong class="sub">시장 신호</strong><br>' +
-      '서비스를 시작하기 전에 근거부터 모았습니다. 네가지 근거가 같은 방향을 가리켰습니다.' +
+      '서비스를 시작하기 전에 근거를 살펴봤습니다. 네 가지 자료에서 공통된 결과를 확인했습니다.' +
       T('시장 근거 4가지',
         '<th>근거</th><th>수치</th><th>해석</th>',
         '<tr><td>체류시간 역전</td><td>Zeta MAU 402만 · 총 사용시간 1억 1,341만h<br>vs ChatGPT MAU 2,293만 · 5,047만h</td>' +
@@ -69,7 +69,7 @@ const projectData = {
       '<span class="muted">출처: Wiseapp·Retail 2026.01 / AI타임스 2026.02 / AIES 기반 companion 이용 동기 연구</span><br><br>' +
       '근거를 다룰 때는 <strong>FACT / INTERPRETATION / HYPOTHESIS</strong>를 구분하고 ' +
       '데이터만으로는 알 수 없는 부분도 함께 기록했습니다. ' +
-      '체류시간이 길다는 사실이 관계 형성의 원인까지 증명하지는 않기 때문입니다.<br><br>' +
+      '체류시간이 길다는 것만으로 관계가 형성된 원인을 증명할 수 없기 때문입니다.<br><br>' +
 
       '<strong class="sub">문제 정의</strong><br>' +
       '기존 서비스 불만을 커뮤니티에서 직접 수집·코딩했습니다(n=81, Zeta 대상).' +
@@ -202,7 +202,7 @@ const projectData = {
         '백엔드는 Settings Facade, Composition Root/DI, HTTP API Facade, Product Services, Chat Orchestration, ' +
         'Agent Runtime(PydanticAI · Persona · Context Lifecycle), Background Workers로 계층이 나뉘고, ' +
         '상태는 Supabase(인증·도메인)와 SurrealDB(대화 이력·compaction)로 분리했습니다.<br><br>' +
-        '<strong>DearMate Client — 담당 영역</strong>' +
+        '<strong>DearMate Client</strong>' +
         T('DearMate Client 계층',
           '<th>계층</th><th>내용</th>',
           '<tr><td>Expo Router</td><td>Routes · Navigation · Auth Redirect</td></tr>' +
@@ -216,7 +216,7 @@ const projectData = {
           '<tr><td>Public App Config</td><td><code>EXPO_PUBLIC_*</code></td></tr>' +
           '<tr><td>Telemetry</td><td>옵셔널 OTLP/HTTP (OpenTelemetry)</td></tr>'
         ) +
-        '<strong>Social Automation Console — 담당 영역</strong>' +
+        '<strong>Social Automation Console</strong>' +
         T('Social Automation Console 계층',
           '<th>계층</th><th>내용</th>',
           '<tr><td>Runtime &amp; Composition</td><td>React Root · App Providers · Protected Routes · Validated Env</td></tr>' +
@@ -234,7 +234,7 @@ const projectData = {
         'API 계약이 바뀌면 화면이 조용히 깨지는 대신 경계에서 즉시 드러나도록 만들었습니다.'
     },
     {
-      title: '모델 선정 — 벤치마크 점수가 아니라 사람의 선택으로',
+      title: '모델 선정 — 벤치마크 점수 대신 사람의 선택',
       content:
         '공개 벤치마크 점수는 우리 도메인의 품질과 일치하지 않을 수 있다고 판단했습니다. ' +
         '캐릭터 대화에서 "좋은 응답"은 정답률이 아니라 인물이 살아 있는가의 문제이기 때문입니다.<br><br>' +
@@ -254,7 +254,7 @@ const projectData = {
         '벤치마크 점수가 아니라 우리 도메인의 사람 선호를 기준으로 삼았고, 품질과 비용을 같은 표에서 봤습니다.'
     },
     {
-      title: '컨텍스트 예산 — 왜 15K인가',
+      title: '컨텍스트 예산 — 15K인 이유',
       content:
         '모델이 긴 입력을 받는 것과, 앞부분의 system instruction을 끝까지 지키는 것은 다른 문제입니다. ' +
         '컨텍스트 윈도우가 100만 토큰이라고 해서 100만 토큰 뒤까지 페르소나가 유지된다는 뜻은 아닙니다. ' +
@@ -792,7 +792,7 @@ const projectData = {
         )
     },
     {
-      title: '이 프로젝트에서 남은 것',
+      title: '이번 프로젝트에서 얻은 결과',
       content:
         'AI Persona가 SNS와 대화 서비스에서 동일한 정체성을 유지하면서 장기적인 관계를 형성할 수 있도록, ' +
         '<strong>Persona Fidelity</strong>를 중심 문제로 놓고 Context Budget · Long-term Memory · RAG · ' +
@@ -834,7 +834,7 @@ const projectData = {
         '<strong class="sub">기록 원칙 — 좋은 결과만 남기지 않았습니다</strong><br>' +
         '근거를 다룰 때 FACT / INTERPRETATION / HYPOTHESIS를 구분하고 ' +
         '데이터만으로는 알 수 없는 부분도 함께 기록했습니다. ' +
-        '체류시간이 길다는 사실이 관계 형성의 원인까지 증명하지는 않습니다.<br><br>' +
+        '체류시간이 길다는 것만으로 관계가 형성된 원인을 증명할 수는 없습니다.<br><br>' +
         'B2에서 수동평가와 자동 judge의 결론이 반대로 나온 것을 봉합하지 않고 양쪽 다 제시했고, ' +
         'B1에서 "기타 오답 23건은 어떤 기준으로도 의도된 동작이 아니다"라고 기록했으며, ' +
         'Gemini와 GLM이 실험 데이터를 채우지 못해 NO DATA로 남은 것을 표에 그대로 표기했습니다.<br><br>' +

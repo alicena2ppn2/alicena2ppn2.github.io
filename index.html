@@ -24,31 +24,24 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
   min-height:90vh;display:flex;flex-direction:column;justify-content:center;
   overflow:hidden;isolation:isolate;
 }
-/* 그레인 — 질감만 아주 옅게 */
-.hero::after{
-  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E");
-  mix-blend-mode:multiply;opacity:.3;
-}
-
 /* 디스플레이 스택 */
-.hero-stack{display:flex;flex-direction:column;gap:clamp(.35rem,1.2vw,1.15rem);margin-top:clamp(-3.5rem,-4vw,-1.5rem);}
+.hero-stack{display:flex;flex-direction:column;gap:clamp(.35rem,1.2vw,1.15rem);margin-top:clamp(-1.5rem,-1.5vw,-0.5rem);}
 .hero-line{
   display:flex;align-items:center;gap:clamp(.7rem,2.2vw,1.75rem);
   line-height:.9;white-space:nowrap;
 }
 .hero-line.l1{padding-left:clamp(1rem,5vw,4.5rem);}
-.hero-line.l2{padding-left:clamp(2.5rem,15vw,14rem);}
+.hero-line.l2{padding-left:clamp(3.5rem,20vw,19rem);}
 .hero-line.l3{padding-left:clamp(1.75rem,9.5vw,9rem);}
 .hero-serif{
   font-family:'Playfair Display',serif;font-weight:400;
-  font-size:clamp(2.4rem,9.8vw,8.3rem);letter-spacing:-.022em;color:#423733;
+  font-size:clamp(2.4rem,9.8vw,8.3rem);letter-spacing:-.022em;color:#332b28;
 }
 .hero-line.l3 .hero-serif{font-size:clamp(2.1rem,8.6vw,7.25rem);}
 .hero-sans{
   font-family:'Archivo','Inter',sans-serif;font-weight:700;
-  font-variation-settings:'wdth' 115;
-  font-size:clamp(2.05rem,8.1vw,6.8rem);letter-spacing:-.035em;
+  font-variation-settings:'wdth' 100;
+  font-size:clamp(2.05rem,8.1vw,6.8rem);letter-spacing:-.015em;
   text-transform:uppercase;color:#1b1615;
 }
 
@@ -113,7 +106,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 .chip-mail.copied::after{content:'✓';}
 .chip-mail.copied{border-color:#0d9488;color:#0d9488;}
 
-.sec-label{width:100%;margin:2.5rem 0 1.25rem 1.5rem;padding:0 8vw;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:#aaa;letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:1rem;}
+.sec-label{width:100%;margin:2.5rem 0 1.25rem 1.5rem;padding:0 8vw;font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:#aaa;letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:1rem;}
 .sec-label::after{content:'';flex:1;height:1px;background:#e0e8f0;max-width:200px;}
 
 .skills-wrap{width:100%;max-width:calc(100% - 3rem);padding:0 8vw;margin-left:1.5rem;margin-right:1.5rem;}
@@ -190,7 +183,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 .contact-title{font-family:'Inter',sans-serif;font-size:clamp(2.7rem,6.7vw,5.3rem);font-weight:800;letter-spacing:-0.04em;line-height:1;margin-bottom:3rem;color:#000;}
 .contact-grid{display:flex;justify-content:center;gap:5rem;flex-wrap:wrap;margin-bottom:3rem;}
 .contact-col{}
-.contact-col-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#aaa;margin-bottom:0.625rem;}
+.contact-col-label{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#aaa;margin-bottom:0.625rem;}
 .contact-col-value{font-size:1rem;font-weight:400;color:#111;}
 .contact-col-value a{color:inherit;text-decoration:none;}
 .contact-col-value a:hover{text-decoration:underline;}
@@ -254,7 +247,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
     <p class="hero-desc">
       설명 가능한 AI(<b>XAI</b>)와 데이터 분석을 기반으로, 문제가 발생하는 <b>원인까지 설명하는</b> AI 개발자를 지향합니다.
       머신러닝·딥러닝 모델링부터 서비스 배포까지 전 과정을 경험했고,
-      AI를 활용한 <b>인터랙티브한 웹 경험</b>을 직접 구현합니다.
+      AI를 활용한 <b>인터랙티브한 웹·앱 경험</b>을 직접 구현합니다.
     </p>
     <a class="hero-scroll" href="#skills">Scroll<span></span></a>
   </div>
@@ -305,65 +298,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 <div class="sec-label" id="projects">Projects</div>
 <div class="card-grid">
 
-  <!-- Card 01 -->
-  <div class="project-card" onclick="showLoading('detail.html?id=1-xai-saas')" style="cursor:pointer;">
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-start;">
-      <div>
-        <h2 class="card-title">XAI 기반 SaaS<br>고객 이탈 예측</h2>
-        <p class="card-brief">Explainable AI · Churn Prediction · Retention Strategy Dashboard. XAI 이탈 예측 + 원인 분석 대시보드 구축</p>
-        <div class="card-meta">
-          <div class="meta-row"><span class="meta-label">Stack</span><div class="dotted-line"></div><span class="meta-value">PyTorch · SHAP · Streamlit</span></div>
-          <div class="meta-row"><span class="meta-label">Best F1</span><div class="dotted-line"></div><span class="meta-value">0.433 (DL_MLP)</span></div>
-          <div class="meta-row"><span class="meta-label">Deploy</span><div class="dotted-line"></div><span class="meta-value">Streamlit 배포</span></div>
-        </div>
-      </div>
-    </div>
-    <div style="flex:0 0 45%;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;">
-      <div style="width:100%;height:160px;background:#f9e9f2;border-radius:0.5rem;display:flex;align-items:center;justify-content:center;position:relative;">
-        <i class="ph-chart-line-up" style="font-size:3.5rem;color:#e879f9;"></i>
-      </div>
-      <span class="card-number">01</span>
-    </div>
-  </div>
-
-  <!-- Card 02 -->
-  <div class="project-card" onclick="showLoading('detail.html?id=2-carpark-search')" style="cursor:pointer;">
-    <div style="flex:0 0 45%;display:flex;flex-direction:column;align-items:flex-start;gap:1rem;">
-      <div style="width:110px;height:90px;background:#bbf7d0;border-radius:0.5rem;padding:0.875rem;display:flex;flex-direction:column;justify-content:space-between;">
-        <div style="display:flex;justify-content:space-between;">
-          <div style="width:1.25rem;height:1.25rem;background:white;border-radius:50%;"></div>
-          <div style="width:1.25rem;height:1.25rem;background:white;border-radius:50%;"></div>
-        </div>
-        <div style="width:100%;height:2rem;background:white;border-radius:9999px;position:relative;overflow:hidden;">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:50%;background:#4ade80;"></div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:0.5rem;">
-        <div style="width:5.5rem;height:1.75rem;background:#4ade80;border-radius:9999px;"></div>
-        <div style="width:5.5rem;height:1.75rem;background:#dcfce7;border:1px solid #4ade80;border-radius:9999px;"></div>
-      </div>
-    </div>
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;">
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;">
-        <span class="card-number">02</span>
-              </div>
-      <div style="text-align:right;max-width:350px;">
-        <h2 class="card-title">Car Park Search</h2>
-        <p class="card-brief">주차장 검색 및 지역별 주차 수급 분석 대시보드. 공공데이터 + 리뷰 크롤링으로 혼잡도 지수 도출</p>
-        <div class="card-meta" style="text-align:right;margin-top:0.625rem;">
-          <div class="meta-row"><span class="meta-value" style="color:#666;">역할</span><div class="dotted-line"></div><span class="meta-value">UI/UX 설계 · 데이터 분석</span></div>
-          <div class="meta-row"><span class="meta-label">Stack</span><div class="dotted-line"></div><span class="meta-value">Streamlit · MySQL · Folium</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card 03: 법률 상담 RAG -->
+  <!-- Card 01: 법률 상담 RAG -->
   <div class="project-card" onclick="showLoading('detail.html?id=8-law-rag')" style="padding:0; cursor:pointer; max-width:93%;">
-    <div style="flex:0 0 40%;display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem;background:#faf6ef;border-radius:0.5rem;">
-      <span class="card-number">03</span>
-      <div style="width:100%;aspect-ratio:1/1;background:#ecdfc8;border-radius:1rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-        <i class="ph-scales" style="font-size:4.5rem;color:#a68a5b;"></i>
+    <div style="flex:0 0 40%;display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem;background:#fff6ee;border-radius:0.5rem;">
+      <span class="card-number">01</span>
+      <div style="width:100%;aspect-ratio:1/1;background:#ffdcbf;border-radius:1rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+        <i class="ph-scales" style="font-size:4.5rem;color:#f2843a;"></i>
       </div>
     </div>
     <div style="flex:1;padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;">
@@ -382,10 +322,10 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
     </div>
   </div>
 
-  <!-- Card 04: DearMate -->
+  <!-- Card 02: DearMate -->
   <div class="project-card" onclick="showLoading('detail.html?id=9-dear-mate')" style="padding:0; cursor:pointer; max-width:93%;">
     <div style="flex:0 0 40%;display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem;background:#f0f4ff;border-radius:0.5rem;">
-      <span class="card-number">04</span>
+      <span class="card-number">02</span>
       <div style="width:100%;aspect-ratio:1/1;background:#e2d0f5;border-radius:1rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
         <i class="ph-heart" style="font-size:4.5rem;color:#9479e4;"></i>
       </div>
@@ -405,16 +345,93 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
       </div>
     </div>
   </div>
+
+  <!-- Card 03: XAI 고객 이탈 예측 -->
+  <div class="project-card" onclick="showLoading('detail.html?id=1-xai-saas')" style="cursor:pointer;">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-start;">
+      <div>
+        <h2 class="card-title">XAI 기반 SaaS<br>고객 이탈 예측</h2>
+        <p class="card-brief">Explainable AI · Churn Prediction · Retention Strategy Dashboard. XAI 이탈 예측 + 원인 분석 대시보드 구축</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Stack</span><div class="dotted-line"></div><span class="meta-value">PyTorch · SHAP · Streamlit</span></div>
+          <div class="meta-row"><span class="meta-label">Best F1</span><div class="dotted-line"></div><span class="meta-value">0.433 (DL_MLP)</span></div>
+          <div class="meta-row"><span class="meta-label">Deploy</span><div class="dotted-line"></div><span class="meta-value">Streamlit 배포</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:0 0 45%;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;">
+      <div style="width:100%;height:160px;background:#f9e9f2;border-radius:0.5rem;display:flex;align-items:center;justify-content:center;position:relative;">
+        <i class="ph-chart-line-up" style="font-size:3.5rem;color:#e879f9;"></i>
+      </div>
+      <span class="card-number">03</span>
+    </div>
+  </div>
+
+  <!-- Card 04: Car Park Search -->
+  <div class="project-card" onclick="showLoading('detail.html?id=2-carpark-search')" style="cursor:pointer;">
+    <div style="flex:0 0 45%;display:flex;flex-direction:column;align-items:flex-start;gap:1rem;">
+      <div style="width:110px;height:90px;background:#bbf7d0;border-radius:0.5rem;padding:0.875rem;display:flex;flex-direction:column;justify-content:space-between;">
+        <div style="display:flex;justify-content:space-between;">
+          <div style="width:1.25rem;height:1.25rem;background:white;border-radius:50%;"></div>
+          <div style="width:1.25rem;height:1.25rem;background:white;border-radius:50%;"></div>
+        </div>
+        <div style="width:100%;height:2rem;background:white;border-radius:9999px;position:relative;overflow:hidden;">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:50%;background:#4ade80;"></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="width:5.5rem;height:1.75rem;background:#4ade80;border-radius:9999px;"></div>
+        <div style="width:5.5rem;height:1.75rem;background:#dcfce7;border:1px solid #4ade80;border-radius:9999px;"></div>
+      </div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;">
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;">
+        <span class="card-number">04</span>
+              </div>
+      <div style="text-align:right;max-width:350px;">
+        <h2 class="card-title">Car Park Search</h2>
+        <p class="card-brief">주차장 검색 및 지역별 주차 수급 분석 대시보드. 공공데이터 + 리뷰 크롤링으로 혼잡도 지수 도출</p>
+        <div class="card-meta" style="text-align:right;margin-top:0.625rem;">
+          <div class="meta-row"><span class="meta-value" style="color:#666;">역할</span><div class="dotted-line"></div><span class="meta-value">UI/UX 설계 · 데이터 분석</span></div>
+          <div class="meta-row"><span class="meta-label">Stack</span><div class="dotted-line"></div><span class="meta-value">Streamlit · MySQL · Folium</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 05: MY MOCHI -->
+  <div class="project-card" onclick="showLoading('detail.html?id=11-my-mochi')" style="padding:0; cursor:pointer; max-width:93%;">
+    <div style="flex:0 0 40%;display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem;background:#f5f7f6;border-radius:0.5rem;">
+      <span class="card-number">05</span>
+      <div style="width:100%;aspect-ratio:1/1;background:#dfeee8;border-radius:1rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+        <i class="ph-smiley" style="font-size:4.5rem;color:#5f9e86;"></i>
+      </div>
+    </div>
+    <div style="flex:1;padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <h2 class="card-title">MY MOCHI</h2>
+        <p class="card-brief">모찌 친구와 함께 매일 작은 미션으로 밖에 나가고 · 하루를 기록하고 · 사람과 가볍게 이어지는 게임형 앱</p>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+        <div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-label">Role</span><div class="dotted-line"></div><span class="meta-value">PM · 백엔드 · 데이터 분석</span></div>
+            <div class="meta-row"><span class="meta-label">Tech</span><div class="dotted-line"></div><span class="meta-value">Expo · FastAPI · CLIP</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="sec-label" id="activities">Research &amp; Activities</div>
 <div class="card-grid">
 
-  <!-- Card 04 -->
+  <!-- Card 06: Wi-Fi Multi-AP -->
   <div class="project-card" onclick="showLoading('detail.html?id=3-wifi-multiap')" style="flex-direction:column; cursor:pointer;">
     <div style="display:flex;gap:0.75rem;flex:0 0 55%;">
       <div style="flex:1;background:#fef6d9;border-radius:0.5rem;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;">
-        <span class="card-number" style="position:absolute;left:-1.5rem;top:50%;transform:translateY(-50%);opacity:0.15;mix-blend-mode:multiply;font-size:5rem;">04</span>
+        <span class="card-number" style="position:absolute;left:-1.5rem;top:50%;transform:translateY(-50%);opacity:0.15;mix-blend-mode:multiply;font-size:5rem;">06</span>
         <div style="display:flex;gap:0.5rem;">
           <div style="width:2.75rem;height:2.75rem;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#d9a520;font-weight:900;font-size:1rem;">W</div>
           <div style="width:2.75rem;height:2.75rem;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#d9a520;font-weight:900;font-size:1rem;">i</div>
@@ -438,7 +455,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
     </div>
   </div>
 
-  <!-- Card 05 -->
+  <!-- Card 07: R&D KIRD -->
   <div class="project-card" onclick="showLoading('detail.html?id=4-kird-challenge')" style="cursor:pointer;">
     <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
       <div>
@@ -453,14 +470,14 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
       </div>
     </div>
     <div style="flex:0 0 45%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;">
-      <span class="card-number">05</span>
+      <span class="card-number">07</span>
       <div style="width:100%;aspect-ratio:1/1;background:#dbeafe;border-radius:0.5rem;display:flex;align-items:center;justify-content:center;">
           <i class="ph-file-text" style="font-size:3.5rem;color:#3b82f6;"></i>
       </div>
     </div>
   </div>
 
-  <!-- Card 06 -->
+  <!-- Card 08: 융합보안 동아리 -->
   <div class="project-card" onclick="showLoading('detail.html?id=5-cybersecurity-club')" style="flex-direction:column; cursor:pointer;">
     <div style="display:flex;gap:1rem;flex:0 0 50%;">
       <div style="width:7rem;height:7rem;background:#e0e7ff;border-radius:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -483,12 +500,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
         <i class="ph-lock-key" style="font-size:2rem;color:#f472b6;transform:rotate(-45deg);"></i>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;">
-                <span class="card-number" style="line-height:1;">06</span>
+                <span class="card-number" style="line-height:1;">08</span>
       </div>
     </div>
   </div>
 
-  <!-- Card 07 -->
+  <!-- Card 09: SK Networks AI 캠프 -->
   <div class="project-card" onclick="showLoading('detail.html?id=6-sk-aicamp')" style="flex-direction:column; cursor:pointer;">
     <div style="display:flex;gap:0.75rem;flex:0 0 40%;margin-bottom:0.75rem;">
       <div style="width:33%;background:#fef9c3;border-radius:0.5rem;display:flex;align-items:center;justify-content:center;">
@@ -502,7 +519,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
       </div>
     </div>
     <div style="flex:1;display:flex;justify-content:space-between;align-items:flex-start;">
-      <span class="card-number">07</span>
+      <span class="card-number">09</span>
       <div style="flex:1;margin-left:1.5rem;text-align:right;margin-top:-1.5rem;">
         <h2 class="card-title" style="text-transform:none;font-size:1.4rem;">SK Networks<br>Family AI 캠프</h2>
         <p class="card-brief">Python · ML · DL · NLP · 데이터 수집부터 배포까지</p>
@@ -517,10 +534,10 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 
 <div class="sec-label">Competition &amp; Personal</div>
 <div class="card-grid">
-  <!-- Card 09 -->
-  <div class="project-card" onclick="showLoading('detail.html?id=7-ai-rookie')" style="padding:0; cursor:pointer; max-width:93%;">
+  <!-- Card 10: AI 야구 해설 (숨김 — 다시 보이려면 display:none; 제거) -->
+  <div class="project-card" onclick="showLoading('detail.html?id=7-ai-rookie')" style="display:none; padding:0; cursor:pointer; max-width:93%;">
     <div style="flex:0 0 40%;display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem;background:#f9fafc;border-radius:0.5rem;">
-      <span class="card-number">09</span>
+      <span class="card-number">10</span>
       <div style="width:100%;aspect-ratio:1/1;background:#edefff;border-radius:1rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
         <i class="ph-baseball" style="font-size:4.5rem;color:#1f3199aa;transform:rotate(12deg);"></i>
         <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;width:4rem;height:4rem;background:#aab7fe;border-radius:50%;opacity:0.6;"></div>

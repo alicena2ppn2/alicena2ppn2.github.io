@@ -1,6 +1,6 @@
 const projectData = {
   id: '1-xai-saas',
-  number: '01',
+  number: '03',
   title: 'XAI 기반 SaaS 고객<br>이탈 예측',
   subtitle: 'Explainable AI · Churn Prediction · Retention Strategy Dashboard',
   impact: 'Retention 전략 수립 가능한 churn 예측 + XAI 원인 분석 시스템 구축',

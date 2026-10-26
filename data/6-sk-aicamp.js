@@ -1,6 +1,6 @@
 const projectData = {
   id: '6-sk-aicamp',
-  number: '07',
+  number: '09',
   title: 'SK Networks Family AI 캠프',
   subtitle: 'AI·ML 개발자 과정 — 데이터 수집부터 딥러닝까지',
   impact: 'Python 기반 머신러닝/딥러닝 프로젝트 2건 완성 및 실무 역량 개발',
@@ -17,7 +17,7 @@ const projectData = {
   metaInfo: [
     {
       label: 'Duration',
-      value: '약 6개월'
+      value: '2026.02 ~ 2026.08<br>(약 6개월)'
     },
     {
       label: 'Program',

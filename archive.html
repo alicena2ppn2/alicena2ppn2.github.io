@@ -19,6 +19,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 .nav-links a:hover{text-decoration:underline;}
 
 #canvas-container{position:fixed;top:80px;left:0;width:100%;height:calc(100vh - 80px);background:#f3faff;}
+.scroll-hint{position:fixed;top:96px;left:5vw;z-index:101;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#00000080;pointer-events:none;}
 
 *{-ms-overflow-style:none;scrollbar-width:none;}
 *::-webkit-scrollbar{display:none;}
@@ -41,6 +42,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 </nav>
 
 <div id="canvas-container"></div>
+<div class="scroll-hint">Scroll ↓</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
