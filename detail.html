@@ -120,12 +120,12 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
         }
-        .pill:nth-child(1) { background: #fce7f3; color: #be185d; }
-        .pill:nth-child(2) { background: #dbeafe; color: #1e40af; }
-        .pill:nth-child(3) { background: #dcfce7; color: #15803d; }
-        .pill:nth-child(4) { background: #fef3c7; color: #b45309; }
-        .pill:nth-child(5) { background: #e9d5ff; color: #6b21a8; }
-        .pill:nth-child(6) { background: #cffafe; color: #0369a1; }
+        .pill:nth-child(6n+1) { background: #fce7f3; color: #be185d; }
+        .pill:nth-child(6n+2) { background: #dbeafe; color: #1e40af; }
+        .pill:nth-child(6n+3) { background: #dcfce7; color: #15803d; }
+        .pill:nth-child(6n+4) { background: #fef3c7; color: #b45309; }
+        .pill:nth-child(6n+5) { background: #e9d5ff; color: #6b21a8; }
+        .pill:nth-child(6n+6) { background: #cffafe; color: #0369a1; }
         .header-right {
             display: flex;
             flex-direction: column;
@@ -1030,7 +1030,7 @@
         document.addEventListener('DOMContentLoaded', loadProject);
 
         // Next project navigation
-        const projectSequence = ['8-law-rag', '9-dear-mate', '1-xai-saas', '2-carpark-search', '11-my-mochi', '3-wifi-multiap', '4-kird-challenge', '5-cybersecurity-club', '6-sk-aicamp', '10-madi-club'];
+        const projectSequence = ['8-law-rag', '9-dear-mate', '1-xai-saas', '2-carpark-search', '11-my-mochi', '6-sk-aicamp', '3-wifi-multiap', '4-kird-challenge', '5-cybersecurity-club', '10-madi-club'];
         const projectNames = {
             '1-xai-saas': 'XAI 기반 SaaS',
             '2-carpark-search': 'Car Park Search',

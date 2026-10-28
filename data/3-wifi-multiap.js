@@ -1,6 +1,6 @@
 const projectData = {
   id: '3-wifi-multiap',
-  number: '06',
+  number: '07',
   title: 'Wi-Fi Multi-AP 구축',
   subtitle: 'Ultra-High Reliable Multi-AP Cooperation Utilizing Securely Compressed Channel Status Information',
   impact: 'BC-SCMM 기법을 통한 Wi-Fi 다중 접근점 환경에서의 채널 보안 연구',
