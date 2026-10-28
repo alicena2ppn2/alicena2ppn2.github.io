@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f3faff;
+            --accent: #9479e4;
+            --accent-soft: #e2d0f5;
+            --accent-pale: #f0f4ff;
+        }
+        html { scroll-behavior: smooth; }
+        /* 상세 페이지 전체를 10% 크게 (PC 화면만) */
+        @media (min-width: 901px) { html { zoom: 1.1; } }
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background: var(--bg);
+            color: #111;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 5rem;
+        }
+        * { -ms-overflow-style: none; scrollbar-width: none; }
+        *::-webkit-scrollbar { display: none; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ── NAV (sticky, blur) ── */
+        .nav {
+            position: sticky; top: 0; z-index: 50;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 2.1rem calc(5vw / 1.1) 1.75rem;
+            background: rgba(243, 250, 255, 0.8);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+        .nav-logo { display: flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.05em; }
+        .nav-icon { width: 2rem; height: 2rem; border-radius: 50%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; }
+        .nav-right { display: flex; align-items: center; gap: 2rem; }
+        .nav-links { display: flex; gap: 2.5rem; font-size: 0.9rem; font-weight: 400; }
+        .nav-links a:hover { text-decoration: underline; }
+        /* 홈으로 — 분류·제목 묶음 왼쪽 바깥에 */
+        .nav-close {
+            position: absolute; left: -6.1rem; top: 0.9rem;
+            width: 3rem; height: 3rem; border-radius: 50%; border: 2px solid #000;
+            background: rgba(255, 255, 255, 0.85);
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.15s, color 0.15s;
+        }
+        .nav-close i { font-size: 1.35rem; }
+        /* 바깥 여백이 모자란 화면에서는 제목 묶음을 들여서 화살표 자리 확보 */
+        @media (min-width: 901px) and (max-width: 1420px) {
+            .header-left { padding-left: 4.5rem; }
+            .nav-close { left: -1.75rem; }
+        }
+        .nav-close:hover { background: #000; color: #fff; }
+
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+
+        /* ── 공통 라벨 · 점선 행 ── */
+        .meta-label { font-size: 0.65rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; white-space: nowrap; }
+        .meta-value { font-size: 0.85rem; color: #333; font-weight: 500; text-align: right; line-height: 1.55; max-width: 80%; word-break: keep-all; }
+        .dotted-line { border-bottom: 1px dotted #ccc; flex-grow: 1; margin: 0 8px; margin-bottom: 4px; min-width: 1.5rem; }
+
+        /* ── HEADER ── */
+        .header { padding-top: 4rem; padding-bottom: 6rem; }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 3rem; }
+        .header-left { max-width: 46rem; position: relative; }
+        .tag-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .tag-pill { padding: 0.25rem 0.75rem; border-radius: 9999px; background: var(--accent-soft); color: var(--accent); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; filter: saturate(1.2); }
+        .tag-year { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; }
+        .page-title { font-size: clamp(2.6rem, 6vw, 4.5rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1.02; text-transform: uppercase; word-break: keep-all; }
+        .page-title .accent { color: var(--accent); }
+        .page-subtitle { margin-top: 1.25rem; font-size: 1rem; color: #6b7280; max-width: 40rem; }
+        .number-big { font-size: clamp(5rem, 11vw, 8rem); font-weight: 900; line-height: 1; opacity: 0.1; letter-spacing: -0.04em; }
+        .number-big img { width: 7rem; height: 7rem; object-fit: contain; opacity: 1; }
+
+        .hero-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem; align-items: start; }
+        .hero-panel {
+            grid-column: span 8; background: var(--accent-soft); border-radius: 40px;
+            position: relative; overflow: hidden;
+        }
+        .hero-panel.deco { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; }
+        .hero-arch {
+            width: 16rem; height: 24rem; background: var(--accent); border-radius: 9999px 9999px 0 0;
+            display: flex; align-items: flex-end; justify-content: center; padding-bottom: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); transform: translateY(3rem);
+        }
+        .hero-arch i { color: #fff; font-size: 120px; }
+        .hero-panel.media { padding: 1.5rem; }
+        .media-inner { background: #fff; border-radius: 1.75rem; padding: 1.25rem; overflow: hidden; }
+        .media-title { font-size: 0.8rem; font-weight: 700; color: #666; margin-bottom: 0.75rem; }
+        .media-desc { font-size: 0.8rem; color: #888; margin-top: 0.75rem; }
+        .project-video { width: 100%; display: block; border-radius: 1.25rem; background: #000; aspect-ratio: 16 / 9; object-fit: contain; }
+        .video-hint { font-size: 0.75rem; color: #999; margin-top: 0.625rem; }
+        .hero-images { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; align-items: center; }
+        .hero-images figure { margin: 0; }
+        .hero-images img { width: 100%; display: block; border-radius: 0.75rem; background: var(--bg); object-fit: contain; }
+        .hero-images figcaption { font-size: 0.72rem; color: #98a1b0; text-align: center; margin-top: 0.5rem; }
+        #galleryImages img { max-width: 100%; border-radius: 0.75rem; }
+
+        .hero-side { grid-column: span 4; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; }
+        .meta-rows > * + * { margin-top: 1.5rem; }
+        .meta-row { display: flex; align-items: flex-start; }
+        .meta-row .meta-label { padding-top: 0.2rem; }
+        .meta-row .dotted-line { align-self: flex-start; margin-top: 0.75rem; margin-bottom: 0; }
+        .link-row { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: flex-end; max-width: 68%; }
+        .link-chip { font-size: 0.72rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 9999px; border: 1px solid #111; transition: background 0.2s, color 0.2s; }
+        .link-chip:hover { background: #000; color: #fff; }
+        .quote-card { background: #fff; padding: 2rem; border-radius: 1.5rem; }
+        .quote-card p { font-size: 0.875rem; color: #6b7280; line-height: 1.65; }
+        .quote-by { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .quote-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--accent); }
+        .quote-name { font-size: 0.75rem; font-weight: 700; }
+        .quote-role { font-size: 10px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.04em; }
+
+        /* ── PHASE 섹션 (왼쪽 고정 제목 + 오른쪽 본문) ── */
+        .phases { background: #fff; padding: 8rem 0; }
+        .phase { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4rem; align-items: start; }
+        .phase + .phase { margin-top: 8rem; }
+        .phase-head { grid-column: span 4; position: sticky; top: 8rem; }
+        .phase-head .meta-label { display: block; margin-bottom: 1rem; }
+        .phase-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.25rem); font-weight: 800; text-transform: uppercase; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 1.5rem; word-break: keep-all; }
+        .phase-head p { font-size: 0.875rem; color: #6b7280; line-height: 1.65; }
+        .phase-body { grid-column: span 8; min-width: 0; }
+        .phase-body > * + * { margin-top: 3rem; }
+        .lead { font-size: 1.2rem; line-height: 1.75; color: #222; }
+
+        .story-card { background: #f9fafb; border-radius: 40px; padding: 3rem; position: relative; overflow: hidden; }
+        .story-word { position: absolute; top: 2rem; left: 2rem; font-size: 8rem; font-weight: 800; line-height: 1; opacity: 0.05; pointer-events: none; }
+        .story-inner { position: relative; z-index: 1; padding-top: 5rem; }
+        .story-inner h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .story-inner .section-body { font-size: 0.9rem; }
+        .point-list { margin-top: 2rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+        .point-list li { list-style: none; background: #fff; border-radius: 1rem; padding: 1rem 1.25rem; font-size: 0.85rem; color: #444; line-height: 1.55; display: flex; gap: 0.75rem; }
+        .point-list li::before { content: ''; flex: 0 0 0.5rem; height: 0.5rem; margin-top: 0.45rem; border-radius: 50%; background: var(--accent); }
+
+        .section-body { font-size: 0.975rem; color: #555; line-height: 1.85; }
+        .section-body strong, .section-body b { color: #111; font-weight: 600; }
+        .section-body strong.sub { display: inline-block; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.1rem; }
+        .section-body code { font-family: 'DM Mono', Consolas, monospace; font-size: 0.85em; background: #f0f4f8; padding: 0.15em 0.4em; border-radius: 3px; color: #334; }
+        .section-body .muted { font-size: 0.82em; color: #98a1b0; line-height: 1.65; }
+
+        .demo-frame { background: #f9fafb; border-radius: 2rem; padding: 1.5rem; }
+        .demo-desc { font-size: 0.95rem; color: #555; line-height: 1.85; }
+
+        /* ── 본문 내 데이터 표 · 강조 박스 (기존과 동일) ── */
+        .dv-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid #e4e9ef; border-radius: 1rem; background: white; }
+        .dv-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; line-height: 1.5; min-width: 22rem; }
+        .dv-table caption { caption-side: top; text-align: left; font-size: 0.72rem; font-weight: 700; color: #8a94a6; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.9rem 1rem 0.55rem; }
+        .dv-table th { text-align: left; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; color: #6b7280; background: #f7f9fc; padding: 0.6rem 1rem; border-bottom: 1px solid #e4e9ef; white-space: nowrap; }
+        .dv-table td { padding: 0.6rem 1rem; border-bottom: 1px solid #eef1f5; color: #444; vertical-align: top; }
+        .dv-table tr:last-child td { border-bottom: none; }
+        .dv-table td:first-child { font-weight: 600; color: #222; white-space: nowrap; }
+        .dv-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .dv-table th.num { text-align: right; }
+        .dv-table tr.peak td { background: #f2f7ff; color: #17408b; }
+        .dv-table tr.peak td:first-child { color: #17408b; box-shadow: inset 3px 0 0 #2563eb; }
+        .dv-table tr.alert td { background: #fef4f4; color: #9f2418; }
+        .dv-table tr.alert td:first-child { color: #9f2418; box-shadow: inset 3px 0 0 #e50913; }
+        .dv-table .up { color: #0a7a5c; font-weight: 600; }
+        .dv-table .down { color: #b42318; font-weight: 600; }
+        .dv-table .muted { color: #9aa3b2; }
+        .section-body .callout { margin: 1.5rem 0; padding: 1.5rem 1.75rem; background: white; border: 1px solid #e4e9ef; border-left: 3px solid var(--accent); border-radius: 1rem; }
+        .section-body .callout-label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 0.6rem; }
+        .section-body .callout p + .callout-label { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #eef1f5; }
+        .section-body .callout p { margin: 0 0 0.9rem; font-size: 0.9rem; line-height: 1.75; color: #5a626e; }
+        .section-body .callout p:last-child { margin-bottom: 0; }
+
+        /* ── TECH STACK (Design Language 카드) ── */
+        .stack { padding: 6rem 0; }
+        .stack-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
+        .stack-head h2 { font-size: 2.25rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.025em; }
+        .stack-rows { background: #fff; border-radius: 1.5rem; padding: 2rem 2.5rem; }
+        .stack-rows > * + * { margin-top: 1rem; }
+        .stack-row { display: flex; align-items: flex-start; }
+        .stack-row .meta-label { flex: 0 0 auto; min-width: 5.5rem; padding-top: 0.15rem; }
+        .stack-row .dotted-line { align-self: flex-start; margin-top: 0.7rem; margin-bottom: 0; flex: 0 0 4rem; }
+        .stack-row .stack-items { flex: 1; font-size: 0.85rem; color: #333; font-weight: 500; line-height: 1.6; }
+        .stack-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .stack-chips span { font-size: 0.75rem; font-weight: 600; padding: 0.35rem 0.85rem; border-radius: 9999px; background: var(--bg); color: #333; }
+
+        /* ── Personal projects 목록 ── */
+        .pp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .pp-card { background: #f9fafb; border-radius: 1.5rem; padding: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+        .pp-card h3 { font-size: 1.1rem; font-weight: 700; }
+        .pp-card .sub { font-size: 0.8rem; color: #888; }
+        .pp-card p { font-size: 0.9rem; color: #555; line-height: 1.65; }
+        .pp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .pp-tags span { font-size: 0.7rem; background: #fff; padding: 0.2rem 0.6rem; border-radius: 9999px; color: #666; }
+
+        /* ── NEXT PROJECT ── */
+        .next { margin-top: 0; padding: 6rem 3rem 6rem; text-align: center; border-top: 1px solid #f3f4f6; }
+        .next .meta-label { display: block; margin-bottom: 1rem; }
+        .next-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1; text-transform: uppercase; margin-bottom: 3rem; word-break: keep-all; }
+        .next-title a:hover { color: var(--accent); }
+        .next-btn { margin: 5rem auto 0; width: 5rem; height: 5rem; border-radius: 50%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; transition: background 0.15s, color 0.15s; }
+        .next-btn i { font-size: 2.25rem; }
+        .next-btn:hover { background: #000; color: #fff; }
+        .copyright { text-align: center; color: #999; font-size: 0.85rem; }
+
+        /* ── 맨 아래로 가기 (떠 있는 버튼) ── */
+        .to-bottom {
+            position: fixed; right: 2rem; bottom: 2rem; z-index: 60;
+            width: 3.5rem; height: 3.5rem; border-radius: 50%;
+            border: 2px solid #000; background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.15s, color 0.15s, opacity 0.3s, transform 0.3s;
+        }
+        .to-bottom i { font-size: 1.5rem; }
+        .to-bottom:hover { background: #000; color: #fff; }
+        .to-bottom.hide { opacity: 0; transform: translateY(1rem); pointer-events: none; }
+
+        /* ── 반응형 ── */
+        @media (max-width: 900px) {
+            .nav { padding: 1.25rem 1.25rem; }
+            .nav-links { display: none; }
+            .wrap { padding: 0 1.25rem; }
+            .header { padding-top: 2.5rem; padding-bottom: 4rem; }
+            .header-top { flex-direction: column-reverse; align-items: flex-start; gap: 0.5rem; }
+            .hero-grid, .phase { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+            .hero-panel, .hero-side, .phase-head, .phase-body { grid-column: auto; min-width: 0; }
+            .nav-close { position: static; width: 2.6rem; height: 2.6rem; margin-bottom: 1.25rem; }
+            .meta-value, .link-row { max-width: 75%; }
+            .hero-panel { border-radius: 28px; }
+            .hero-panel.media { padding: 0.75rem; }
+            .media-inner { border-radius: 1.25rem; padding: 0.875rem; }
+            .phase-head { position: static; }
+            .phases, .stack { padding: 5rem 0; }
+            .phase + .phase { margin-top: 5rem; }
+            .hero-arch { width: 9rem; height: 13rem; }
+            .hero-arch i { font-size: 64px; }
+            .story-card { padding: 2rem; border-radius: 28px; }
+            .story-word { font-size: 4.5rem; }
+            .story-inner { padding-top: 3rem; }
+            .point-list { grid-template-columns: 1fr; }
+            .stack-rows { padding: 1.5rem; }
+            .stack-row { flex-wrap: wrap; }
+            .stack-row .dotted-line { flex: 1 1 2rem; }
+            .stack-row .stack-items { flex: 1 1 100%; margin-top: 0.25rem; }
+            .next { padding: 5rem 1.25rem 4rem; margin-top: 4rem; }
+            .next-btn { margin-top: 3rem; }
+            .to-bottom { right: 1.25rem; bottom: 1.25rem; width: 3rem; height: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a class="nav-logo" href="index.html">
+            <div class="nav-icon"><i class="ph-asterisk" style="font-size:0.9rem;"></i></div>
+            Portfolio
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="timeline.html">TIMELINE</a>
+                <a href="index.html#projects">PROJECTS</a>
+                <a href="index.html#activities">ACTIVITIES</a>
+                <a href="index.html#contact">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="wrap header">
+        <div class="header-top">
+            <div class="header-left">
+                <a class="nav-close" href="index.html#projects" aria-label="홈으로 돌아가기" title="홈으로"><i class="ph-arrow-left"></i></a>
+                <div class="tag-row">
+                    <span class="tag-pill" id="tagPill"></span>
+                    <span class="tag-year" id="tagYear"></span>
+                </div>
+                <h1 class="page-title" id="pageTitle"></h1>
+                <p class="page-subtitle" id="pageSubtitle"></p>
+            </div>
+            <div class="number-big" id="projectNumber"></div>
+        </div>
+
+        <div class="hero-grid" id="heroGrid">
+            <div class="hero-panel deco" id="heroPanel">
+                <div class="hero-arch"><i id="heroIcon" class="ph-heart"></i></div>
+            </div>
+            <div class="hero-side">
+                <div class="meta-rows" id="metaRows"></div>
+                <div class="quote-card" id="quoteCard" style="display:none;">
+                    <p id="quoteText"></p>
+                    <div class="quote-by">
+                        <div class="quote-avatar"><i class="ph-asterisk"></i></div>
+                        <div>
+                            <p class="quote-name">Yunkyung Song</p>
+                            <p class="quote-role" id="quoteRole"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="phases">
+        <div class="wrap" id="phases"></div>
+    </section>
+
+    <section class="stack" id="stackSection" style="display:none;">
+        <div class="wrap">
+            <div class="stack-head">
+                <h2>Tech Stack</h2>
+            </div>
+            <div class="stack-rows" id="stackRows"></div>
+        </div>
+    </section>
+
+    <footer class="next">
+        <span class="meta-label">Next Project</span>
+        <h2 class="next-title"><a id="nextTitle" href="#">Loading</a></h2>
+        <a class="next-btn" id="nextBtn" href="#" aria-label="다음 프로젝트"><i class="ph-arrow-right"></i></a>
+    </footer>
+    <p class="copyright">© 2026 Yunkyung Song Portfolio</p>
+
+    <button class="to-bottom" id="toBottom" type="button" aria-label="맨 아래로 가기"><i class="ph-arrow-down"></i></button>
+
+    <script>
+        // 메인 카드와 같은 색 · 아이콘
+        const THEMES = {
+            '8-law-rag':            { accent: '#f2843a', soft: '#ffdcbf', icon: 'ph-scales',            group: 'Project' },
+            '9-dear-mate':          { accent: '#9479e4', soft: '#e2d0f5', icon: 'ph-heart',             group: 'Project' },
+            '1-xai-saas':           { accent: '#e879f9', soft: '#f9e9f2', icon: 'ph-chart-line-up',     group: 'Project' },
+            '2-carpark-search':     { accent: '#22c55e', soft: '#bbf7d0', icon: 'ph-car',               group: 'Project' },
+            '11-my-mochi':          { accent: '#5f9e86', soft: '#dfeee8', icon: 'ph-smiley',            group: 'Project' },
+            '6-sk-aicamp':          { accent: '#f59e0b', soft: '#fef3c7', icon: 'ph-code',              group: 'Activity' },
+            '3-wifi-multiap':       { accent: '#5bb8b0', soft: '#dff4f2', icon: 'ph-wifi-high',         group: 'Research' },
+            '4-kird-challenge':     { accent: '#3b82f6', soft: '#dbeafe', icon: 'ph-file-text',         group: 'Research' },
+            '5-cybersecurity-club': { accent: '#6366f1', soft: '#e0e7ff', icon: 'ph-shield-checkered',  group: 'Activity' },
+            '7-ai-rookie':          { accent: '#4f5fd1', soft: '#edefff', icon: 'ph-baseball',          group: 'Competition' },
+            '10-madi-club':         { accent: '#3b5488', soft: '#e6ecf7', icon: 'ph-camera',            group: 'Activity' },
+            'personal-projects':    { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-code',              group: 'Personal' },
+            'personal-app':         { accent: '#f472b6', soft: '#fdd2eb', icon: 'ph-lightbulb',         group: 'Personal' },
+            'personal-hand':        { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-hand-waving',       group: 'Personal' },
+            'personal-sqld':        { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-database',          group: 'Personal' },
+            'personal-idea':        { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-lightbulb',         group: 'Personal' },
+            'personal-bubble':      { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-drop',     group: 'Personal' }
+        };
+
+        const projectSequence = ['8-law-rag', '9-dear-mate', '1-xai-saas', '2-carpark-search', '11-my-mochi', '6-sk-aicamp', '3-wifi-multiap', '4-kird-challenge', '5-cybersecurity-club', '10-madi-club'];
+        const projectNames = {
+            '1-xai-saas': 'XAI SaaS',
+            '2-carpark-search': 'Car Park Search',
+            '3-wifi-multiap': 'Wi-Fi Multi-AP',
+            '4-kird-challenge': 'R&D KIRD',
+            '5-cybersecurity-club': '융합보안 동아리',
+            '6-sk-aicamp': 'SK AI Camp',
+            '7-ai-rookie': '인공지능 루키',
+            '8-law-rag': '법률 상담 RAG',
+            '9-dear-mate': 'DearMate',
+            '11-my-mochi': 'MY MOCHI',
+            '10-madi-club': 'MADI'
+        };
+
+        const PAGE = location.pathname.split('/').pop() || 'detail.html';
+        const pad = n => String(n).padStart(2, '0');
+        const strip = html => String(html || '').replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '').trim();
+
+        function getId() {
+            return new URLSearchParams(location.search).get('id') || '1-xai-saas';
+        }
+
+        function loadProject() {
+            const s = document.createElement('script');
+            s.src = `data/${getId()}.js`;
+            s.onload = renderProject;
+            document.head.appendChild(s);
+        }
+
+        function applyTheme(id) {
+            const t = THEMES[id] || THEMES['9-dear-mate'];
+            const root = document.documentElement.style;
+            root.setProperty('--accent', t.accent);
+            root.setProperty('--accent-soft', t.soft);
+            document.getElementById('heroIcon').className = t.icon;
+            return t;
+        }
+
+        // 기간 값에서 연도만 뽑기 (예: 2026.02 ~ 2026.08)
+        function findPeriod(meta) {
+            const item = (meta || []).find(m => /duration|period|기간/i.test(m.label));
+            if (!item || !item.value) return '';
+            const years = (strip(item.value).match(/\d{4}([.-]\d{1,2})?/g) || []).map(y => y.replace('-', '.'));
+            if (years.length) {
+                const first = years[0], last = years[years.length - 1];
+                return first === last ? first : `${first} — ${last}`;
+            }
+            return strip(String(item.value).split(/<br\s*\/?>/i)[0]);
+        }
+
+        function renderTitle(title) {
+            const parts = String(title).split(/<br\s*\/?>/i);
+            const el = document.getElementById('pageTitle');
+            if (parts.length > 1) {
+                const last = parts.pop();
+                el.innerHTML = `${parts.join(' ')}<br><span class="accent">${last}</span>`;
+            } else {
+                el.innerHTML = `${title}<span class="accent">.</span>`;
+            }
+        }
+
+        function phase(num, title, lead, bodyHtml) {
+            return `
+                <div class="phase">
+                    <div class="phase-head">
+                        <span class="meta-label">Phase ${pad(num)}</span>
+                        <h2>${title}</h2>
+                        ${lead ? `<p>${lead}</p>` : ''}
+                    </div>
+                    <div class="phase-body">${bodyHtml}</div>
+                </div>`;
+        }
+
+        function renderHeroMedia(data) {
+            const chart = data.chart || {};
+            if (!chart.type || chart.type === 'none') return;
+            if (chart.type === 'gallery' && !data.hasImages) return;
+            if (chart.type === 'images' && !chart.images) return;
+            if (chart.type === 'video' && !chart.src) return;
+
+            const panel = document.getElementById('heroPanel');
+            panel.className = 'hero-panel media';
+            let inner = '';
+            if (chart.type === 'threshold') {
+                inner = `<canvas id="projectChart" height="140"></canvas>`;
+            } else if (chart.type === 'erd' && chart.svg) {
+                inner = `<div style="overflow-x:auto;">${chart.svg}</div>`;
+            } else if (chart.type === 'gallery') {
+                inner = `<div id="galleryImages" style="display:flex;gap:0.75rem;flex-wrap:wrap;"></div>`;
+            } else if (chart.type === 'images') {
+                const cols = chart.columns ? ` style="grid-template-columns:${chart.columns}"` : '';
+                inner = `<div class="hero-images"${cols}>` + chart.images.map(img => {
+                    const src = typeof img === 'string' ? img : img.src;
+                    const cap = typeof img === 'string' ? '' : (img.caption || '');
+                    return `<figure><img src="${src}" alt="${cap}" loading="lazy">${cap ? `<figcaption>${cap}</figcaption>` : ''}</figure>`;
+                }).join('') + `</div>`;
+            } else if (chart.type === 'video') {
+                inner = `<video id="projectVideo" class="project-video" controls autoplay muted loop playsinline preload="auto"></video>
+                         <p class="video-hint" id="videoHint">음소거로 자동 재생 중 — 소리를 켜려면 <strong>🔊</strong> 를 눌러주세요</p>`;
+            }
+            panel.innerHTML = `<div class="media-inner">
+                    ${chart.title ? `<p class="media-title">${chart.title}</p>` : ''}
+                    ${inner}
+                    ${chart.desc ? `<p class="media-desc">${chart.desc}</p>` : ''}
+                </div>`;
+
+            if (chart.type === 'threshold') {
+                const cs = document.createElement('script');
+                cs.src = `data/charts/${data.id}-threshold.js`;
+                cs.onload = () => { if (typeof drawThresholdChart !== 'undefined') drawThresholdChart(); };
+                document.head.appendChild(cs);
+            } else if (chart.type === 'gallery') {
+                loadActivityImages(data.id);
+            } else if (chart.type === 'video') {
+                const video = document.getElementById('projectVideo');
+                const hint = document.getElementById('videoHint');
+                video.src = chart.src;
+                if (chart.poster) video.poster = chart.poster;
+                video.addEventListener('volumechange', () => { if (!video.muted && hint) hint.style.display = 'none'; });
+                const p = video.play();
+                if (p && p.catch) p.catch(() => { if (hint) hint.textContent = '재생 버튼을 눌러 데모를 확인하세요'; });
+            }
+        }
+
+        function loadActivityImages(projectId) {
+            fetch('index.html')
+                .then(r => r.text())
+                .then(html => {
+                    const doc = new DOMParser().parseFromString(html, 'text/html');
+                    const modal = doc.getElementById(`modal-${projectId}`);
+                    const imgs = modal && modal.querySelector('.activity-imgs');
+                    const box = document.getElementById('galleryImages');
+                    if (imgs && box) box.innerHTML = imgs.innerHTML;
+                })
+                .catch(err => console.log('Error loading images:', err));
+        }
+
+        function renderMeta(data) {
+            const rows = document.getElementById('metaRows');
+            // 분야별로 정리된 기술 스택은 아래 Tech Stack 섹션에서 보여 줌
+            let html = (data.metaInfo || []).filter(item => !stackGroupsFrom(item)).map(item => {
+                const value = item.tags ? item.tags.join(' · ') : item.value;
+                return `<div class="meta-row">
+                        <span class="meta-label">${item.label}</span>
+                        <div class="dotted-line"></div>
+                        <span class="meta-value">${value}</span>
+                    </div>`;
+            }).join('');
+            if (data.links && data.links.length) {
+                html += `<div class="meta-row">
+                        <span class="meta-label">Links</span>
+                        <div class="dotted-line"></div>
+                        <div class="link-row">${data.links.map(l =>
+                            `<a class="link-chip" href="${l.url}" target="_blank" rel="noopener">${l.text} ↗</a>`).join('')}</div>
+                    </div>`;
+            }
+            rows.innerHTML = html;
+        }
+
+        function renderDemo(data, num) {
+            if (!data.demo || !data.demo.src) return '';
+            setTimeout(() => {
+                const v = document.getElementById('demoVideo');
+                const hint = document.getElementById('demoHint');
+                if (!v) return;
+                if (data.demo.poster) v.poster = data.demo.poster;
+                v.addEventListener('volumechange', () => { if (!v.muted && hint) hint.style.display = 'none'; });
+                if ('IntersectionObserver' in window) {
+                    new IntersectionObserver(entries => entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            if (!v.src) v.src = data.demo.src;
+                            const p = v.play();
+                            if (p && p.catch) p.catch(() => { if (hint) hint.textContent = '재생 버튼을 눌러 데모를 확인하세요'; });
+                        } else {
+                            v.pause();
+                        }
+                    }), { threshold: 0.35 }).observe(v);
+                } else {
+                    v.src = data.demo.src;
+                }
+            }, 0);
+            return phase(num, `${data.demo.title || 'Demo'}.`, '',
+                `${data.demo.desc ? `<p class="demo-desc">${data.demo.desc}</p>` : ''}
+                 <div class="demo-frame">
+                    <video id="demoVideo" class="project-video" controls muted loop playsinline preload="none"></video>
+                    <p class="video-hint" id="demoHint">화면에 들어오면 음소거로 자동 재생됩니다 — 소리는 <strong>🔊</strong> 로 켜주세요</p>
+                 </div>`);
+        }
+
+        function renderProject() {
+            if (typeof projectData === 'undefined') return;
+            const data = projectData;
+            const theme = applyTheme(data.id);
+
+            // 헤더
+            document.getElementById('tagPill').textContent = theme.group;
+            document.getElementById('tagYear').textContent = findPeriod(data.metaInfo);
+            renderTitle(data.title);
+            document.getElementById('pageSubtitle').textContent = data.subtitle || '';
+            const num = document.getElementById('projectNumber');
+            if (data.icon && /\.(png|jpe?g|svg)$/i.test(data.icon)) {
+                num.style.opacity = 1;
+                num.innerHTML = `<img src="${data.icon}" alt="">`;
+            } else {
+                num.textContent = data.number || '';
+            }
+
+            // 오른쪽 정보 · 인용 카드
+            renderMeta(data);
+            if (data.impact) {
+                document.getElementById('quoteCard').style.display = 'block';
+                document.getElementById('quoteText').textContent = `“${strip(data.impact)}”`;
+                const role = (data.metaInfo || []).find(m => /role|역할/i.test(m.label));
+                document.getElementById('quoteRole').textContent = role ? strip(String(role.value).split(/<br\s*\/?>/i)[0]) : theme.group;
+            }
+            renderHeroMedia(data);
+
+            // Phase 섹션
+            const phases = [];
+            let n = 1;
+
+            if (data.id === 'personal-projects' && data.projects) {
+                phases.push(phase(n++, 'Projects.', data.overview ? data.overview.brief : '',
+                    `<div class="pp-grid">${data.projects.map(p => `
+                        <div class="pp-card">
+                            <div><h3>${p.title}</h3><p class="sub">${p.subtitle || ''}</p></div>
+                            <p>${p.description || ''}</p>
+                            <div class="pp-tags">${(p.tags || []).map(t => `<span>${t}</span>`).join('')}</div>
+                            ${p.github ? `<a class="link-chip" style="align-self:flex-start" href="${p.github}" target="_blank" rel="noopener">GitHub ↗</a>` : ''}
+                        </div>`).join('')}</div>`));
+            } else {
+                if (data.overview) {
+                    phases.push(phase(n++, 'Overview.', data.overview.brief,
+                        `<div class="lead">${data.overview.description || ''}</div>`));
+                }
+                if (data.background && data.background.content) {
+                    phases.push(phase(n++, `${data.background.title || 'Background'}.`, '',
+                        `<div class="section-body">${data.background.content}</div>`));
+                }
+                if (data.keyDetails || (data.keyPoints && data.keyPoints.length)) {
+                    phases.push(phase(n++, 'Key Details.', '',
+                        `<div class="story-card">
+                            <span class="story-word">STORY</span>
+                            <div class="story-inner">
+                                <h3>Key Implementation</h3>
+                                <div class="section-body">${data.keyDetails || ''}</div>
+                                ${data.keyPoints && data.keyPoints.length ? `<ul class="point-list">${data.keyPoints.map(p => `<li>${p}</li>`).join('')}</ul>` : ''}
+                            </div>
+                        </div>`));
+                }
+                const demo = renderDemo(data, n);
+                if (demo) { phases.push(demo); n++; }
+                (data.sections || []).forEach(sec => {
+                    phases.push(phase(n++, sec.title, '', `<div class="section-body">${sec.content}</div>`));
+                });
+            }
+            document.getElementById('phases').innerHTML = phases.join('');
+
+            renderStack(data);
+
+            document.title = `${strip(data.title)} | Portfolio`;
+            renderNext(data.id);
+        }
+
+        // "<strong>Frontend</strong> React · Expo<br>..." 형식이면 분야별로 나눔
+        function stackGroupsFrom(item) {
+            if (!item || !/tech|stack/i.test(item.label) || !/<strong>/i.test(item.value || '')) return null;
+            const groups = String(item.value).split(/<br\s*\/?>/i).map(line => {
+                const m = line.match(/<strong>(.*?)<\/strong>\s*(.*)/i);
+                return m ? { label: strip(m[1]), items: strip(m[2]) } : null;
+            }).filter(Boolean);
+            return groups.length ? groups : null;
+        }
+
+        function renderStack(data) {
+            let groups = data.stackGroups || null;
+            if (!groups) {
+                for (const item of (data.metaInfo || [])) {
+                    groups = stackGroupsFrom(item);
+                    if (groups) break;
+                }
+            }
+            const box = document.getElementById('stackRows');
+            if (groups) {
+                box.innerHTML = groups.map(g => `
+                    <div class="stack-row">
+                        <span class="meta-label">${g.label}</span>
+                        <div class="dotted-line"></div>
+                        <span class="stack-items">${Array.isArray(g.items) ? g.items.join(' · ') : g.items}</span>
+                    </div>`).join('');
+            } else if (data.pills && data.pills.length) {
+                box.innerHTML = `<div class="stack-chips">${data.pills.map(p => `<span>${p}</span>`).join('')}</div>`;
+            } else {
+                return;
+            }
+            document.getElementById('stackSection').style.display = 'block';
+        }
+
+        function renderNext(id) {
+            const i = projectSequence.indexOf(id);
+            let href = 'personal-projects-detail.html';
+            let name = 'Personal Projects';
+            if (i !== -1 && i < projectSequence.length - 1) {
+                const nextId = projectSequence[i + 1];
+                href = `${PAGE}?id=${nextId}`;
+                name = projectNames[nextId];
+            }
+            const t = document.getElementById('nextTitle');
+            t.textContent = `${name}.`;
+            t.href = href;
+            document.getElementById('nextBtn').href = href;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProject);
+
+        // 맨 아래로 가기 — 바닥 근처에서는 숨김
+        const toBottom = document.getElementById('toBottom');
+        toBottom.addEventListener('click', () => {
+            window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+        });
+        function updateToBottom() {
+            const left = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight);
+            toBottom.classList.toggle('hide', left < 400);
+        }
+        window.addEventListener('scroll', updateToBottom, { passive: true });
+        window.addEventListener('resize', updateToBottom);
+        window.addEventListener('load', updateToBottom);
+    </script>
+</body>
+</html>

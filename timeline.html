@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeline | 송윤경 포트폴리오</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/phosphor-icons"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+/* 홈 화면과 같은 방식: 상단 메뉴 · 본문만 10% 크게 (PC 화면만) */
+@media(min-width:901px){nav,main{zoom:1.1;}}
+body{background:#f3faff;font-family:'Inter','Noto Sans KR',sans-serif;color:#111;line-height:1.6;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem 5vw 1.75rem;}
+/* 110% 배율에서도 메뉴 좌우 위치는 원래(화면 폭 5%)와 같게 */
+@media(min-width:901px){nav{padding-left:calc(5vw / 1.1);padding-right:calc(5vw / 1.1);}}
+.nav-logo{display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:1.2rem;letter-spacing:-0.05em;}
+.nav-icon{width:2rem;height:2rem;border-radius:50%;border:2px solid #000000e8;display:flex;align-items:center;justify-content:center;}
+.nav-links{display:flex;gap:2.5rem;font-size:0.9rem;font-weight:400;}
+.nav-links a:hover{text-decoration:underline;}
+
+main{max-width:1280px;margin:0 auto;padding:0 3rem;margin-top:2rem;}
+
+/* 머리말 */
+.tl-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:5rem;gap:2rem;padding-left:2rem;}
+.tl-head h1{font-size:4.5rem;font-weight:900;letter-spacing:-0.05em;line-height:1;text-transform:uppercase;margin-bottom:1.5rem;}
+.tl-head p{font-size:0.875rem;color:#6b7280;line-height:1.65;max-width:36rem;}
+.tl-glyph{width:4rem;height:4rem;border-radius:50%;border:2px solid #000;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:1.5rem;}
+.tl-glyph i{font-size:1.9rem;}
+
+/* 연도 묶음 */
+.year{margin-bottom:4rem;}
+.year-head{display:flex;align-items:baseline;gap:1.25rem;margin-bottom:1.25rem;padding-left:0.5rem;}
+.year-head h2{font-size:2.25rem;font-weight:900;letter-spacing:-0.05em;line-height:1;color:rgba(0,0,0,0.15);}
+/* 가장 최근 연도(맨 위)만 조금 더 진하게 */
+.year:first-child .year-head h2{color:rgba(0,0,0,0.35);}
+.year-head span{font-family:'DM Mono',monospace;font-size:0.72rem;color:#9ca3af;letter-spacing:0.12em;text-transform:uppercase;}
+
+.rows{background:#fff;border-radius:32px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.row{
+  display:flex;align-items:center;gap:3rem;padding:2.5rem 3rem;
+  border-bottom:1px solid #e5eef5;background:#fff;
+  transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.row:last-child{border-bottom:0;}
+.row:hover{background:#fafdfe;transform:translateX(10px);}
+.row-num{font-size:3.75rem;font-weight:900;opacity:0.1;width:6rem;flex-shrink:0;letter-spacing:-0.04em;line-height:1;}
+.chip{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chip i{font-size:1.5rem;}
+.row-body{flex-grow:1;min-width:0;}
+.row-title{font-size:1.75rem;font-weight:900;letter-spacing:-0.04em;line-height:1.15;word-break:keep-all;}
+.row-meta{display:flex;flex-wrap:wrap;gap:0.5rem 2rem;margin-top:1rem;}
+.meta{display:flex;align-items:flex-end;width:15rem;}
+.meta-label{font-size:0.65rem;color:#888;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;}
+.dotted-line{border-bottom:1px dotted #ccc;flex-grow:1;margin:0 10px 4px;min-width:1rem;}
+.meta-value{font-size:0.75rem;color:#333;white-space:nowrap;}
+.row-arrow{font-size:1.9rem;opacity:0.2;flex-shrink:0;transition:opacity 0.2s;}
+.row:hover .row-arrow{opacity:0.8;}
+
+/* 아래 안내 · 연락 */
+.tl-note{margin-top:5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;padding-top:5rem;border-top:1px solid rgba(0,0,0,0.05);}
+.tl-note .meta-label{display:block;margin-bottom:1rem;}
+.tl-note p{font-size:1.15rem;font-weight:500;line-height:1.65;}
+.home-pill{align-self:center;justify-self:start;display:inline-flex;align-items:center;gap:0.5rem;height:3rem;padding:0 1.5rem;border-radius:9999px;background:#fef9c3;color:#ca8a04;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+
+/* CONTACT — 홈 화면과 동일 */
+.contact-section{background:#f3faff;padding:5rem 4vw 10rem;text-align:center;}
+.contact-title{font-family:'Inter',sans-serif;font-size:clamp(2.7rem,6.7vw,5.3rem);font-weight:800;letter-spacing:-0.04em;line-height:1;margin-bottom:3rem;color:#000;}
+.contact-grid{display:flex;justify-content:center;gap:5rem;flex-wrap:wrap;margin-bottom:3rem;}
+.contact-col{}
+.contact-col-label{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#aaa;margin-bottom:0.625rem;}
+.contact-col-value{font-size:1rem;font-weight:400;color:#111;}
+.contact-icons{display:flex;gap:0.75rem;justify-content:center;margin-top:0.5rem;}
+.contact-icon{width:2.25rem;height:2.25rem;border:1.5px solid #222;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;color:#222;font-size:1rem;transition:all 0.2s;}
+.contact-icon:hover{background:#222;color:#fff;}
+.contact-bottom{display:flex;justify-content:center;margin-top:2.5rem;}
+.contact-logo{width:4rem;height:4rem;border:1.5px solid #bbb;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:1.5rem;}
+
+@media(max-width:900px){
+  nav{padding:1.5rem 1.25rem;}
+  .nav-links{gap:1rem;font-size:0.75rem;}
+  main{padding:0 1.25rem;margin-top:1rem;}
+  .tl-head{flex-direction:column-reverse;align-items:flex-start;margin-bottom:3rem;padding-left:0;}
+  .tl-head h1{font-size:3rem;}
+  .row{gap:1rem;padding:1.5rem 1.25rem;flex-wrap:wrap;}
+  .row-num{font-size:2.25rem;width:auto;}
+  .row-title{font-size:1.3rem;}
+  .meta{width:100%;}
+  .row-arrow{display:none;}
+  .rows{border-radius:24px;}
+  .tl-note{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="nav-icon"><i class="ph-asterisk" style="font-size:0.9rem;"></i></div>
+    Portfolio
+  </a>
+  <div class="nav-links">
+    <a href="timeline.html">TIMELINE</a>
+    <a href="index.html#projects">PROJECTS</a>
+    <a href="index.html#activities">ACTIVITIES</a>
+    <a href="index.html#contact">CONTACT</a>
+  </div>
+</nav>
+
+<main>
+  <div class="tl-head">
+    <div>
+      <h1>Timeline</h1>
+      <p>연구 · 대외활동 · 부트캠프 · 프로젝트를 시간 순서로 정리했습니다.<br>줄을 누르면 각 프로젝트의 상세 페이지로 이동합니다.</p>
+    </div>
+    <div class="tl-glyph"><i class="ph-clock"></i></div>
+  </div>
+
+  <div id="timeline"></div>
+
+  <div class="tl-note">
+    <!-- How I work — 화면에서 숨김 (다시 보이려면 style 제거) -->
+    <div style="display:none;">
+      <span class="meta-label">How I work</span>
+      <p>가정을 세우고, 실험으로 확인하고, 그 결과를 설계에 반영합니다. 연구에서 시작해 서비스 운영까지 이어지는 흐름입니다.</p>
+    </div>
+    <a class="home-pill" href="index.html#projects">View All Projects <i class="ph-arrow-right"></i></a>
+  </div>
+</main>
+
+<div class="contact-section" id="contact">
+  <div class="contact-title">CONTACT.</div>
+  <div class="contact-grid">
+    <div class="contact-col">
+      <div class="contact-col-label">Location</div>
+      <div class="contact-col-value">Seoul, Korea</div>
+    </div>
+    <div class="contact-col">
+      <div class="contact-col-label">Email</div>
+      <div class="contact-col-value"><a href="mailto:na2ppn26450@gmail.com">na2ppn26450@gmail.com</a></div>
+    </div>
+    <div class="contact-col">
+      <div class="contact-col-label">Follow</div>
+      <div class="contact-icons">
+        <a href="https://github.com/alicena2ppn2" target="_blank" class="contact-icon" title="GitHub">
+          <i class="ph-github-logo"></i>
+        </a>
+        <a href="https://yoonstudy.tistory.com/" target="_blank" class="contact-icon" title="Blog">
+          <i class="ph-pencil-simple-line"></i>
+        </a>
+        <a href="mailto:na2ppn26450@gmail.com" class="contact-icon" title="Email">
+          <i class="ph-envelope-simple"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="contact-bottom">
+      </div>
+</div>
+
+<script>
+// ── 타임라인 항목 ──
+// 같은 연도 안에서는 이 목록에 적힌 순서대로 보입니다.
+// year: 묶일 연도 / start·end: 'YYYY.MM' (모르면 빈칸 — PERIOD 칸에 연도만 표시)
+// year가 없으면 제목 없는 맨 아래 묶음에 들어갑니다.
+const ITEMS = [
+  // 2026
+  { id: '11-my-mochi',          year: '2026', title: 'MY MOCHI',                   start: '', end: '', type: 'Capstone', role: 'PM · 백엔드 · 데이터 분석', icon: 'ph-smiley',      bg: '#dfeee8', fg: '#5f9e86' },
+  { id: '9-dear-mate',          year: '2026', title: 'DearMate',                   start: '', end: '', type: 'Project',  role: '프로젝트 기획 및 전체', icon: 'ph-heart',            bg: '#e2d0f5', fg: '#9479e4' },
+  { id: '8-law-rag',            year: '2026', title: '법률 상담 RAG',              start: '2026.05', end: '2026.06', type: 'Project',  role: '프론트엔드',            icon: 'ph-scales',           bg: '#ffdcbf', fg: '#f2843a' },
+  { id: '1-xai-saas',           year: '2026', title: 'XAI 기반 SaaS 고객 이탈 예측', start: '', end: '', type: 'Project', role: 'UI/UX · Streamlit',    icon: 'ph-chart-line-up',    bg: '#f9e9f2', fg: '#e879f9' },
+  { id: '2-carpark-search',     year: '2026', title: 'Car Park Search',            start: '', end: '', type: 'Project',  role: 'UI/UX 설계 · 데이터 분석', icon: 'ph-car',           bg: '#bbf7d0', fg: '#22c55e' },
+  { id: '6-sk-aicamp',          year: '2026', title: 'SK Networks Family AI 캠프', start: '2026.02', end: '2026.08', type: 'Bootcamp', role: 'AI·ML 개발자 과정',     icon: 'ph-code',             bg: '#fef3c7', fg: '#f59e0b' },
+  // 2025
+  { id: '10-madi-club',         year: '2025', title: '문화교류연합 동아리 MADI',   start: '2025.03', end: '2026.08', type: 'Club',     role: '홍보 콘텐츠 기획·제작', icon: 'ph-camera',           bg: '#e6ecf7', fg: '#3b5488' },
+  // 2024
+  { id: '3-wifi-multiap',       year: '2024', title: 'Wi-Fi Multi-AP 채널 보안 연구', start: '2024.03', end: '2024.10', type: 'Research', role: '학술 연구',          icon: 'ph-wifi-high',        bg: '#dff4f2', fg: '#5bb8b0' },
+  { id: '4-kird-challenge',     year: '2024', title: 'R&D KIRD 리얼챌린지',        start: '2024.03', end: '2024.10', type: 'Activity', role: '대외활동',              icon: 'ph-file-text',        bg: '#dbeafe', fg: '#3b82f6' },
+  { id: '5-cybersecurity-club', year: '2024', title: '융합보안 학술 동아리',        start: '', end: '', type: 'Club',     role: 'Cryptography · Write-up', icon: 'ph-shield-checkered', bg: '#e0e7ff', fg: '#6366f1' },
+
+  // ↓ 연도 미정 (맨 아래, 제목 없음)
+  { id: 'personal-app',         year: '', title: 'idea-archive iOS',           start: '', end: '', type: 'Personal', role: 'Mobile App',            icon: 'ph-lightbulb',        bg: '#fdd2eb', fg: '#f472b6' }
+];
+
+const pad = n => String(n).padStart(2, '0');
+const toNum = ym => ym ? Number(ym.replace('.', '')) : 0;
+
+function link(item) {
+  return item.id.startsWith('personal-projects') ? 'personal-projects-detail.html' : `detail-v2.html?id=${item.id}`;
+}
+
+function row(item, i) {
+  const period = item.start ? (item.end && item.end !== item.start ? `${item.start} — ${item.end}` : item.start) : (item.year || '미정');
+  return `
+    <a class="row" href="${link(item)}">
+      <span class="row-num">${pad(i + 1)}</span>
+      <div class="chip" style="background:${item.bg}"><i class="${item.icon}" style="color:${item.fg}"></i></div>
+      <div class="row-body">
+        <h3 class="row-title">${item.title}</h3>
+        <div class="row-meta">
+          <div class="meta"><span class="meta-label">Period</span><div class="dotted-line"></div><span class="meta-value">${period}</span></div>
+          <div class="meta"><span class="meta-label">Type</span><div class="dotted-line"></div><span class="meta-value">${item.type}</span></div>
+          <div class="meta"><span class="meta-label">Role</span><div class="dotted-line"></div><span class="meta-value">${item.role}</span></div>
+        </div>
+      </div>
+      <i class="ph-arrow-up-right row-arrow"></i>
+    </a>`;
+}
+
+function render() {
+  const dated = ITEMS.filter(x => x.year);
+  const pending = ITEMS.filter(x => !x.year);
+
+  // 연도별로 묶기 (최근 연도가 위, 같은 연도 안에서는 목록 순서 그대로)
+  const years = [];
+  dated.forEach(item => {
+    let g = years.find(g => g.year === item.year);
+    if (!g) years.push(g = { year: item.year, items: [] });
+    g.items.push(item);
+  });
+  years.sort((a, b) => Number(b.year) - Number(a.year));
+
+  let n = 0;
+  let html = years.map(g => `
+    <section class="year">
+      <div class="year-head"><h2>${g.year}</h2></div>
+      <div class="rows">${g.items.map(item => row(item, n++)).join('')}</div>
+    </section>`).join('');
+
+  // 연도가 없는 항목 — 제목 없이 맨 아래에
+  if (pending.length) {
+    html += `
+    <section class="year">
+      <div class="year-head"><h2>&nbsp;</h2></div>
+      <div class="rows">${pending.map(item => row(item, n++)).join('')}</div>
+    </section>`;
+  }
+  document.getElementById('timeline').innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>

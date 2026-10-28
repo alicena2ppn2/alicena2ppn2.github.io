@@ -29,7 +29,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 3rem;
+            padding: 2.1rem 5vw 1.75rem;
+        }
+        /* 홈 화면과 같은 메뉴 크기 · 위치 (PC 화면만) */
+        @media (min-width: 901px) {
+            nav { zoom: 1.1; padding-left: calc(5vw / 1.1); padding-right: calc(5vw / 1.1); }
         }
         .nav-logo {
             display: flex;
@@ -55,7 +59,7 @@
             display: flex;
             gap: 2.5rem;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 400;
         }
         .nav-links a {
             text-decoration: none;
@@ -283,10 +287,10 @@
             Portfolio
         </a>
         <div class="nav-links">
-            <a href="index.html">PROJECTS</a>
-            <a href="#">SERVICES</a>
-            <a href="#">ABOUT</a>
-            <a href="#">CONTACT</a>
+            <a href="timeline.html">TIMELINE</a>
+            <a href="index.html#projects">PROJECTS</a>
+            <a href="index.html#activities">ACTIVITIES</a>
+            <a href="index.html#contact">CONTACT</a>
         </div>
     </nav>
 
