@@ -1,398 +1,204 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Projects | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/phosphor-icons"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        *::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3faff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2.1rem 5vw 1.75rem;
-        }
-        /* 홈 화면과 같은 메뉴 크기 · 위치 (PC 화면만) */
-        @media (min-width: 901px) {
-            nav { zoom: 1.1; padding-left: calc(5vw / 1.1); padding-right: calc(5vw / 1.1); }
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: -0.05em;
-            text-decoration: none;
-            color: inherit;
-        }
-        .nav-icon {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            border: 2px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-        main {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 3rem;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3rem;
-            margin-top: 1rem;
-        }
-        .header-left {
-            flex: 1;
-            width: 50%;
-        }
-        .back-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-decoration: none;
-            color: inherit;
-            transition: opacity 0.3s;
-        }
-        .back-link:hover {
-            opacity: 0.6;
-        }
-        .page-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -0.01em;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-        .page-subtitle {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        .pill-group {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        .pill {
-            display: inline-block;
-            padding: 0.375rem 0.875rem;
-            background: #f0f0f0;
-            border-radius: 9999px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        .pill:nth-child(1) { background: #fce7f3; color: #be185d; }
-        .pill:nth-child(2) { background: #dbeafe; color: #1e40af; }
-        .pill:nth-child(3) { background: #dcfce7; color: #15803d; }
-        .header-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 1rem;
-        }
-        .number-big {
-            font-size: 7rem;
-            font-weight: 900;
-            line-height: 0.8;
-            color: #000;
-        }
-        .hero-section {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #f0e7ff 0%, #e9d5ff 100%);
-            border-radius: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-icon {
-            font-size: 6rem;
-            color: #a78bfa;
-            opacity: 0.8;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.25rem;
-            margin-bottom: 4rem;
-        }
-        @media (max-width: 1100px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-        }
-        @media (max-width: 600px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .project-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border: 1px solid #e0e0e0;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        .project-card:hover {
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-        .project-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin: 0 0 0.5rem 0;
-        }
-        .project-card p {
-            margin: 0;
-        }
-        .project-subtitle {
-            font-size: 0.85rem;
-            color: #666;
-        }
-        .project-description {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-            margin: 1rem 0;
-        }
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-        .tech-tag {
-            display: inline-block;
-            padding: 0.25rem 0.6rem;
-            background: #f5f5f5;
-            border-radius: 3px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #666;
-        }
-        .project-link {
-            display: inline-block;
-            padding: 0.625rem 1.25rem;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            font-size: 0.85rem;
-            width: fit-content;
-            transition: all 0.3s;
-        }
-        .project-link:hover {
-            background: #000;
-            color: white;
-            border-color: #000;
-        }
-        .project-image {
-            width: 100%;
-            max-width: 460px;
-            border-radius: 12px;
-            object-fit: cover;
-            margin: 1rem 0;
-        }
-        .overview-section {
-            margin-bottom: 4rem;
-        }
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-        .overview-text {
-            font-size: 1.875rem;
-            font-weight: 300;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 2rem;
-        }
-        .overview-details {
-            font-size: 1.05rem;
-            color: #666;
-            line-height: 1.8;
-        }
-        footer {
-            margin-top: 4rem;
-            padding: 3rem;
-            text-align: center;
-            border-top: 1px solid #e0e0e0;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Projects | 송윤경 포트폴리오</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/phosphor-icons"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+/* 홈 화면과 같은 방식: 상단 메뉴 · 본문만 10% 크게 (PC 화면만) */
+@media(min-width:901px){nav,main{zoom:1.1;}}
+body{background:#f3faff;font-family:'Inter','Noto Sans KR',sans-serif;color:#111;line-height:1.6;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+/* 상단 메뉴 — 홈과 동일 */
+nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem 5vw 1.75rem;}
+@media(min-width:901px){nav{padding-left:calc(5vw / 1.1);padding-right:calc(5vw / 1.1);}}
+.nav-logo{display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:1.2rem;letter-spacing:-0.05em;}
+.nav-icon{width:2rem;height:2rem;border-radius:50%;border:2px solid #000000e8;display:flex;align-items:center;justify-content:center;}
+.nav-links{display:flex;gap:2.5rem;font-size:0.9rem;font-weight:400;}
+.nav-links a:hover{text-decoration:underline;}
+
+main{max-width:1280px;margin:2rem auto 0;padding:0 3rem;}
+
+/* 공통 라벨 · 점선 줄 */
+.meta-label{font-size:0.65rem;color:#888;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;}
+.meta-value{font-size:0.75rem;color:#333;white-space:nowrap;}
+.dotted-line{border-bottom:1px dotted #ccc;flex-grow:1;margin:0 8px 4px;min-width:1rem;}
+
+/* 머리말 */
+.back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.9rem;font-weight:700;margin-bottom:2rem;transition:opacity 0.3s;}
+.back-link:hover{opacity:0.6;}
+.pp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:4rem;}
+.pp-head h1{font-size:4.5rem;font-weight:900;letter-spacing:-0.05em;line-height:1;text-transform:uppercase;margin-bottom:1.5rem;}
+.pp-head p{font-size:0.875rem;color:#6b7280;line-height:1.65;max-width:36rem;}
+.pp-head-right{display:flex;flex-direction:column;align-items:flex-end;gap:1rem;flex-shrink:0;}
+.head-glyph{width:4rem;height:4rem;border-radius:50%;border:2px solid #000;display:flex;align-items:center;justify-content:center;}
+.head-glyph i{font-size:1.75rem;}
+.head-pill{height:3rem;padding:0 1.75rem;border-radius:9999px;background:#f3e8ff;color:#a855f7;display:flex;align-items:center;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+
+/* 프로젝트 카드 */
+.pp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem;}
+/* 화면이 좁아지면 2개씩 */
+@media(max-width:1200px){.pp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.pp-card{background:#fff;box-shadow:0 4px 20px rgba(0,0,0,0.03);padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform 0.3s ease;position:relative;overflow:hidden;}
+.pp-card:hover{transform:translateY(-5px);}
+.pp-top{width:100%;display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;}
+.pp-num{font-size:2.25rem;font-weight:900;opacity:0.1;line-height:1;letter-spacing:-0.04em;}
+.pp-top i{font-size:1.5rem;}
+.pp-avatar{width:7.5rem;aspect-ratio:1/1;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:1.5rem;}
+.pp-avatar > i{font-size:3.25rem;}
+.pp-badge{position:absolute;bottom:0;right:0.5rem;width:2.5rem;height:2.5rem;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.pp-card h3{font-size:1.1rem;font-weight:800;letter-spacing:-0.025em;text-transform:uppercase;margin-bottom:0.5rem;}
+.pp-card .meta-label{display:block;margin-bottom:1rem;white-space:normal;}
+.pp-desc{font-size:0.8rem;color:#6b7280;line-height:1.7;margin-bottom:1.75rem;max-width:26rem;word-break:keep-all;}
+.pp-rows{width:100%;}
+.pp-rows > * + *{margin-top:0.5rem;}
+.pp-row{display:flex;align-items:flex-end;text-align:left;}
+.pp-row .meta-value{white-space:normal;text-align:right;max-width:70%;}
+.pp-row a.meta-value:hover{text-decoration:underline;}
+
+/* 아래 두 칸 */
+.pp-wide{margin-top:4rem;display:grid;grid-template-columns:1fr;gap:2rem;}
+.wide-card{padding:3rem;display:flex;align-items:center;gap:3rem;box-shadow:0 4px 20px rgba(0,0,0,0.03);}
+.wide-card h2{font-size:1.5rem;font-weight:800;letter-spacing:-0.025em;text-transform:uppercase;margin-bottom:1rem;}
+.wide-card p{font-size:0.8rem;color:#4b5563;line-height:1.7;word-break:keep-all;}
+.wide-icon{width:8rem;height:8rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.wide-icon i{font-size:3.75rem;}
+
+/* BACK TO HOME — 상세 페이지의 Next Project와 같은 모양 */
+.next{padding:8rem 3rem 6rem;text-align:center;border-top:1px solid #f3f4f6;margin-top:6rem;}
+.next .meta-label{display:block;margin-bottom:1rem;}
+.next-title{font-size:clamp(2.2rem,5vw,4.1rem);font-weight:900;letter-spacing:-0.05em;line-height:1;text-transform:uppercase;margin-bottom:3rem;}
+.next-title a:hover{color:#a855f7;}
+.next-btn{margin:3rem auto 0;width:4.25rem;height:4.25rem;border-radius:50%;border:2px solid #000;display:flex;align-items:center;justify-content:center;transition:background 0.15s,color 0.15s;}
+.next-btn i{font-size:1.85rem;}
+.next-btn:hover{background:#000;color:#fff;}
+
+@media(max-width:900px){
+  nav{padding:1.5rem 1.25rem;}
+  .nav-links{gap:1rem;font-size:0.75rem;}
+  main{padding:0 1.25rem;margin-top:1rem;}
+  .pp-head{flex-direction:column;align-items:flex-start;margin-bottom:2.5rem;}
+  .pp-head h1{font-size:3rem;}
+  .pp-head-right{align-items:flex-start;flex-direction:row;}
+  .pp-grid,.pp-wide{grid-template-columns:1fr;gap:1.25rem;}
+  .pp-card{padding:2rem 1.5rem;}
+  .wide-card{padding:2rem;gap:1.5rem;}
+  .wide-icon{width:5rem;height:5rem;}
+  .wide-icon i{font-size:2.5rem;}
+  .next{padding:5rem 1.25rem 1rem;margin-top:4rem;}
+  .next-btn{margin-top:3rem;}
+}
+</style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="nav-logo">
-            <div class="nav-icon">
-                <i class="ph-asterisk"></i>
-            </div>
-            Portfolio
-        </a>
-        <div class="nav-links">
-            <a href="timeline.html">TIMELINE</a>
-            <a href="index.html#projects">PROJECTS</a>
-            <a href="index.html#activities">ACTIVITIES</a>
-            <a href="index.html#contact">CONTACT</a>
-        </div>
-    </nav>
 
-    <main>
-        <div class="header">
-            <div class="header-left">
-                <a href="index.html" class="back-link">
-                    <i class="ph-arrow-left"></i> BACK TO PROJECTS
-                </a>
-                <h1 class="page-title">Personal<br>Projects</h1>
-                <div class="pill-group">
-                    <div class="pill">Full Stack</div>
-                    <div class="pill">Interactive</div>
-                    <div class="pill">Creative Coding</div>
-                </div>
-            </div>
-            <div class="header-right">
-                <div class="number-big">P</div>
-                <i class="ph-code" style="font-size: 2rem;"></i>
-            </div>
-        </div>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="nav-icon"><i class="ph-asterisk" style="font-size:0.9rem;"></i></div>
+    Portfolio
+  </a>
+  <div class="nav-links">
+    <a href="timeline.html">TIMELINE</a>
+    <a href="index.html#projects">PROJECTS</a>
+    <a href="index.html#activities">ACTIVITIES</a>
+    <a href="index.html#contact">CONTACT</a>
+  </div>
+</nav>
 
-        <div class="overview-section">
-            <h2 class="section-title">Overview</h2>
-            <p class="overview-text">다양한 기술과 창의력을 활용한 개인 프로젝트 포트폴리오</p>
-            <p class="overview-details">
-                단순한 학습 프로젝트를 넘어 실제로 구현하고 배포한 개인 프로젝트들입니다. 각 프로젝트는 특정 기술을 깊이 있게 탐구하고, 사용자 경험을 고려한 설계를 담고 있습니다. MediaPipe를 활용한 인터랙티브 드로잉 앱부터 AI 기반 아이디어 관리 플랫폼까지, 다양한 분야의 창의적인 구현을 보여줍니다.
-            </p>
-        </div>
+<main>
+  <div class="pp-head">
+    <div>
+      <a class="back-link" href="index.html#projects"><i class="ph-arrow-left"></i> BACK TO PROJECTS</a>
+      <h1>Personal<br>Projects</h1>
+      <p>단순한 학습 프로젝트를 넘어 직접 구현하고 배포한 개인 프로젝트입니다. MediaPipe를 활용한 인터랙티브 드로잉부터 AI 기반 아이디어 관리 플랫폼까지, 하나의 기술을 깊게 파고들며 사용자 경험을 고려해 설계했습니다.</p>
+    </div>
+    <div class="pp-head-right">
+      <div class="head-glyph"><i class="ph-code"></i></div>
+      <div class="head-pill" id="countPill">Personal Work</div>
+    </div>
+  </div>
 
-        <div style="margin-bottom: 4rem;">
-            <h2 class="section-title">4 Projects</h2>
-            <div class="projects-grid" id="projectsGrid"></div>
-        </div>
+  <div class="pp-grid" id="ppGrid"></div>
 
-        <a href="index.html" style="background: #000; color: white; padding: 3rem; border-radius: 2rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; text-decoration: none; cursor: pointer;">
-            <div>
-                <h3 style="font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem 0;">Back to Home</h3>
-            </div>
-            <div style="display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
-                <i class="ph-arrow-right" style="font-size: 2rem;"></i>
-            </div>
-        </a>
-    </main>
+  <div class="pp-wide">
+    <div class="wide-card" style="background:#f0fdf4;">
+      <div class="wide-icon" style="background:#bbf7d0;border-radius:1rem;"><i class="ph-lightning" style="color:#22c55e;"></i></div>
+      <div>
+        <h2>Why I Build</h2>
+        <p>궁금한 기술이 생기면 작은 결과물로 직접 만들어 봅니다. 손 제스처, 물리 시뮬레이션, AI API처럼 처음 다루는 도구도 사람이 직접 만져 볼 수 있는 화면으로 연결하는 것을 좋아합니다.</p>
+      </div>
+    </div>
+  </div>
 
-    <footer>
-        <p style="color: #999; font-size: 0.9rem;">© 2026 Yunkyung Song Portfolio</p>
-    </footer>
+  <div class="next">
+    <span class="meta-label">Portfolio</span>
+    <h2 class="next-title"><a href="index.html#projects">Back to Home.</a></h2>
+    <a class="next-btn" href="index.html#projects" aria-label="홈으로 돌아가기"><i class="ph-arrow-left"></i></a>
+  </div>
+</main>
 
-    <script>
-        // Load projects data
-        document.addEventListener('DOMContentLoaded', function() {
-            const projectsData = [
-                {
-                    title: 'Design with Hand',
-                    subtitle: 'MediaPipe를 활용한 손 제스처 기반 디자인 도구',
-                    tags: ['MediaPipe', 'Canvas API', 'JavaScript', 'HTML5'],
-                    description: '카메라를 통해 손 제스처를 인식하고 캔버스에 그림을 그리는 웹 앱',
-                    github: 'https://github.com/alicena2ppn2/design-with-hand'
-                },
-                {
-                    title: 'SQLD 학습앱',
-                    subtitle: '데이터베이스 전문가 자격증 준비를 위한 학습 플랫폼',
-                    tags: ['HTML', 'CSS', 'Vanilla JavaScript'],
-                    description: 'SQL 개발자 자격증 취득을 위한 웹 기반 학습 애플리케이션',
-                    github: 'https://github.com/alicena2ppn2/study-sqld',
-                    image: 'images/image5.png'
-                },
-                {
-                    title: 'idea archive',
-                    subtitle: 'AI 기반 아이디어 관리 및 발전 플랫폼',
-                    tags: ['React', 'MongoDB', 'OpenAI API', 'Node.js', 'Express'],
-                    description: 'OpenAI API를 활용하여 아이디어를 저장하고 발전시키는 모던 웹 애플리케이션',
-                    github: 'https://github.com/alicena2ppn2/idea-achive',
-                    image: 'images/image6.png'
-                },
-                {
-                    title: 'Play with Bubble',
-                    subtitle: 'Canvas API를 활용한 인터랙티브 물리 시뮬레이션',
-                    tags: ['HTML5', 'Canvas API', 'Vanilla JavaScript'],
-                    description: '마우스 상호작용으로 다양한 물리 효과를 경험하는 캔버스 애플리케이션',
-                    github: 'https://github.com/alicena2ppn2/play-with-bubble'
-                }
-            ];
+<script>
+// 개인 프로젝트 목록 (사진 없이 아이콘으로 표시)
+const PROJECTS = [
+  {
+    title: 'Design with Hand',
+    subtitle: 'MediaPipe 손 제스처 디자인 도구',
+    description: '카메라로 손 제스처를 인식해 캔버스에 그림을 그리는 웹 앱',
+    tags: ['MediaPipe', 'Canvas API', 'JavaScript', 'HTML5'],
+    github: 'https://github.com/alicena2ppn2/design-with-hand',
+    icon: 'ph-hand-waving', badge: 'ph-paint-brush-broad', bg: '#fce7f3', fg: '#f472b6'
+  },
+  {
+    title: 'SQLD 학습앱',
+    subtitle: '데이터베이스 자격증 학습 플랫폼',
+    description: 'SQL 개발자 자격증 취득을 위한 웹 기반 학습 애플리케이션',
+    tags: ['HTML', 'CSS', 'Vanilla JavaScript'],
+    github: 'https://github.com/alicena2ppn2/study-sqld',
+    icon: 'ph-database', badge: 'ph-check-circle', bg: '#dbeafe', fg: '#60a5fa'
+  },
+  {
+    title: 'idea archive',
+    subtitle: 'AI 기반 아이디어 관리 플랫폼',
+    description: 'OpenAI API로 아이디어를 저장하고 발전시키는 모던 웹 애플리케이션',
+    tags: ['React', 'MongoDB', 'OpenAI API', 'Node.js', 'Express'],
+    github: 'https://github.com/alicena2ppn2/idea-achive',
+    icon: 'ph-lightbulb', badge: 'ph-sparkle', bg: '#f3e8ff', fg: '#c084fc'
+  },
+  {
+    title: 'Play with Bubble',
+    subtitle: 'Canvas 인터랙티브 물리 시뮬레이션',
+    description: '마우스 상호작용으로 다양한 물리 효과를 경험하는 캔버스 애플리케이션',
+    tags: ['HTML5', 'Canvas API', 'Vanilla JavaScript'],
+    github: 'https://github.com/alicena2ppn2/play-with-bubble',
+    icon: 'ph-drop', badge: 'ph-cursor-click', bg: '#fef9c3', fg: '#eab308'
+  }
+];
 
-            const grid = document.getElementById('projectsGrid');
-            projectsData.forEach(project => {
-                const card = document.createElement('div');
-                card.className = 'project-card';
-                const tagsHtml = project.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('');
-                const imageHtml = project.image ? `<img src="${project.image}" class="project-image">` : '';
-                card.innerHTML = `
-                    <h3>${project.title}</h3>
-                    <p class="project-subtitle">${project.subtitle}</p>
-                    <p class="project-description">${project.description}</p>
-                    <div class="tech-tags">${tagsHtml}</div>
-                    ${imageHtml}
-                    <a href="${project.github}" target="_blank" class="project-link">GitHub Repository</a>
-                `;
-                grid.appendChild(card);
-            });
-        });
-    </script>
+const pad = n => String(n).padStart(2, '0');
+
+document.getElementById('countPill').textContent = `${PROJECTS.length} Projects`;
+document.getElementById('ppGrid').innerHTML = PROJECTS.map((p, i) => `
+  <div class="pp-card">
+    <div class="pp-top">
+      <span class="pp-num">${pad(i + 1)}</span>
+      <i class="${p.badge}" style="color:${p.fg}"></i>
+    </div>
+    <div class="pp-avatar" style="background:${p.bg}">
+      <i class="${p.icon}" style="color:${p.fg}"></i>
+      <div class="pp-badge"><i class="ph-code" style="color:${p.fg}"></i></div>
+    </div>
+    <h3>${p.title}</h3>
+    <span class="meta-label">${p.subtitle}</span>
+    <p class="pp-desc">${p.description}</p>
+    <div class="pp-rows">
+      <div class="pp-row"><span class="meta-label" style="margin:0">Stack</span><div class="dotted-line"></div><span class="meta-value">${p.tags.join(' · ')}</span></div>
+      <div class="pp-row"><span class="meta-label" style="margin:0">Code</span><div class="dotted-line"></div><a class="meta-value" href="${p.github}" target="_blank" rel="noopener">GitHub ↗</a></div>
+    </div>
+  </div>`).join('');
+</script>
 </body>
 </html>

@@ -43,21 +43,9 @@
         .nav-right { display: flex; align-items: center; gap: 2rem; }
         .nav-links { display: flex; gap: 2.5rem; font-size: 0.9rem; font-weight: 400; }
         .nav-links a:hover { text-decoration: underline; }
-        /* 홈으로 — 분류·제목 묶음 왼쪽 바깥에 */
-        .nav-close {
-            position: absolute; left: -6.1rem; top: 0.9rem;
-            width: 3rem; height: 3rem; border-radius: 50%; border: 2px solid #000;
-            background: rgba(255, 255, 255, 0.85);
-            display: flex; align-items: center; justify-content: center;
-            transition: background 0.15s, color 0.15s;
-        }
-        .nav-close i { font-size: 1.35rem; }
-        /* 바깥 여백이 모자란 화면에서는 제목 묶음을 들여서 화살표 자리 확보 */
-        @media (min-width: 901px) and (max-width: 1420px) {
-            .header-left { padding-left: 4.5rem; }
-            .nav-close { left: -1.75rem; }
-        }
-        .nav-close:hover { background: #000; color: #fff; }
+        /* 홈으로 — 예전처럼 제목 위 글씨 링크 */
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 700; margin-bottom: 2rem; transition: opacity 0.3s; }
+        .back-link:hover { opacity: 0.6; }
 
         .wrap { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
 
@@ -67,13 +55,13 @@
         .dotted-line { border-bottom: 1px dotted #ccc; flex-grow: 1; margin: 0 8px; margin-bottom: 4px; min-width: 1.5rem; }
 
         /* ── HEADER ── */
-        .header { padding-top: 4rem; padding-bottom: 6rem; }
-        .header-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 3rem; }
+        .header { padding-top: 1.25rem; padding-bottom: 6rem; }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 2rem; }
         .header-left { max-width: 46rem; position: relative; }
         .tag-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
         .tag-pill { padding: 0.25rem 0.75rem; border-radius: 9999px; background: var(--accent-soft); color: var(--accent); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; filter: saturate(1.2); }
         .tag-year { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; }
-        .page-title { font-size: clamp(2.6rem, 6vw, 4.5rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1.02; text-transform: uppercase; word-break: keep-all; }
+        .page-title { font-size: clamp(2.3rem, 4.5vw, 3.2rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1.02; text-transform: uppercase; word-break: keep-all; }
         .page-title .accent { color: var(--accent); }
         .page-subtitle { margin-top: 1.25rem; font-size: 1rem; color: #6b7280; max-width: 40rem; }
         .number-big { font-size: clamp(5rem, 11vw, 8rem); font-weight: 900; line-height: 1; opacity: 0.1; letter-spacing: -0.04em; }
@@ -119,7 +107,7 @@
         .quote-role { font-size: 10px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.04em; }
 
         /* ── PHASE 섹션 (왼쪽 고정 제목 + 오른쪽 본문) ── */
-        .phases { background: #fff; padding: 8rem 0; }
+        .phases { background: #fff; padding: 5.5rem 0 8rem; }
         .phase { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4rem; align-items: start; }
         .phase + .phase { margin-top: 8rem; }
         .phase-head { grid-column: span 4; position: sticky; top: 8rem; }
@@ -196,10 +184,10 @@
         /* ── NEXT PROJECT ── */
         .next { margin-top: 0; padding: 6rem 3rem 6rem; text-align: center; border-top: 1px solid #f3f4f6; }
         .next .meta-label { display: block; margin-bottom: 1rem; }
-        .next-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1; text-transform: uppercase; margin-bottom: 3rem; word-break: keep-all; }
+        .next-title { font-size: clamp(2.2rem, 5vw, 4.1rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1; text-transform: uppercase; margin-bottom: 3rem; word-break: keep-all; }
         .next-title a:hover { color: var(--accent); }
-        .next-btn { margin: 5rem auto 0; width: 5rem; height: 5rem; border-radius: 50%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; transition: background 0.15s, color 0.15s; }
-        .next-btn i { font-size: 2.25rem; }
+        .next-btn { margin: 3rem auto 0; width: 4.25rem; height: 4.25rem; border-radius: 50%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; transition: background 0.15s, color 0.15s; }
+        .next-btn i { font-size: 1.85rem; }
         .next-btn:hover { background: #000; color: #fff; }
         .copyright { text-align: center; color: #999; font-size: 0.85rem; }
 
@@ -221,11 +209,10 @@
             .nav { padding: 1.25rem 1.25rem; }
             .nav-links { display: none; }
             .wrap { padding: 0 1.25rem; }
-            .header { padding-top: 2.5rem; padding-bottom: 4rem; }
+            .header { padding-top: 1rem; padding-bottom: 4rem; }
             .header-top { flex-direction: column-reverse; align-items: flex-start; gap: 0.5rem; }
             .hero-grid, .phase { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
             .hero-panel, .hero-side, .phase-head, .phase-body { grid-column: auto; min-width: 0; }
-            .nav-close { position: static; width: 2.6rem; height: 2.6rem; margin-bottom: 1.25rem; }
             .meta-value, .link-row { max-width: 75%; }
             .hero-panel { border-radius: 28px; }
             .hero-panel.media { padding: 0.75rem; }
@@ -268,7 +255,7 @@
     <header class="wrap header">
         <div class="header-top">
             <div class="header-left">
-                <a class="nav-close" href="index.html#projects" aria-label="홈으로 돌아가기" title="홈으로"><i class="ph-arrow-left"></i></a>
+                <a class="back-link" href="index.html#projects"><i class="ph-arrow-left"></i> BACK TO PROJECTS</a><br>
                 <div class="tag-row">
                     <span class="tag-pill" id="tagPill"></span>
                     <span class="tag-year" id="tagYear"></span>
