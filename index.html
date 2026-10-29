@@ -89,7 +89,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 .project-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,0.09);}
 .card-number{font-size:5.5rem;font-weight:800;line-height:1;color:#000;font-family:'Inter',sans-serif;}
 .card-title{font-size:1.5rem;font-weight:900;line-height:1.15;letter-spacing:-0.02em;text-transform:uppercase;margin:0.5rem 0 0.5rem;}
-.card-brief{font-size:0.78rem;color:#777;line-height:1.75;margin-bottom:0.75rem;}
+.card-brief{font-size:0.84rem;color:#777;line-height:1.75;margin-bottom:0.75rem;}
 .card-meta{display:flex;flex-direction:column;gap:0.3rem;margin-top:0.625rem;}
 .meta-row{display:flex;align-items:flex-end;}
 .meta-label{font-size:0.65rem;color:#666;text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;font-family:'DM Mono',monospace;font-weight:500;}
@@ -143,7 +143,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 .small-pill{font-size:0.6rem;font-family:'Inter',sans-serif;display:inline-block;padding:1px 5px;border-radius:2px;background:#f3f4f6;color:#424242;margin-right:3px;margin-bottom:3px;}
 
 /* Contact section */
-.contact-section{background:#f3faff;padding:5rem 4vw 10rem;text-align:center;}
+.contact-section{background:#f3faff;padding:9.1rem 4vw 10rem;text-align:center;}
 .contact-title{font-family:'Inter',sans-serif;font-size:clamp(2.7rem,6.7vw,5.3rem);font-weight:800;letter-spacing:-0.04em;line-height:1;margin-bottom:3rem;color:#000;}
 .contact-grid{display:flex;justify-content:center;gap:5rem;flex-wrap:wrap;margin-bottom:3rem;}
 .contact-col{}
@@ -175,6 +175,8 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 
 
 </style>
+<link rel="stylesheet" href="theme.css">
+<script src="theme.js"></script>
 </head>
 <body>
 
@@ -192,11 +194,19 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:2.1rem
 </nav>
 
 <section class="hero">
+  <!-- 다크 모드 전용 배경 장식 (밝은 화면에서는 숨김) -->
+  <div class="hero-deco" aria-hidden="true">
+    <span class="deco-dots"></span>
+    <span class="deco-blob deco-rose"></span>
+    <span class="deco-blob deco-indigo"></span>
+    <i class="ph-star-four deco-star"></i>
+    <span class="deco-square"></span>
+  </div>
   <div class="hero-glyph"><i class="ph-sparkle"></i></div>
   <h1 class="hero-title">Creative<br>AI Developer<br>&amp; Frontend.</h1>
   <p class="hero-desc">
     설명 가능한 AI(<b>XAI</b>)와 데이터 분석을 기반으로, 문제가 발생하는 <b>원인까지 설명하는</b> AI 개발자를<br class="pc-br"> 지향합니다.
-    머신러닝·딥러닝 모델링부터 서비스 배포까지 전 과정을 경험했고,
+    머신러닝·딥러닝 모델링부터 서비스 배포까지 전 과정을 경험했고,<br class="pc-br">
     AI를 활용한 <b>인터랙티브한 웹·앱 경험</b>을 직접 구현합니다.
   </p>
 </section>
