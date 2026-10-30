@@ -47,6 +47,12 @@ html[data-theme="dark"] .deco-square {
   position: absolute; bottom: 25%; left: 12%; width: 4rem; height: 4rem;
   border: 4px solid rgba(192, 132, 252, 0.2); border-radius: 0.5rem; transform: rotate(12deg);
 }
+/* 홈은 레퍼런스처럼 더 깊은 검정 바탕 + 크림색 메뉴(70%) */
+html[data-theme="dark"] body:has(.hero) { background: #0f0e0d !important; }
+html[data-theme="dark"] body:has(.hero) .nav-links a { color: rgba(253, 252, 240, 0.7); }
+html[data-theme="dark"] body:has(.hero) .nav-links a:hover { color: #fdfcf0; }
+html[data-theme="dark"] body:has(.hero) nav { color: #fdfcf0; }
+html[data-theme="dark"] body:has(.hero) .loading-overlay { background: rgba(15, 14, 13, 0.92); }
 html[data-theme="dark"] .hero-glyph { border-color: #fdfcf0; color: #fdfcf0; }
 html[data-theme="dark"] .hero-title { color: #fdfcf0; }
 html[data-theme="dark"] .hero-desc { color: rgba(253, 252, 240, 0.6); }
