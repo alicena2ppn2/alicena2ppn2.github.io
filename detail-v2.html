@@ -210,7 +210,18 @@
             .nav-links { display: none; }
             .wrap { padding: 0 1.25rem; }
             .header { padding-top: 1rem; padding-bottom: 4rem; }
-            .header-top { flex-direction: column-reverse; align-items: flex-start; gap: 0.5rem; }
+            /* 번호를 제목과 같은 줄 오른쪽에 */
+            .header-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "back back" "tag tag" "title num" "sub sub"; column-gap: 1rem; align-items: center; }
+            .header-left { display: contents; }
+            .header-left > br { display: none; }
+            .back-link { grid-area: back; justify-self: start; }
+            .tag-row { grid-area: tag; }
+            .page-title { grid-area: title; }
+            .page-subtitle { grid-area: sub; }
+            .number-big { grid-area: num; font-size: 4rem; }
+            .number-big img { width: 4rem; height: 4rem; }
+            /* 그림 여러 장은 위아래로 한 장씩 크게 */
+            .hero-images { grid-template-columns: minmax(0, 1fr) !important; }
             .hero-grid, .phase { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
             .hero-panel, .hero-side, .phase-head, .phase-body { grid-column: auto; min-width: 0; }
             .meta-value, .link-row { max-width: 75%; }

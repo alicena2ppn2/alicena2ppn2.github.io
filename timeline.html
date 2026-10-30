@@ -58,6 +58,7 @@ main{max-width:1280px;margin:0 auto;padding:0 3rem;margin-top:2rem;}
 .meta-label{font-size:0.65rem;color:#888;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;}
 .dotted-line{border-bottom:1px dotted #ccc;flex-grow:1;margin:0 10px 4px;min-width:1rem;}
 .meta-value{font-size:0.75rem;color:#333;white-space:nowrap;}
+.row-kicker{display:none;}
 .row-arrow{font-size:1.9rem;opacity:0.2;flex-shrink:0;transition:opacity 0.2s;}
 .row:hover .row-arrow{opacity:0.8;}
 
@@ -94,6 +95,38 @@ main{max-width:1280px;margin:0 auto;padding:0 3rem;margin-top:2rem;}
   .row-arrow{display:none;}
   .rows{border-radius:24px;}
   .tl-note{grid-template-columns:1fr;}
+}
+/* ══════════ 휴대폰 (600px 이하) — 줄 대신 둥근 카드로 쌓기. PC 화면에는 영향 없음 ══════════ */
+@media(max-width:600px){
+  main{padding:0 1.5rem;}
+  .tl-head{margin:1rem 0 3rem;}
+  .tl-head h1{font-size:3rem;line-height:0.9;margin-bottom:1.5rem;}
+  .tl-head p{font-size:13px;max-width:280px;}
+  .tl-glyph{display:none;}
+  .year{margin-bottom:3rem;}
+  .rows{background:none;border-radius:0;box-shadow:none;overflow:visible;display:flex;flex-direction:column;gap:1.5rem;}
+  .row{
+    display:grid;grid-template-columns:1fr auto;grid-template-areas:"kick num" "chip num" "body body";
+    gap:0;padding:2rem;border-radius:32px;border-bottom:0;
+    box-shadow:0 4px 20px -4px rgba(0,0,0,0.03);
+  }
+  .row:hover{transform:none;}
+  .row:active{transform:scale(0.98);}
+  .row-kicker{display:block;grid-area:kick;font-size:0.65rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.25rem;}
+  .chip{grid-area:chip;width:48px;height:48px;border-radius:14px;margin-bottom:1.5rem;}
+  .chip i{font-size:1.25rem;}
+  .row-num{grid-area:num;font-size:3.75rem;opacity:0.05;width:auto;letter-spacing:-0.05em;}
+  .row-body{grid-area:body;}
+  .row-title{font-size:1.5rem;letter-spacing:-0.05em;text-transform:uppercase;margin-bottom:1.5rem;}
+  .row-meta{flex-direction:column;gap:1rem;margin-top:0;}
+  .meta{width:100%;}
+  .meta-label{font-weight:600;letter-spacing:0.08em;}
+  .dotted-line{border-bottom-color:#cbd5e1;margin:0 8px 3px;}
+  .tl-note{margin-top:3rem;padding-top:3rem;}
+  .home-pill{height:auto;padding:0.75rem 1.5rem;font-size:10px;font-weight:900;}
+  .contact-section{padding:5rem 1.5rem 4rem;}
+  .contact-title{font-size:3.75rem;letter-spacing:-0.05em;}
+  .contact-grid{flex-direction:column;align-items:center;gap:3rem;}
 }
 </style>
 <link rel="stylesheet" href="theme.css">
@@ -201,6 +234,7 @@ function row(item, i) {
   return `
     <a class="row" href="${link(item)}">
       <span class="row-num">${pad(i + 1)}</span>
+      <span class="row-kicker">${item.type}</span>
       <div class="chip" style="background:${item.bg};--c:${item.fg}"><i class="${item.icon}" style="color:${item.fg}"></i></div>
       <div class="row-body">
         <h3 class="row-title">${item.title}</h3>

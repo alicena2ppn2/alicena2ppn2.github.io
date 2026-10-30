@@ -38,5 +38,42 @@
       updateButton(btn);
     });
     links.appendChild(btn);
+
+    // 휴대폰(600px 이하): 메뉴 글자 대신 ☰ 버튼 → 아래로 펼쳐지는 메뉴
+    var nav = links.closest('nav') || links.parentNode;
+    var burger = document.createElement('button');
+    burger.type = 'button';
+    burger.className = 'nav-burger';
+    burger.setAttribute('aria-label', '메뉴 열기');
+    burger.innerHTML = '<span></span><span></span>';
+    var menu = document.createElement('div');
+    menu.className = 'm-menu';
+    links.querySelectorAll('a').forEach(function (a) {
+      var c = a.cloneNode(true);
+      c.addEventListener('click', function () { nav.classList.remove('menu-open'); });
+      menu.appendChild(c);
+    });
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('menu-open');
+      burger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+    });
+    nav.appendChild(burger);
+    nav.appendChild(menu);
+
+    // 휴대폰: 화면 아래 떠 있는 아이콘 메뉴 바
+    var icons = { TIMELINE: 'ph-clock', PROJECTS: 'ph-grid-four', ACTIVITIES: 'ph-sparkle', CONTACT: 'ph-paper-plane-tilt' };
+    var dock = document.createElement('div');
+    dock.className = 'm-dock';
+    links.querySelectorAll('a').forEach(function (a) {
+      var key = a.textContent.trim().toUpperCase();
+      if (!icons[key]) return;
+      var d = document.createElement('a');
+      d.href = a.getAttribute('href');
+      d.setAttribute('aria-label', a.textContent.trim());
+      d.innerHTML = '<i class="' + icons[key] + '"></i>';
+      if (location.pathname.split('/').pop() === d.getAttribute('href')) d.className = 'on';
+      dock.appendChild(d);
+    });
+    document.body.appendChild(dock);
   });
 })();
