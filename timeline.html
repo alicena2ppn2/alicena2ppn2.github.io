@@ -201,7 +201,7 @@ function row(item, i) {
   return `
     <a class="row" href="${link(item)}">
       <span class="row-num">${pad(i + 1)}</span>
-      <div class="chip" style="background:${item.bg}"><i class="${item.icon}" style="color:${item.fg}"></i></div>
+      <div class="chip" style="background:${item.bg};--c:${item.fg}"><i class="${item.icon}" style="color:${item.fg}"></i></div>
       <div class="row-body">
         <h3 class="row-title">${item.title}</h3>
         <div class="row-meta">

@@ -20,7 +20,6 @@ html[data-theme="dark"] .nav-links a:hover { color: #f5f2ed; text-decoration: un
 html[data-theme="dark"] .nav { background: rgba(26, 25, 24, 0.85) !important; }
 
 /* ── 파스텔 색 패널: 인라인 배경 위를 어둡게 덮기 ── */
-html[data-theme="dark"] .project-card [style*="background"],
 html[data-theme="dark"] .rows [style*="background"],
 html[data-theme="dark"] .pp-card [style*="background"],
 html[data-theme="dark"] .wide-icon,
@@ -28,11 +27,6 @@ html[data-theme="dark"] .modal-box [style*="background"] {
   box-shadow: inset 0 0 0 999px rgba(36, 35, 33, 0.7) !important;
   /* 덮은 뒤 채도를 끌어올려 포인트 색(패널·아이콘)을 선명하게 */
   filter: saturate(2.6) drop-shadow(0 0 8px rgba(255, 255, 255, 0.06));
-}
-/* 카드의 왼쪽 큰 칸(아주 옅은 바탕)은 카드 바탕에 가깝게 — 안쪽 아이콘 상자만 색이 돋보이도록 */
-html[data-theme="dark"] .project-card > [style*="background"] {
-  box-shadow: inset 0 0 0 999px rgba(36, 35, 33, 0.9) !important;
-  filter: none;
 }
 html[data-theme="dark"] .wide-card { box-shadow: inset 0 0 0 999px rgba(36, 35, 33, 0.9), 0 4px 20px rgba(0,0,0,0.2) !important; }
 
@@ -69,19 +63,66 @@ html[data-theme="dark"] .skill-pill.fe   { background: #2e343d; color: #8f9cbd; 
 /* ── 홈: 섹션 제목 · 카드 ── */
 html[data-theme="dark"] .sec-label { color: #8c8882; }
 html[data-theme="dark"] .sec-label::after { background: #2e2d2b; }
-html[data-theme="dark"] .project-card { background: #242321; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); outline: 1px solid #2e2d2b; outline-offset: -1px; color: #f5f2ed; }
+html[data-theme="dark"] .project-card { background: #242321; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); color: #f5f2ed; }
 html[data-theme="dark"] .project-card:hover { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
 html[data-theme="dark"] .card-number { color: #f5f2ed; }
 html[data-theme="dark"] .card-title { color: #f5f2ed; }
 html[data-theme="dark"] .card-brief { color: #8c8882 !important; }
 html[data-theme="dark"] .meta-label { color: #8c8882 !important; }
 html[data-theme="dark"] .meta-value { color: #d1cdc7 !important; }
+html[data-theme="dark"] .meta-value[style*="color:#666"] { color: #8c8882 !important; }
 html[data-theme="dark"] .dotted-line { border-color: #4a4742 !important; }
 html[data-theme="dark"] .card-pill,
 html[data-theme="dark"] .small-pill,
 html[data-theme="dark"] .modal-pill { background: #2e2d2b; color: #8c8882; }
 html[data-theme="dark"] .small-card { background: #242321; color: #f5f2ed; }
 html[data-theme="dark"] .small-card-desc { color: #8c8882; }
+
+/* ── 홈 카드의 색 패널: 선명한 색을 20% 정도로 비치게 + 은은한 빛 (STUDIO.K 다크 레퍼런스) ── */
+html[data-theme="dark"] .project-card > [style*="background"] { background: rgba(255, 255, 255, 0.025) !important; }
+html[data-theme="dark"] .project-card [style*="background:#ffdcbf"] { background: rgba(249, 115, 22, 0.2) !important; }
+html[data-theme="dark"] .project-card [style*="background:#e2d0f5"],
+html[data-theme="dark"] .project-card [style*="background:#e6d1fc"] { background: rgba(168, 85, 247, 0.22) !important; }
+html[data-theme="dark"] .project-card [style*="background:#f9e9f2"],
+html[data-theme="dark"] .project-card [style*="background:#fdeff7"],
+html[data-theme="dark"] .project-card [style*="background:#fdd2ebe1"] { background: rgba(236, 72, 153, 0.2) !important; }
+html[data-theme="dark"] .project-card [style*="background:#fdf2f8"] { background: rgba(236, 72, 153, 0.1) !important; box-shadow: inset 0 0 0 1px rgba(236, 72, 153, 0.2); }
+html[data-theme="dark"] .project-card [style*="background:#bbf7d0"],
+html[data-theme="dark"] .project-card [style*="background:#dfeee8"] { background: rgba(16, 185, 129, 0.2) !important; }
+html[data-theme="dark"] .project-card [style*="background:#dcfce7"] { background: rgba(6, 78, 59, 0.4) !important; border-color: #34d399 !important; }
+html[data-theme="dark"] .project-card [style*="background:#4ade80"] { background: #34d399 !important; }
+html[data-theme="dark"] .project-card [style*="background:#dbeafe"],
+html[data-theme="dark"] .project-card [style*="background:#e1edfc"],
+html[data-theme="dark"] .project-card [style*="background:#e6ecf7"] { background: rgba(59, 130, 246, 0.2) !important; }
+html[data-theme="dark"] .project-card [style*="background:#a0ccfe"] { background: #3b82f6 !important; }
+html[data-theme="dark"] .project-card [style*="background:#e0e7ff"],
+html[data-theme="dark"] .project-card [style*="background:#edefff"] { background: rgba(99, 102, 241, 0.2) !important; }
+html[data-theme="dark"] .project-card [style*="background:#aab7fe"] { background: rgba(129, 140, 248, 0.25) !important; }
+html[data-theme="dark"] .project-card [style*="background:#dff4f2"] { background: rgba(45, 212, 191, 0.2) !important; }
+html[data-theme="dark"] .project-card [style*="background:#fef6d9"],
+html[data-theme="dark"] .project-card [style*="background:#fef9c3"] { background: rgba(250, 204, 21, 0.2) !important; }
+html[data-theme="dark"] .project-card [style*="background:#f87171"] { background: #f43f5e !important; }
+html[data-theme="dark"] .project-card [style*="background:rgba(255,255,255,0.6)"] { background: rgba(255, 255, 255, 0.1) !important; }
+/* 패널 안의 흰 조각 → 어두운 칩 (Wi-Fi 글자, 시계·카메라 상자). Car Park는 민트 점 + 어두운 막대 */
+html[data-theme="dark"] .project-card [style*="background:white"] { background: #1a1918 !important; }
+html[data-theme="dark"] .project-card [style*="background:#fef6d9"] [style*="background:white"] { box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.3); }
+html[data-theme="dark"] .project-card [style*="background:#bbf7d0"] > div > [style*="background:white"] { background: #d1fae5 !important; }
+html[data-theme="dark"] .project-card [style*="background:#bbf7d0"] > [style*="background:white"] { background: #2e2d2b !important; }
+/* 색 패널의 은은한 빛 */
+html[data-theme="dark"] .project-card [style*="background:#"][style*="border-radius:0.5rem"],
+html[data-theme="dark"] .project-card [style*="background:#"][style*="border-radius:1rem"] { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.06)); }
+html[data-theme="dark"] .project-card > [style*="background"] { filter: none; }
+/* 아이콘은 한 단계 밝은 색으로 */
+html[data-theme="dark"] .project-card [style*="color:#f2843a"] { color: #fb923c !important; }
+html[data-theme="dark"] .project-card [style*="color:#9479e4"],
+html[data-theme="dark"] .project-card [style*="color:#a284fc"] { color: #c084fc !important; }
+html[data-theme="dark"] .project-card [style*="color:#5f9e86"] { color: #34d399 !important; }
+html[data-theme="dark"] .project-card [style*="color:#5bb8b0"] { color: #2dd4bf !important; }
+html[data-theme="dark"] .project-card [style*="color:#3b82f6"] { color: #60a5fa !important; }
+html[data-theme="dark"] .project-card [style*="color:#6366f1"],
+html[data-theme="dark"] .project-card [style*="color:#3b5488"],
+html[data-theme="dark"] .project-card [style*="color:#1f3199"] { color: #818cf8 !important; }
+html[data-theme="dark"] .project-card [style*="color:#d9a520"] { color: #facc15 !important; }
 
 /* ── 홈: 팝업 · 로딩 ── */
 html[data-theme="dark"] .modal-box { background: #242321; color: #f5f2ed; }
@@ -107,17 +148,27 @@ html[data-theme="dark"] .contact-col-value { color: #f5f2ed; }
 html[data-theme="dark"] .contact-icon { border-color: #d1cdc7; color: #d1cdc7; }
 html[data-theme="dark"] .contact-icon:hover { background: #f5f2ed; color: #1a1918; }
 
-/* ── Timeline ── */
+/* ── Timeline (레퍼런스: 테두리만 있는 목록, 색으로 물든 칩) ── */
 html[data-theme="dark"] .tl-head p,
 html[data-theme="dark"] .pp-head p { color: #8c8882; }
-html[data-theme="dark"] .tl-glyph,
+html[data-theme="dark"] .tl-glyph { border-color: #4a4742; color: #f5f2ed; }
 html[data-theme="dark"] .head-glyph { border-color: #f5f2ed; }
 html[data-theme="dark"] .year-head h2 { color: rgba(245, 242, 237, 0.2); }
 html[data-theme="dark"] .year:first-child .year-head h2 { color: rgba(245, 242, 237, 0.5); }
-html[data-theme="dark"] .rows { background: #242321; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
-html[data-theme="dark"] .row { background: #242321; border-bottom-color: #2e2d2b; }
+html[data-theme="dark"] .rows { background: transparent; outline: 1px solid #2e2d2b; outline-offset: -1px; box-shadow: none; }
+html[data-theme="dark"] .row { background: #1f1e1c; border-bottom-color: rgba(245, 242, 237, 0.05); }
 html[data-theme="dark"] .row:hover { background: #2a2927; }
-html[data-theme="dark"] .home-pill { background: #3d3b30; color: #c9b77a; }
+html[data-theme="dark"] .row-num { color: #f5f2ed; }
+html[data-theme="dark"] .row-arrow { color: #f5f2ed; }
+html[data-theme="dark"] .rows .chip {
+  background: color-mix(in srgb, var(--c) 16%, #1a1918) !important;
+  border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) !important;
+  filter: none;
+}
+html[data-theme="dark"] .rows .chip i { filter: saturate(1.4) brightness(1.15); }
+html[data-theme="dark"] .home-pill { background: rgba(245, 158, 11, 0.1); color: #fbbf24; box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.3); }
+html[data-theme="dark"] .home-pill:hover { background: rgba(245, 158, 11, 0.2); }
 html[data-theme="dark"] .tl-note { border-top-color: #2e2d2b; }
 
 /* ── Personal Projects ── */
