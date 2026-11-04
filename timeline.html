@@ -205,7 +205,7 @@ main{max-width:1280px;margin:0 auto;padding:0 3rem;margin-top:2rem;}
 // year가 없으면 제목 없는 맨 아래 묶음에 들어갑니다.
 const ITEMS = [
   // 2026
-  { id: '11-my-mochi',          year: '2026', title: 'MY MOCHI',                   start: '', end: '', type: 'Capstone', role: 'PM · 백엔드 · 데이터 분석', icon: 'ph-smiley',      bg: '#dfeee8', fg: '#5f9e86' },
+  { id: '11-my-mochi', hidden: true, year: '2026', title: 'MY MOCHI',                   start: '', end: '', type: 'Capstone', role: 'PM · 백엔드 · 데이터 분석', icon: 'ph-smiley',      bg: '#dfeee8', fg: '#5f9e86' },
   { id: '9-dear-mate',          year: '2026', title: 'DearMate',                   start: '', end: '', type: 'Project',  role: '프로젝트 기획 및 전체', icon: 'ph-heart',            bg: '#e2d0f5', fg: '#9479e4' },
   { id: '8-law-rag',            year: '2026', title: '법률 상담 RAG',              start: '2026.05', end: '2026.06', type: 'Project',  role: '프론트엔드',            icon: 'ph-scales',           bg: '#ffdcbf', fg: '#f2843a' },
   { id: '1-xai-saas',           year: '2026', title: 'XAI 기반 SaaS 고객 이탈 예측', start: '', end: '', type: 'Project', role: 'UI/UX · Streamlit',    icon: 'ph-chart-line-up',    bg: '#f9e9f2', fg: '#e879f9' },
@@ -249,8 +249,8 @@ function row(item, i) {
 }
 
 function render() {
-  const dated = ITEMS.filter(x => x.year);
-  const pending = ITEMS.filter(x => !x.year);
+  const dated = ITEMS.filter(x => x.year && !x.hidden);
+  const pending = ITEMS.filter(x => !x.year && !x.hidden);
 
   // 연도별로 묶기 (최근 연도가 위, 같은 연도 안에서는 목록 순서 그대로)
   const years = [];

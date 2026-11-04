@@ -343,7 +343,8 @@
             'personal-bubble':      { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-drop',     group: 'Personal' }
         };
 
-        const projectSequence = ['8-law-rag', '9-dear-mate', '1-xai-saas', '2-carpark-search', '11-my-mochi', '6-sk-aicamp', '3-wifi-multiap', '4-kird-challenge', '5-cybersecurity-club', '10-madi-club'];
+        const hiddenProjects = ['11-my-mochi']; // 화면에서 숨길 프로젝트
+        const projectSequence = ['8-law-rag', '9-dear-mate', '1-xai-saas', '2-carpark-search', '11-my-mochi', '6-sk-aicamp', '3-wifi-multiap', '4-kird-challenge', '5-cybersecurity-club', '10-madi-club'].filter(id => !hiddenProjects.includes(id));
         const projectNames = {
             '1-xai-saas': 'XAI SaaS',
             '2-carpark-search': 'Car Park Search',
