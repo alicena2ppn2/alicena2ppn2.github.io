@@ -66,8 +66,12 @@ const projectData = {
     'NLTK · spaCy · KSS 자연어 처리, 자연어 딥러닝 · LLM · 프롬프트 엔지니어링'
   ],
   chart: {
-    type: 'none',
-    title: '',
-    desc: ''
+    type: 'images',
+    columns: 'minmax(0, 470px)',
+    center: true,
+    panelMax: '610px',
+    images: [
+      'images/skcamp-crop.jpg'
+    ]
   }
 };

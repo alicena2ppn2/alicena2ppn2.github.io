@@ -45,8 +45,15 @@ const projectData = {
     'Bilingual support (Korean & English) with dark mode'
   ],
   chart: {
-    type: 'none',
-    title: '',
-    desc: ''
+    type: 'images',
+    columns: 'repeat(3, minmax(0, 1fr))',
+    gap: '0.7rem',
+    tight: true,
+    framed: true,
+    images: [
+      'images/idea1.png',
+      'images/idea2.png',
+      'images/idea3.png'
+    ]
   }
 };

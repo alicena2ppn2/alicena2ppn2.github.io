@@ -42,8 +42,11 @@ const projectData = {
     '세계보안학회 참석'
   ],
   chart: {
-    type: 'none',
-    title: '',
-    desc: ''
+    type: 'images',
+    columns: '1fr 1.05fr',
+    images: [
+      'images/secure1-crop.jpg',
+      'images/secure2.png'
+    ]
   }
 };

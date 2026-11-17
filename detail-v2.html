@@ -89,7 +89,7 @@
         .hero-panel.media.tight { padding: 1.1rem; }
         .hero-panel.media.tight .media-inner { padding: 0.9rem; }
         /* 흰 배경 스크린샷이 바탕과 섞이지 않게 얇은 테두리·그림자 (chart.framed, 라이트 모드만) */
-        html:not([data-theme="dark"]) .hero-panel.media.framed .hero-images img { border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06); }
+        html:not([data-theme="dark"]) .hero-panel.media.framed .hero-images img { border: 1px solid var(--frame, rgba(0, 0, 0, 0.08)); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06); }
         .media-inner { background: #fff; border-radius: 1.75rem; padding: 1.25rem; overflow: hidden; }
         .media-title { font-size: 0.8rem; font-weight: 700; color: #666; margin-bottom: 0.75rem; }
         .media-desc { font-size: 0.8rem; color: #888; margin-top: 0.75rem; }
@@ -450,10 +450,12 @@
             } else if (chart.type === 'gallery') {
                 inner = `<div id="galleryImages" style="display:flex;gap:0.75rem;flex-wrap:wrap;"></div>`;
             } else if (chart.type === 'images') {
-                const st = (chart.columns ? `grid-template-columns:${chart.columns};` : '') + (chart.gap ? `gap:${chart.gap};` : '');
+                const st = (chart.columns ? `grid-template-columns:${chart.columns};` : '') + (chart.gap ? `gap:${chart.gap};` : '') + (chart.center ? 'justify-content:center;' : '');
                 const cols = st ? ` style="${st}"` : '';
                 if (chart.tight) panel.classList.add('tight');
                 if (chart.framed) panel.classList.add('framed');
+                if (chart.panelMax) { panel.style.maxWidth = chart.panelMax; panel.style.justifySelf = 'center'; panel.style.width = '100%'; }
+                if (chart.frameColor) panel.style.setProperty('--frame', chart.frameColor);
                 inner = `<div class="hero-images"${cols}>` + chart.images.map(img => {
                     const src = typeof img === 'string' ? img : img.src;
                     const cap = typeof img === 'string' ? '' : (img.caption || '');
