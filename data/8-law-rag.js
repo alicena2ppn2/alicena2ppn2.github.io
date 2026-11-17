@@ -21,8 +21,8 @@ const projectData = {
     title: 'Overview',
 
     brief:
-      '노인과 고령층 사용자가 법률·복지·고용 정보를 자연어로 질문하면 ' +
-      '공공 문서와 법령 데이터를 기반으로 답변을 제공하는 AI 상담 서비스',
+      '노인과 고령층 사용자가 음성으로 질문하면, 공공 문서와 법령 데이터를 바탕으로 답변하고 ' +
+      '관련 복지기관·신청 절차를 화면에 안내하는 AI 상담 웹 서비스',
 
     description:
       '노인복지법, 기초연금법, 고령자고용촉진법 등 관련 정보는 여러 기관에 분산되어 있고 ' +
@@ -241,9 +241,10 @@ const projectData = {
     type: 'images',
     title: '로디 (Rody)',
     desc: 'Road + Buddy — 사용자의 길을 함께 찾아주는 동반자. 대기·입력 감지·듣는 중·생각 중·답변 중·오류 상태를 각각 다른 Sprite Animation으로 표현합니다.',
-    columns: '1fr 1.15fr',
+    columns: 'minmax(0, 1fr)',
+    framed: true,
     images: [
-      { src: 'images/rodi1.png' },
+      { src: 'images/rodi1-crop.png' },
       { src: 'images/rodi2.png' }
     ]
   }

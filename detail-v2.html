@@ -55,7 +55,7 @@
         .dotted-line { border-bottom: 1px dotted #ccc; flex-grow: 1; margin: 0 8px; margin-bottom: 4px; min-width: 1.5rem; }
 
         /* ── HEADER ── */
-        .header { padding-top: 1.25rem; padding-bottom: 6rem; }
+        .header { padding-top: 0.25rem; padding-bottom: 6rem; }
         .header-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 2rem; }
         .header-left { max-width: 46rem; position: relative; }
         .tag-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
@@ -66,6 +66,11 @@
         .page-subtitle { margin-top: 1.25rem; font-size: 1rem; color: #6b7280; max-width: 40rem; }
         .number-big { font-size: clamp(5rem, 11vw, 8rem); font-weight: 900; line-height: 1; opacity: 0.1; letter-spacing: -0.04em; }
         .number-big img { width: 7rem; height: 7rem; object-fit: contain; opacity: 1; }
+        .number-big img.round { object-fit: cover; border-radius: 22%; }
+        /* 다크 테마에서만: Nowlist 로고 색을 조금 더 진하게 (목록 페이지와 동일) */
+        html[data-theme="dark"] .number-big img[data-app="personal-nowlist"] { filter: saturate(1.3) brightness(0.95); }
+        /* 다크 테마: Writeday 로고만 밝기 살짝 낮춤 */
+        html[data-theme="dark"] .number-big img[data-app="personal-writeday"] { filter: brightness(0.88); }
 
         .hero-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem; align-items: start; }
         .hero-panel {
@@ -80,6 +85,11 @@
         }
         .hero-arch i { color: #fff; font-size: 120px; }
         .hero-panel.media { padding: 1.5rem; }
+        /* 이미지를 꽉 차게: 바깥 여백 줄이기 (chart.tight) */
+        .hero-panel.media.tight { padding: 1.1rem; }
+        .hero-panel.media.tight .media-inner { padding: 0.9rem; }
+        /* 흰 배경 스크린샷이 바탕과 섞이지 않게 얇은 테두리·그림자 (chart.framed, 라이트 모드만) */
+        html:not([data-theme="dark"]) .hero-panel.media.framed .hero-images img { border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06); }
         .media-inner { background: #fff; border-radius: 1.75rem; padding: 1.25rem; overflow: hidden; }
         .media-title { font-size: 0.8rem; font-weight: 700; color: #666; margin-bottom: 0.75rem; }
         .media-desc { font-size: 0.8rem; color: #888; margin-top: 0.75rem; }
@@ -104,7 +114,7 @@
         .quote-by { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
         .quote-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--accent); }
         .quote-name { font-size: 0.75rem; font-weight: 700; }
-        .quote-role { font-size: 10px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.04em; }
+        .quote-card .quote-role { font-size: 0.7rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.04em; }
 
         /* ── PHASE 섹션 (왼쪽 고정 제목 + 오른쪽 본문) ── */
         .phases { background: #fff; padding: 5.5rem 0 8rem; }
@@ -209,7 +219,7 @@
             .nav { padding: 1.25rem 1.25rem; }
             .nav-links { display: none; }
             .wrap { padding: 0 1.25rem; }
-            .header { padding-top: 1rem; padding-bottom: 4rem; }
+            .header { padding-top: 0.25rem; padding-bottom: 4rem; }
             /* 번호를 제목과 같은 줄 오른쪽에 */
             .header-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "back back" "tag tag" "title num" "sub sub"; column-gap: 1rem; align-items: center; }
             .header-left { display: contents; }
@@ -340,10 +350,12 @@
             'personal-hand':        { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-hand-waving',       group: 'Personal' },
             'personal-sqld':        { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-database',          group: 'Personal' },
             'personal-idea':        { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-lightbulb',         group: 'Personal' },
-            'personal-bubble':      { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-drop',     group: 'Personal' }
+            'personal-bubble':      { accent: '#a284fc', soft: '#e6d1fc', icon: 'ph-drop',     group: 'Personal' },
+            'personal-nowlist':     { accent: '#38a3e0', soft: '#cde9fb', icon: 'ph-calendar-check',   group: 'Personal' },
+            'personal-writeday':    { accent: '#34b26a', soft: '#cdeed9', icon: 'ph-note-pencil',      group: 'Personal' }
         };
 
-        const hiddenProjects = ['11-my-mochi']; // 화면에서 숨길 프로젝트
+        const hiddenProjects = ['11-my-mochi', '10-madi-club']; // 화면에서 숨길 프로젝트
         const projectSequence = ['8-law-rag', '9-dear-mate', '1-xai-saas', '2-carpark-search', '11-my-mochi', '6-sk-aicamp', '3-wifi-multiap', '4-kird-challenge', '5-cybersecurity-club', '10-madi-club'].filter(id => !hiddenProjects.includes(id));
         const projectNames = {
             '1-xai-saas': 'XAI SaaS',
@@ -358,6 +370,9 @@
             '11-my-mochi': 'MY MOCHI',
             '10-madi-club': 'MADI'
         };
+
+        const appSequence = ['personal-app', 'personal-nowlist', 'personal-writeday'];
+        const appNames = { 'personal-app': 'idea-archive', 'personal-nowlist': 'Nowlist', 'personal-writeday': 'Writeday' };
 
         const PAGE = location.pathname.split('/').pop() || 'detail.html';
         const pad = n => String(n).padStart(2, '0');
@@ -435,7 +450,10 @@
             } else if (chart.type === 'gallery') {
                 inner = `<div id="galleryImages" style="display:flex;gap:0.75rem;flex-wrap:wrap;"></div>`;
             } else if (chart.type === 'images') {
-                const cols = chart.columns ? ` style="grid-template-columns:${chart.columns}"` : '';
+                const st = (chart.columns ? `grid-template-columns:${chart.columns};` : '') + (chart.gap ? `gap:${chart.gap};` : '');
+                const cols = st ? ` style="${st}"` : '';
+                if (chart.tight) panel.classList.add('tight');
+                if (chart.framed) panel.classList.add('framed');
                 inner = `<div class="hero-images"${cols}>` + chart.images.map(img => {
                     const src = typeof img === 'string' ? img : img.src;
                     const cap = typeof img === 'string' ? '' : (img.caption || '');
@@ -547,7 +565,7 @@
             const num = document.getElementById('projectNumber');
             if (data.icon && /\.(png|jpe?g|svg)$/i.test(data.icon)) {
                 num.style.opacity = 1;
-                num.innerHTML = `<img src="${data.icon}" alt="">`;
+                num.innerHTML = `<img src="${data.icon}" alt="" data-app="${data.id}"${data.iconRound ? ' class="round"' : ''}>`;
             } else {
                 num.textContent = data.number || '';
             }
@@ -647,7 +665,20 @@
             const i = projectSequence.indexOf(id);
             let href = 'personal-projects-detail.html';
             let name = 'Personal Projects';
-            if (i !== -1 && i < projectSequence.length - 1) {
+            const ai = appSequence.indexOf(id);
+            if (ai !== -1) {
+                // iOS 앱 상세: 뒤로 가기는 iOS Apps 목록, 다음은 다음 앱(마지막이면 목록)
+                const back = document.querySelector('.back-link');
+                back.href = 'ios-apps.html';
+                back.innerHTML = '<i class="ph-arrow-left"></i> BACK TO iOS APPS';
+                href = 'ios-apps.html';
+                name = 'iOS Apps';
+                if (ai < appSequence.length - 1) {
+                    const nextId = appSequence[ai + 1];
+                    href = `${PAGE}?id=${nextId}`;
+                    name = appNames[nextId];
+                }
+            } else if (i !== -1 && i < projectSequence.length - 1) {
                 const nextId = projectSequence[i + 1];
                 href = `${PAGE}?id=${nextId}`;
                 name = projectNames[nextId];

@@ -36,6 +36,7 @@ main{max-width:1280px;margin:0 auto;padding:0 3rem;margin-top:2rem;}
 .year{margin-bottom:4rem;}
 .year-head{display:flex;align-items:baseline;gap:1.25rem;margin-bottom:1.25rem;}
 .year-head h2{font-size:2.25rem;font-weight:900;letter-spacing:-0.05em;line-height:1;color:rgba(0,0,0,0.15);}
+.year-head h2.sm{font-size:1.75rem;}
 /* 가장 최근 연도(맨 위)만 조금 더 진하게 */
 .year:first-child .year-head h2{color:rgba(0,0,0,0.35);}
 .year-head span{font-family:'DM Mono',monospace;font-size:0.72rem;color:#9ca3af;letter-spacing:0.12em;text-transform:uppercase;}
@@ -212,14 +213,16 @@ const ITEMS = [
   { id: '2-carpark-search',     year: '2026', title: 'Car Park Search',            start: '', end: '', type: 'Project',  role: 'UI/UX 설계 · 데이터 분석', icon: 'ph-car',           bg: '#bbf7d0', fg: '#22c55e' },
   { id: '6-sk-aicamp',          year: '2026', title: 'SK Networks Family AI 캠프', start: '2026.02', end: '2026.08', type: 'Bootcamp', role: 'AI·ML 개발자 과정',     icon: 'ph-code',             bg: '#fef3c7', fg: '#f59e0b' },
   // 2025
-  { id: '10-madi-club',         year: '2025', title: '문화교류연합 동아리 MADI',   start: '2025.03', end: '2026.08', type: 'Club',     role: '홍보 콘텐츠 기획·제작', icon: 'ph-camera',           bg: '#e6ecf7', fg: '#3b5488' },
+  { id: '10-madi-club', hidden: true,         year: '2025', title: '문화교류연합 동아리 MADI',   start: '2025.03', end: '2026.08', type: 'Club',     role: '홍보 콘텐츠 기획·제작', icon: 'ph-camera',           bg: '#e6ecf7', fg: '#3b5488' },
   // 2024
   { id: '3-wifi-multiap',       year: '2024', title: 'Wi-Fi Multi-AP 채널 보안 연구', start: '2024.03', end: '2024.10', type: 'Research', role: '학술 연구',          icon: 'ph-wifi-high',        bg: '#dff4f2', fg: '#5bb8b0' },
   { id: '4-kird-challenge',     year: '2024', title: 'R&D KIRD 리얼챌린지',        start: '2024.03', end: '2024.10', type: 'Activity', role: '대외활동',              icon: 'ph-file-text',        bg: '#dbeafe', fg: '#3b82f6' },
   { id: '5-cybersecurity-club', year: '2024', title: '융합보안 학술 동아리',        start: '', end: '', type: 'Club',     role: 'Cryptography · Write-up', icon: 'ph-shield-checkered', bg: '#e0e7ff', fg: '#6366f1' },
 
   // ↓ 연도 미정 (맨 아래, 제목 없음)
-  { id: 'personal-app',         year: '', title: 'idea-archive iOS',           start: '', end: '', type: 'Personal', role: 'Mobile App',            icon: 'ph-lightbulb',        bg: '#fdd2eb', fg: '#f472b6' }
+  { id: 'personal-app',         year: '', title: 'idea-archive iOS',           start: '', end: '', type: 'Personal', role: 'Mobile App',            icon: 'ph-lightbulb',        bg: '#fdd2eb', fg: '#f472b6' },
+  { id: 'personal-nowlist',     year: '', title: 'Nowlist iOS',                start: '', end: '', type: 'Personal', role: 'Mobile App',            icon: 'ph-calendar-check',   bg: '#cde9fb', fg: '#38a3e0' },
+  { id: 'personal-writeday',    year: '', title: 'Writeday iOS',               start: '', end: '', type: 'Personal', role: 'Mobile App',            icon: 'ph-note-pencil',      bg: '#cdeed9', fg: '#34b26a' }
 ];
 
 const pad = n => String(n).padStart(2, '0');
@@ -268,11 +271,11 @@ function render() {
       <div class="rows">${g.items.map(item => row(item, n++)).join('')}</div>
     </section>`).join('');
 
-  // 연도가 없는 항목 — 제목 없이 맨 아래에
+  // 연도가 없는 항목 — "My App" 제목으로 맨 아래에
   if (pending.length) {
     html += `
     <section class="year">
-      <div class="year-head"><h2>&nbsp;</h2></div>
+      <div class="year-head"><h2 class="sm">My App</h2></div>
       <div class="rows">${pending.map(item => row(item, n++)).join('')}</div>
     </section>`;
   }
