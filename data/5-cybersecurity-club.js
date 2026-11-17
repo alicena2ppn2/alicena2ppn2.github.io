@@ -46,7 +46,7 @@ const projectData = {
     columns: '1fr 1.05fr',
     images: [
       'images/secure1-crop.jpg',
-      'images/secure2.png'
+      'images/secure2-web.jpg'
     ]
   }
 };
